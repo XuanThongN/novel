@@ -4,12 +4,171 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/gradient_background"
         tools:context="com.xuanthongn.MainActivity"
         android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv.hot_product"
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingTop="0dp"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Xin chào,"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorTextHello"
+                        android:textSize="20sp" />
+
+                <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Xuân Thông Nguyễn"
+                        android:textColor="@color/colorText"
+                        android:textStyle="bold"
+                        android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:gravity="end">
+
+                <ImageView
+                        android:id="@+id/search_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_search_32" />
+
+                <ImageView
+                        android:id="@+id/notification_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_notifications_32" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginVertical="10dp"
+                    android:layout_height="200dp">
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        app:cardCornerRadius="10dp">
+
+                    <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                            android:id="@+id/carousel"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            app:showTopShadow="true"
+                            app:topShadowAlpha="0.6"
+                            app:topShadowHeight="32dp"
+
+                            app:showBottomShadow="true"
+                            app:bottomShadowAlpha="0.6"
+                            app:bottomShadowHeight="64dp"
+
+                            app:showCaption="false"
+
+                            app:showNavigationButtons="false"
+
+                            app:showIndicator="true"
+                            app:indicatorMargin="-20dp"
+
+                            app:imageScaleType="centerCrop"
+
+                            app:carouselBackground="#00000000"
+
+                            app:carouselPadding="0dp"
+                            app:carouselPaddingBottom="0dp"
+                            app:carouselPaddingEnd="0dp"
+                            app:carouselPaddingStart="0dp"
+                            app:carouselPaddingTop="0dp"
+
+                            app:carouselType="BLOCK"
+                            app:carouselGravity="CENTER"
+
+                            app:scaleOnScroll="false"
+                            app:scalingFactor="0.15"
+                            app:autoWidthFixing="true"
+                            app:autoPlay="false"
+                            app:autoPlayDelay="3000"
+                            app:infiniteCarousel="true"
+                            app:touchToPause="true" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <!-- Grid of categories -->
+            <GridLayout
+                    android:id="@+id/gridLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="4"
+                    android:rowCount="2"
+                    android:alignmentMode="alignBounds"
+                    android:padding="16dp">
+
+
+            </GridLayout>
+
+            <!-- Continue reading -->
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đọc tiếp"
+                    android:textColor="@color/colorText"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:padding="16dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
