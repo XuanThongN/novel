@@ -3,7 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorText">#FBFBF8</color> //Màu chữ (trắng)
-    <color name="colorPrimary">#601906</color> //Màu chính (đỏ)
+    <color name="colorPrimary">#FD4F38</color> //Màu chính (đỏ)
+    <color name="colorPrimaryHover">#601906</color> //Màu chính (đỏ nhạt)
     <color name="colorBackground">#171717</color> //Màu nền chính (đen)
     <color name="colorSubBackground">#1E1E1E</color> //Màu nền các khu vực (đen xám)
+    <color name="colorTextHello">#D6D6D6</color> //Màu nền text Hello (trắng xám)
 </resources>
