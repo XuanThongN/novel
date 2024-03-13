@@ -83,6 +83,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+<!--            Slider-->
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_marginVertical="10dp"
@@ -140,18 +141,19 @@
 
             </LinearLayout>
 
-            <!-- Grid of categories -->
-            <GridLayout
-                    android:id="@+id/gridLayout"
+            <!-- List of categories -->
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:columnCount="4"
-                    android:rowCount="2"
-                    android:alignmentMode="alignBounds"
-                    android:padding="16dp">
+                    android:layout_height="160dp"
+                    android:orientation="vertical">
 
+                <GridView
+                        android:id="@+id/category_grid"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:numColumns="4" />
 
-            </GridLayout>
+            </LinearLayout>
 
             <!-- Continue reading -->
             <TextView
@@ -164,7 +166,7 @@
                     android:padding="16dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                    android:id="@+id/rv_continue_reading"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
