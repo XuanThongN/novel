@@ -9,9 +9,11 @@ import android.widget.GridView;
 import com.xuanthongn.base.BaseActivity;
 import com.xuanthongn.data.model.CategoryItem;
 import com.xuanthongn.data.model.Novel;
+import com.xuanthongn.data.model.NovelRecommend;
 import com.xuanthongn.data.model.Product;
 import com.xuanthongn.ui.adapter.CategoryItemAdapter;
 import com.xuanthongn.ui.adapter.NovelContinueReadingAdapter;
+import com.xuanthongn.ui.adapter.NovelRecommendAdapter;
 import com.xuanthongn.ui.constract.IMainConstract;
 import com.xuanthongn.ui.presenter.MainPresenter;
 
@@ -88,7 +90,6 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
         categoryGrid.setAdapter(adapter);
 
 
-
         //View continue reading
         RecyclerView rvContinueReading = findViewById(R.id.rv_continue_reading);
         List<Novel> novels = new ArrayList<>();
@@ -100,6 +101,19 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
         novels.add(new Novel(6, "Truyện 6", "Tác giả 6", "Mô tả 6", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"));
 
         rvContinueReading.setAdapter(new NovelContinueReadingAdapter(this, novels));
+
+
+        //View novel recommend
+        RecyclerView rvNovelRecommend = findViewById(R.id.rv_novel_recommend);
+        List<NovelRecommend> novelList = new ArrayList<>();
+        novelList.add(new NovelRecommend(1, "Truyện về than thoai hy lap", "Tác giả 1", "Mô tả 1", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 1"));
+        novelList.add(new NovelRecommend(2, "Truyện 2", "Tác giả 2", "Mô tả 2", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 2"));
+        novelList.add(new NovelRecommend(3, "Truyện 3", "Tác giả 3", "Mô tả 3", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 3"));
+        novelList.add(new NovelRecommend(4, "Truyện 4", "Tác giả 4", "Mô tả 4", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 4"));
+        novelList.add(new NovelRecommend(5, "Truyện 5", "Tác giả 5", "Mô tả 5", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 5"));
+        novelList.add(new NovelRecommend(6, "Truyện 6", "Tác giả 6", "Mô tả 6", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 6"));
+
+        rvNovelRecommend.setAdapter(new NovelRecommendAdapter(this, novelList));
     }
 
     private void initGUI() {

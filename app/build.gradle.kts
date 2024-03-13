@@ -66,4 +66,5 @@ dependencies {
 
 
     implementation("com.github.bumptech.glide:glide:4.14.0")
+    implementation("com.beardedhen:androidbootstrap:2.3.1")
 }
