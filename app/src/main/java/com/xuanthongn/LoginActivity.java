@@ -44,7 +44,6 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
             }
         });
     }
-
     @Override
     public void loginSuccess() {
 
