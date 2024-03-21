@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SplashActivity</string>
+    <string name="app_name">Novel</string>
     <string name="register_text"><font color="white">Bạn chưa có tài khoản?</font> <b><font color="#C83008">Đăng ký ngay</font></b></string>
     <string name="login_description">Đăng nhập <font color="#C83008"><b>App Truyện</b></font> để tận hưởng trọn vẹn các chức năng bạn nhé!</string>
     <string name="accept_text"><font color="white">Tôi đồng ý với các </font><font color="#C83008"><b>Điều khoản và chinh sách (EULA) </b></font> <font color="white">của App Truyện</font></string>
