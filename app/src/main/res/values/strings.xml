@@ -4,5 +4,8 @@
     <string name="login_description">Đăng nhập <font color="#C83008"><b>App Truyện</b></font> để tận hưởng trọn vẹn các chức năng bạn nhé!</string>
     <string name="accept_text"><font color="white">Tôi đồng ý với các </font><font color="#C83008"><b>Điều khoản và chinh sách (EULA) </b></font> <font color="white">của App Truyện</font></string>
     <string name="register_description">Đăng ký <font color="#C83008"><b>App Truyện</b></font> để tận hưởng trọn vẹn các chức năng bạn nhé!</string>
+    <string name="home">Trang chủ</string>
+    <string name="book_case">Tủ sách</string>
+    <string name="account">Tài khoản</string>
 
 </resources>
