@@ -1,10 +1,15 @@
 package com.xuanthongn.ui.main;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.GridView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
 import com.xuanthongn.data.model.CategoryItem;
@@ -30,6 +35,8 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
     private IMainConstract.IPresenter mPresenter;
     private List<CategoryItem> categories;
     private GridView categoryGrid;
+
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +121,23 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
         novelList.add(new NovelRecommend(6, "Truyện 6", "Tác giả 6", "Mô tả 6", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 6"));
 
         rvNovelRecommend.setAdapter(new NovelRecommendAdapter(this, novelList));
+
+
+        //Bottom navigation
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnItemReselectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    // Handle home navigation
+                    break;
+                case R.id.navigation_bookmark:
+                    // Handle dashboard navigation
+                    break;
+                case R.id.navigation_account:
+                    // Handle notifications navigation
+                    break;
+            }
+        });
     }
 
     private void initGUI() {
