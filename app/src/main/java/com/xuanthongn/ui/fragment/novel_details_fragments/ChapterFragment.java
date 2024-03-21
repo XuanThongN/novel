@@ -1,4 +1,4 @@
-package com.xuanthongn.base.novel_details_fragments;
+package com.xuanthongn.ui.fragment.novel_details_fragments;
 import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,6 +1,6 @@
 package com.xuanthongn.ui.constract;
 
-import com.xuanthongn.data.model.Product;
+import com.xuanthongn.data.entity.Product;
 
 import java.util.List;
 

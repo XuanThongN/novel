@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.xuanthongn.base.novel_details_fragments.ChapterFragment;
-import com.xuanthongn.base.novel_details_fragments.InformationFragment;
+import com.xuanthongn.ui.fragment.novel_details_fragments.ChapterFragment;
+import com.xuanthongn.ui.fragment.novel_details_fragments.InformationFragment;
 
 
 public class NovelDetailsPagerAdapter extends FragmentStateAdapter {

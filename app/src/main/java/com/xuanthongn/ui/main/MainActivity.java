@@ -1,16 +1,16 @@
-package com.xuanthongn;
+package com.xuanthongn.ui.main;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.GridView;
 
+import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
 import com.xuanthongn.data.model.CategoryItem;
 import com.xuanthongn.data.model.Novel;
 import com.xuanthongn.data.model.NovelRecommend;
-import com.xuanthongn.data.model.Product;
+import com.xuanthongn.data.entity.Product;
 import com.xuanthongn.ui.adapter.CategoryItemAdapter;
 import com.xuanthongn.ui.adapter.NovelContinueReadingAdapter;
 import com.xuanthongn.ui.adapter.NovelRecommendAdapter;

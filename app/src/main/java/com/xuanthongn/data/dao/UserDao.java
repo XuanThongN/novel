@@ -5,7 +5,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.xuanthongn.data.model.User;
+import com.xuanthongn.data.entity.User;
 
 import java.util.List;
 
