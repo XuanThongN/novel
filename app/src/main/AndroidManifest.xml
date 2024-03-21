@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -16,19 +18,19 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".NovelDetailsActivity"
+            android:name=".ui.main.NovelDetailsActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".AccountActivity"
+            android:name=".ui.main.AccountActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.main.LoginActivity"
             android:exported="true"/>
 
         <activity
-             android:name=".MainActivity"
+             android:name=".ui.main.MainActivity"
 
             android:exported="true">
             <intent-filter>

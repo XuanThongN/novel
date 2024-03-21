@@ -1,7 +1,7 @@
 package com.xuanthongn.data.repository;
 
 import com.xuanthongn.data.dao.UserDao;
-import com.xuanthongn.data.model.User;
+import com.xuanthongn.data.entity.User;
 import com.xuanthongn.util.Commons;
 
 public class UserRepository {

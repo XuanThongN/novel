@@ -7,9 +7,9 @@ import androidx.room.PrimaryKey;
 public class Novel {
     @PrimaryKey(autoGenerate = true)
     public int id;
-    private String name;
-    private String author;
-    private String description;
-    private String imageUrl;
+    public String name;
+    public String author;
+    public String description;
+    public String imageUrl;
 
 }

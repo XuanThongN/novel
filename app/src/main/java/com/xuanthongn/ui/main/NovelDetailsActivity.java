@@ -1,4 +1,4 @@
-package com.xuanthongn;
+package com.xuanthongn.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
+import com.xuanthongn.R;
 import com.xuanthongn.ui.adapter.NovelDetailsPagerAdapter;
 
 public class NovelDetailsActivity extends AppCompatActivity {

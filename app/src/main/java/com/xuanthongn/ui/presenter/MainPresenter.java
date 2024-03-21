@@ -6,7 +6,7 @@ import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.dao.ProductDao;
-import com.xuanthongn.data.model.Product;
+import com.xuanthongn.data.entity.Product;
 import com.xuanthongn.ui.constract.IMainConstract;
 import com.xuanthongn.util.Constants;
 

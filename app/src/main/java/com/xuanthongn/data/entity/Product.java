@@ -1,4 +1,4 @@
-package com.xuanthongn.data.model;
+package com.xuanthongn.data.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

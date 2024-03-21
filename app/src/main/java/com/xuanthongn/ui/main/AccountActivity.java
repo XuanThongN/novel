@@ -1,8 +1,10 @@
-package com.xuanthongn;
+package com.xuanthongn.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.xuanthongn.R;
 
 public class AccountActivity extends AppCompatActivity {
 

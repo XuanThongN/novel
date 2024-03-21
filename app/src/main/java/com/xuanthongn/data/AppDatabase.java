@@ -8,7 +8,7 @@ import com.xuanthongn.data.dao.NovelDao;
 import com.xuanthongn.data.dao.ProductDao;
 import com.xuanthongn.data.dao.UserDao;
 import com.xuanthongn.data.entity.*;
-import com.xuanthongn.data.model.Product;
+import com.xuanthongn.data.entity.Product;
 
 @Database(entities = {User.class, Category.class, Product.class, Novel.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
