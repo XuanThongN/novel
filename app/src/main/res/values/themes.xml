@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.SplashActivity" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.Theme.Novel" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.SplashActivity" parent="Base.Theme.SplashActivity" />
+    <style name="Theme.Novel" parent="Base.Theme.Novel" />
 </resources>

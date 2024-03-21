@@ -1,4 +1,4 @@
-package com.xuanthongn.splashactivity;
+package com.xuanthongn.novel;
 
 import org.junit.Test;
 
