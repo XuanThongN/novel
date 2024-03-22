@@ -78,14 +78,14 @@ public class HomeFragment extends Fragment {
 
         // Prepare category data
         categories = new ArrayList<>();
-        categories.add(new CategoryItem(R.drawable.ic_account_balance_32, "Bảng xếp hang"));
-        categories.add(new CategoryItem(R.drawable.ic_bloodtype_32, "Nhóm máu"));
-        categories.add(new CategoryItem(R.drawable.ic_account_balance_32, "Phúc lợi"));
-        categories.add(new CategoryItem(R.drawable.ic_bloodtype_32, "Cộng đồng"));
-        categories.add(new CategoryItem(R.drawable.ic_account_balance_32, "Truyện chọn lọc hay nhất"));
-        categories.add(new CategoryItem(R.drawable.ic_bloodtype_32, "Nhóm máu"));
-        categories.add(new CategoryItem(R.drawable.ic_account_balance_32, "Truyện dịch"));
-        categories.add(new CategoryItem(R.drawable.ic_bloodtype_32, "Truyện ngắn"));
+        categories.add(new CategoryItem(R.drawable.rank_icon, "Bảng xếp hang"));
+        categories.add(new CategoryItem(R.drawable.chat_icon, "Chat chit"));
+        categories.add(new CategoryItem(R.drawable.gold_icon, "Phúc lợi"));
+        categories.add(new CategoryItem(R.drawable.community_icon, "Cộng đồng"));
+        categories.add(new CategoryItem(R.drawable.translate_icon, "Truyện dịch"));
+        categories.add(new CategoryItem(R.drawable.ic_stars_32, "Truyện chọn lọc"));
+        categories.add(new CategoryItem(R.drawable.feather_icon, "Truyện ngắn"));
+        categories.add(new CategoryItem(R.drawable.teammate_icon, "Nhóm dịch"));
         // ... add more categories
 
         // Create and set adapter for GridView
