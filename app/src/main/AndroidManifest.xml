@@ -22,10 +22,6 @@
             android:exported="true"/>
 
         <activity
-            android:name=".ui.main.AccountActivity"
-            android:exported="true"/>
-
-        <activity
             android:name=".ui.main.LoginActivity"
             android:exported="true"/>
 
