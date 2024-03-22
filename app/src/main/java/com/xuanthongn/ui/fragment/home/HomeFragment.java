@@ -1,10 +1,12 @@
 package com.xuanthongn.ui.fragment.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridView;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +19,7 @@ import com.xuanthongn.data.model.NovelRecommend;
 import com.xuanthongn.ui.adapter.CategoryItemAdapter;
 import com.xuanthongn.ui.adapter.NovelContinueReadingAdapter;
 import com.xuanthongn.ui.adapter.NovelRecommendAdapter;
+import com.xuanthongn.ui.main.LoginActivity;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
@@ -26,23 +29,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.rxjava3.annotations.NonNull;
+
 public class HomeFragment extends Fragment {
     private GridView categoryGrid;
     private List<CategoryItem> categories;
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        Inflate the layout for this fragment
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-
         initGUI(view);
-        // Inflate the layout for this fragment
+        // Xử lý sự kiện click của buttonLogin
+        Button buttonLogin = view.findViewById(R.id.buttonLogin);
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo Intent để chuyển sang LoginActivity
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
-
     }
-
     private void initGUI(View view) {
         Context context = this.getContext();
         // Java
