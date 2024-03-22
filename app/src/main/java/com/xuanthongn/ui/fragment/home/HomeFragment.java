@@ -1,4 +1,4 @@
-package com.xuanthongn.ui.fragment.novel_details_fragments.home;
+package com.xuanthongn.ui.fragment.home;
 
 import android.content.Context;
 import android.os.Bundle;
