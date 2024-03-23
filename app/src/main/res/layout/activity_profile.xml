@@ -34,7 +34,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
@@ -43,12 +43,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
             android:text="Ảnh đại diện"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:padding="10dp"
-            android:textSize="20sp" />
+            android:paddingLeft="10dp"
+            android:textSize="18sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
@@ -63,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint=""
+
             android:src="@drawable/ic_right_18" />
     </LinearLayout>
 
@@ -76,7 +75,7 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -84,12 +83,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
             android:text="Tên hiển thị"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:padding="10dp"
-            android:textSize="20sp" />
+            android:paddingLeft="10dp"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -125,18 +123,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
             android:text="Email"
             android:padding="10dp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:paddingLeft="10dp"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="15dp"
             android:text="xuanthongnguyen235@gmail.com"
             android:textStyle="bold"
             android:textColor="@color/colorTagBackground"
