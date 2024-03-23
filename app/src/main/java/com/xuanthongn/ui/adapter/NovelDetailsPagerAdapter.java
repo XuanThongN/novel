@@ -19,11 +19,11 @@ public class NovelDetailsPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return new ChapterFragment();
-            case 1:
                 return new InformationFragment();
-            default:
+            case 1:
                 return new ChapterFragment();
+            default:
+                return new InformationFragment();
         }
     }
 
