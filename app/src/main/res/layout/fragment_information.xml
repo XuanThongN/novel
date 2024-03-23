@@ -395,53 +395,14 @@
                         android:textSize="18dp" />
                 </LinearLayout>
 
-
-                <LinearLayout
-                    android:layout_width="130dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_continue_yourlike_novel"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="130dp"
-                            android:layout_height="150dp"
-                            android:layout_margin="5dp"
-                            android:elevation="10dp"
-                            app:cardCornerRadius="8dp">
-
-                            <ImageView
-                                android:id="@+id/roundedImageView"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/white"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/img_1" />
-                        </androidx.cardview.widget.CardView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="6dp"
-                            android:text="Hệ thống thánh lười"
-                            android:textColor="@color/colorText"
-                            android:textSize="15dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="6dp"
-                            android:text="Thể loại: kinh dị, hài, xuyên..."
-                            android:textColor="@color/colorTextHello"
-                            android:textSize="13dp" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:paddingEnd="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             </LinearLayout>
 
