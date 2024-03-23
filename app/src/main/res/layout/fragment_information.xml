@@ -237,7 +237,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="2"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -245,37 +246,16 @@
                         android:text="Thể loại"
                         android:textColor="@color/white"
                         android:textSize="18dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:paddingEnd="10dp"
+                        android:id="@+id/rv_continue_category_novel"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-
-                    android:layout_weight="2">
-
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical">
-                        <!-- Background -->
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_boder_category" />
-                        <!-- TextView -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Truyện ngắn"
-                            android:textColor="#F0E83939"
-                            android:textSize="15dp" />
-                    </FrameLayout>
-
-                </LinearLayout>
-
             </LinearLayout>
 
             <ImageView
