@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSubBackground"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="98dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/item_cover"
+                android:id="@+id/book_cover"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="2dp"
+                    android:text="T.Truyện Tranh"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/book_category"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="5">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="2dp"
+                    android:text="Toàn cầu băng phong: Ta chế tạo phòng an toàn tại tận thế"
+                    android:lineSpacingExtra="2sp"
+                    android:textColor="@color/white"
+                    android:id="@+id/book_title"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:padding="2dp"
+
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_boder_chaper"
+                    android:gravity="center"
+                    android:text="Chapter 1/159"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/chapter_progress"/>
+
+                <ImageView
+                    android:layout_width="33dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="28dp"
+                    android:src="@drawable/ic_delete_24"
+                    android:id="@+id/delete_icon"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

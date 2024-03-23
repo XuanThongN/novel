@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/navigation_home"
+            android:theme="@style/Theme.Novel"
+            android:icon="@drawable/ic_home"
+            android:background="@drawable/navigation_view_colored"
+            android:title="@string/home" />
+
+    <item
+            android:id="@+id/navigation_bookmark"
+            android:icon="@drawable/ic_bookmark"
+            android:background="@drawable/navigation_view_colored"
+            android:title="@string/book_case" />
+
+    <item
+            android:id="@+id/navigation_account"
+            android:icon="@drawable/ic_account"
+            android:background="@drawable/navigation_view_colored"
+            android:title="@string/account" />
+
+</menu>

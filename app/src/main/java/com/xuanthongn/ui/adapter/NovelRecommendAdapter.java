@@ -1,12 +1,14 @@
 package com.xuanthongn.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +21,7 @@ import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
 import com.xuanthongn.data.model.Novel;
 import com.xuanthongn.data.model.NovelRecommend;
+import com.xuanthongn.ui.main.NovelDetailsActivity;
 
 import java.util.List;
 
@@ -63,6 +66,17 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
                     }
                 })
                 .preload();
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open NovelDetailsActivity when item is clicked
+                Intent intent = new Intent(context, NovelDetailsActivity.class);
+                // Pass data if needed
+                intent.putExtra("novel_id", novel.getId());
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override

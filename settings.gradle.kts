@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SplashActivity"
+rootProject.name = "Novel"
 include(":app")
