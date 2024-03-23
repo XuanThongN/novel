@@ -1,6 +1,7 @@
 package com.xuanthongn.ui.fragment.novel_details_fragments;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -14,12 +15,14 @@ import com.xuanthongn.data.model.Category;
 import com.xuanthongn.data.model.Chapter;
 import com.xuanthongn.ui.adapter.CategoryNovelItemAdapter;
 import com.xuanthongn.ui.adapter.NovelDetailsChaperListAdapter;
+import com.xuanthongn.ui.adapter.NovelDetailsChaperNewAdapter;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class ChapterFragment extends Fragment {
+    RecyclerView recyclerView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,6 +47,20 @@ public class ChapterFragment extends Fragment {
 
 
         rvContinueChapterList.setAdapter(new NovelDetailsChaperListAdapter(context, chapterList));
+
+
+        RecyclerView rvContinueChapterNew = view.findViewById(R.id.rv_continue_novel_chapter_new);
+        List<Chapter> chapterNew = new ArrayList<>();
+        chapterNew.add(new Chapter(1, "Dạng..."));
+        chapterNew.add(new Chapter(2, "Dạng..."));
+        chapterNew.add(new Chapter(3, "Dạng..."));
+        chapterNew.add(new Chapter(4, "Dạng..."));
+
+        rvContinueChapterNew.setLayoutManager(new GridLayoutManager(context, 2));
+        rvContinueChapterNew.setAdapter(new NovelDetailsChaperNewAdapter(context, chapterNew));
+
+
+
 
     }
 }

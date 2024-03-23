@@ -13,6 +13,11 @@ public class Chapter {
         this.chapter = chapter;
     }
 
+    public Chapter(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Chapter() {
     }
     public int getId() {return id;}
