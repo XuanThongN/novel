@@ -14,16 +14,19 @@ import com.xuanthongn.R;
 import com.xuanthongn.data.model.Category;
 import com.xuanthongn.data.model.CategoryItem;
 import com.xuanthongn.data.model.Novel;
+import com.xuanthongn.data.model.NovelComment;
 import com.xuanthongn.data.model.NovelRecommend;
 import com.xuanthongn.ui.adapter.CategoryItemAdapter;
 import com.xuanthongn.ui.adapter.CategoryNovelItemAdapter;
 import com.xuanthongn.ui.adapter.NovelContinueReadingAdapter;
+import com.xuanthongn.ui.adapter.NovelDetailsCommentAdapter;
 import com.xuanthongn.ui.adapter.NovelRecommendAdapter;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +56,13 @@ public class InformationFragment extends Fragment {
         category.add(new Category(5, "Tiểu Thuyết"));
 
         rvContinueReading.setAdapter(new CategoryNovelItemAdapter(context, category));
+
+        //        View continue reading
+        RecyclerView rvContinueComment= view.findViewById(R.id.rv_continue_comment_novel);
+        List<NovelComment> novelComment = new ArrayList<>();
+        novelComment.add(new NovelComment(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "helo", 145, new Date(102, 1, 12), 3, 4));
+
+        rvContinueComment.setAdapter(new NovelDetailsCommentAdapter(context, novelComment));
     }
 
 }
