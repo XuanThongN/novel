@@ -24,11 +24,9 @@ public class NovelDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_novel_details);
         tabLayout = findViewById(R.id.tab_layout);
         viewPager2 =findViewById(R.id.view_pager);
-<<<<<<< HEAD
+
         btnBack =findViewById(R.id.btn_back);
-=======
-        btnBack = findViewById(R.id.btn_back);
->>>>>>> master
+
         myViewPagerAdapter = new NovelDetailsPagerAdapter(this);
         viewPager2.setAdapter(myViewPagerAdapter);
         String novelName = getIntent().getStringExtra("novel_name");
@@ -63,14 +61,14 @@ public class NovelDetailsActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
+
                 // This finishes the current activity and returns to the previous one
                 System.out.println("OK");
                 finish();
 
-=======
-                finish();
->>>>>>> master
+
+
+
             }
         });
 
