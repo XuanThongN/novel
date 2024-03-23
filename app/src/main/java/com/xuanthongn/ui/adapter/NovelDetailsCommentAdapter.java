@@ -48,7 +48,7 @@ public class NovelDetailsCommentAdapter extends RecyclerView.Adapter<NovelDetail
         String formattedDate = sdf.format(date);
         holder.emailView.setText(novelComment.getEmail());
         holder.contentView.setText(novelComment.getContent());
-        holder.chapterNumberView.setText(String.valueOf(novelComment.getNumber_of_chapters()));
+        holder.chapterNumberView.setText("Chương: " + String.valueOf(novelComment.getNumber_of_chapters()));
         holder.dayNumberView.setText(formattedDate);
         holder.likeNumberView.setText(String.valueOf(novelComment.getNumber_of_likes()));
         holder.commentNumberView.setText(String.valueOf(novelComment.getNumber_of_comments()));

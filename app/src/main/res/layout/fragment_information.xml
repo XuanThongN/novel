@@ -248,11 +248,11 @@
                         android:textSize="18dp" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:paddingEnd="10dp"
+                        android:paddingEnd="15dp"
                         android:id="@+id/rv_continue_category_novel"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                 </LinearLayout>
@@ -275,7 +275,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="4">
 
@@ -290,17 +290,22 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:layout_marginTop="5dp"
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/textViewContent"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
+                        android:layout_weight="2"
+                        android:ellipsize="end"
                         android:text="Lúc này đã là đầu hạ, bên ngoài trời vừa mới hoàn toàn tối xuống, bóng đêm mờ ảo bao phủ khuôn mặt của thiếu nữ. Từ nay ... Xem thêm"
                         android:textColor="@color/colorTextHello"
                         android:textSize="17dp" />
+
+
                 </LinearLayout>
 
 
@@ -351,21 +356,22 @@
 
 
                 <LinearLayout
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginLeft="18dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="2"
                     android:orientation="vertical"
                     android:weightSum="10">
 
                     <androidx.recyclerview.widget.RecyclerView
+
                         android:id="@+id/rv_continue_comment_novel"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="15dp"
                         android:orientation="horizontal"
                         android:paddingEnd="10dp"
+                        android:paddingStart="10dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                 </LinearLayout>

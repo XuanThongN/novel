@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,19 +54,18 @@ public class InformationFragment extends Fragment {
         List<Category> category = new ArrayList<>();
         category.add(new Category(1, "Truyền Thuyết"));
         category.add(new Category(2, "Tiểu Thuyết"));
-        category.add(new Category(3, "Tiểu Thuyết"));
-        category.add(new Category(4, "Tiểu Thuyết"));
-        category.add(new Category(5, "Tiểu Thuyết"));
+        category.add(new Category(3, "Cổ Tích"));
+        category.add(new Category(4, "Sử Thi"));
 
         rvContinueReading.setAdapter(new CategoryNovelItemAdapter(context, category));
 
 //        Truyền dữ liệu vào  bình luận
         RecyclerView rvContinueComment= view.findViewById(R.id.rv_continue_comment_novel);
         List<NovelComment> novelComment = new ArrayList<>();
-        novelComment.add(new NovelComment(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "helo", 145, new Date(102, 1, 12), 3, 4));
-        novelComment.add(new NovelComment(2, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "helo", 145, new Date(102, 1, 12), 3, 4));
-        novelComment.add(new NovelComment(3, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "helo", 145, new Date(102, 1, 12), 3, 4));
-        novelComment.add(new NovelComment(4, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "helo", 145, new Date(102, 1, 12), 3, 4));
+        novelComment.add(new NovelComment(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "OK HEHE", 145, new Date(102, 1, 12), 3, 4));
+        novelComment.add(new NovelComment(2, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "QUÁ TỆ", 145, new Date(102, 1, 12), 3, 4));
+        novelComment.add(new NovelComment(3, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "Không hay chi hết", 145, new Date(102, 1, 12), 3, 4));
+        novelComment.add(new NovelComment(4, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "Rất tệ so với suy nghĩ", 145, new Date(102, 1, 12), 3, 4));
 
         rvContinueComment.setAdapter(new NovelDetailsCommentAdapter(context, novelComment));
 
@@ -73,10 +73,10 @@ public class InformationFragment extends Fragment {
         //        Truyền dữ liệu vào mục truyện bạn có thể thích
         RecyclerView rvContinueYourlike= view.findViewById(R.id.rv_continue_yourlike_novel);
         List<NovelYourLikes> novelYourlike = new ArrayList<>();
-        novelYourlike.add(new NovelYourLikes(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Hoài Ngọc truyền kỳ", "Ngày xửa ngày xưa ở một ngôi nhà nọ"));
-        novelYourlike.add(new NovelYourLikes(2, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Hoài Ngọc truyền kỳ", "Ngày xửa ngày xưa ở một ngôi nhà nọ"));
-        novelYourlike.add(new NovelYourLikes(3, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Hoài Ngọc truyền kỳ", "Ngày xửa ngày xưa ở một ngôi nhà nọ"));
-        novelYourlike.add(new NovelYourLikes(3, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Hoài Ngọc truyền kỳ", "Ngày xửa ngày xưa ở một ngôi nhà nọ"));
+        novelYourlike.add(new NovelYourLikes(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Tiên hiệp - Tiên hiệp cổ điển cổ điển", "Lấy bối cảnh Trung Quốc, nội dung chủ yếu miêu tả quá trình theo đuổi Tiên đạo"));
+        novelYourlike.add(new NovelYourLikes(2, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Tiên hiệp - Tiên hiệp ổ điển cổ điển", "Lấy bối cảnh Trung Quốc, nội dung chủ yếu miêu tả quá trình theo đuổi Tiên đạo"));
+        novelYourlike.add(new NovelYourLikes(3, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Tiên hiệp - Tiên hiệp ổ điển cổ điển", "Lấy bối cảnh Trung Quốc, nội dung chủ yếu miêu tả quá trình theo đuổi Tiên đạo"));
+        novelYourlike.add(new NovelYourLikes(4, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Tiên hiệp - Tiên hiệp ổ điển cổ điển", "Lấy bối cảnh Trung Quốc, nội dung chủ yếu miêu tả quá trình theo đuổi Tiên đạo"));
 
         rvContinueYourlike.setAdapter(new NovelDetailsYourlikeAdapter(context, novelYourlike));
 

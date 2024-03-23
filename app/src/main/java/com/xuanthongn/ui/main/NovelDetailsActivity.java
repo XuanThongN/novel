@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.xuanthongn.R;
@@ -14,6 +15,7 @@ import com.xuanthongn.ui.adapter.NovelDetailsPagerAdapter;
 public class NovelDetailsActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
+
     NovelDetailsPagerAdapter myViewPagerAdapter;
     LinearLayout btnBack;
     @Override
@@ -25,7 +27,6 @@ public class NovelDetailsActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btn_back);
         myViewPagerAdapter = new NovelDetailsPagerAdapter(this);
         viewPager2.setAdapter(myViewPagerAdapter);
-
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -56,7 +57,6 @@ public class NovelDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
     }
 }
