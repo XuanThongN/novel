@@ -15,6 +15,8 @@ import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.entity.User;
 import com.xuanthongn.data.model.CategoryItem;
 import com.xuanthongn.data.entity.Product;
+import com.xuanthongn.data.model.UserDto;
+import com.xuanthongn.data.repository.UserRepository;
 import com.xuanthongn.ui.constract.IMainConstract;
 import com.xuanthongn.ui.fragment.home.AccountFragment;
 import com.xuanthongn.ui.fragment.home.BookmarkFragment;
@@ -66,6 +68,20 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
         });
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+
+
+        // Room Database
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
+        UserRepository userRepository = new UserRepository(db);
+        UserDto user = new UserDto();
+        user.setId(1);
+        user.setEmail("John Doe");
+        user.setPassword("123456");
+        userRepository.insert(user);
+        List<UserDto> users = userRepository.findAll();
+        users.forEach(u -> System.out.println(u.getEmail()));
+
     }
 
     private void initGUI() {

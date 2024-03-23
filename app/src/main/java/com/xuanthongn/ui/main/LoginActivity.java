@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
@@ -43,7 +44,6 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
             public void onClick(View v) {
                 String email = edtEmail.getText().toString().trim();
                 String password = edtPassword.getText().toString().trim();
-
                 mPresenter.login(email, password);
             }
         });

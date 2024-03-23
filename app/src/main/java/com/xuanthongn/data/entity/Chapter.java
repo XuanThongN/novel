@@ -1,19 +1,17 @@
 package com.xuanthongn.data.entity;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Novel {
+public class Chapter {
     @PrimaryKey(autoGenerate = true)
-    public int novelId;
+    public int chapterId;
     public String name;
-    public String author;
-    public String description;
-    public String imageUrl;
+    public String content;
 
     //Foreign key many-1
-    public int category_id;
+    public int novel_id;
 
 }
