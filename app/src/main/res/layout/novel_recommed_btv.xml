@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/category_item"
+        android:layout_width="120dp"
+        android:layout_height="200dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="5dp"
+        android:gravity="center_horizontal">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
+            app:cardElevation="0dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <ImageView
+                    android:id="@+id/novel_recommend_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="9" />
+
+            <TextView
+                    android:id="@+id/novel_recommend_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:textSize="13sp"
+                    android:layout_weight="1"
+                    android:layout_alignParentBottom="true"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="2dp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorText" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:id="@+id/category_novel_recommend_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đô thị"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp"
+                    android:clickable="false"
+                    app:bootstrapBrand="regular"
+                    app:bootstrapSize="xs"
+                    app:buttonMode="regular"
+                    app:showOutline="false"
+                    app:roundedCorners="true" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
+
