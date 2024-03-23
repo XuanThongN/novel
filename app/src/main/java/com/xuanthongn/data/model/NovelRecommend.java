@@ -18,6 +18,12 @@ public class NovelRecommend {
         this.categoryName = categoryName;
     }
 
+    public NovelRecommend(int id,  String imageUrl,String name) {
+        this.id = id;
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
+
     public NovelRecommend() {
     }
 

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,19 +18,18 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
-import com.xuanthongn.data.model.Novel;
 import com.xuanthongn.data.model.NovelRecommend;
 import com.xuanthongn.ui.main.NovelDetailsActivity;
 
 import java.util.List;
 
 
-public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAdapter.NovelRecommendViewHolder> {
+public class NovelRecommendBtvAdapter extends RecyclerView.Adapter<NovelRecommendBtvAdapter.NovelRecommendViewHolder> {
 
     private final Context context;
     private final List<NovelRecommend> novels;
 
-    public NovelRecommendAdapter(Context context, List<NovelRecommend> novels) {
+    public NovelRecommendBtvAdapter(Context context, List<NovelRecommend> novels) {
         this.context = context;
         this.novels = novels;
     }
@@ -39,7 +37,7 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
     @NonNull
     @Override
     public NovelRecommendViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.novel_recommed_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.novel_recommed_btv, parent, false);
         return new NovelRecommendViewHolder(view);
     }
 
@@ -47,7 +45,6 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
     public void onBindViewHolder(NovelRecommendViewHolder holder, int position) {
         NovelRecommend novel = novels.get(position);
         holder.nameView.setText(novel.getName());
-        holder.categoryNameView.setText(novel.getCategoryName());
 
         //Set background image for layout
 
@@ -66,17 +63,17 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
                     }
                 })
                 .preload();
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open NovelDetailsActivity when item is clicked
-                Intent intent = new Intent(context, NovelDetailsActivity.class);
-                // Pass data if needed
-                intent.putExtra("novel_id", novel.getId());
-                context.startActivity(intent);
-
-            }
-        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Open NovelDetailsActivity when item is clicked
+//                Intent intent = new Intent(context, NovelDetailsActivity.class);
+//                // Pass data if needed
+//                intent.putExtra("novel_id", novel.getId());
+//                context.startActivity(intent);
+//
+//            }
+//        });
     }
 
     @Override
@@ -88,13 +85,11 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
 
         ImageView image;
         TextView nameView;
-        TextView categoryNameView;
 
         public NovelRecommendViewHolder(View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.novel_recommend_image);
-            nameView = itemView.findViewById(R.id.novel_recommend_name);
-            categoryNameView = itemView.findViewById(R.id.category_novel_recommend_name);
+            image = itemView.findViewById(R.id.novel_recommend_btv_image);
+            nameView = itemView.findViewById(R.id.novel_recommend_btv_name);
         }
     }
 }
