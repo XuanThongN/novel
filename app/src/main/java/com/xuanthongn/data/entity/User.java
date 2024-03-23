@@ -15,4 +15,13 @@ public class User {
 
     @ColumnInfo(name = "password")
     public String password;
+
+    public User() {
+
+    }
+
+    public User(String lhk, String kkk) {
+        this.email = lhk;
+        this.password = kkk;
+    }
 }

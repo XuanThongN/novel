@@ -2,6 +2,7 @@ package com.xuanthongn.ui.main;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.os.Bundle;
 import android.widget.GridView;
@@ -9,6 +10,8 @@ import android.widget.GridView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
+import com.xuanthongn.data.AppDatabase;
+import com.xuanthongn.data.entity.User;
 import com.xuanthongn.data.model.CategoryItem;
 import com.xuanthongn.data.entity.Product;
 import com.xuanthongn.ui.constract.IMainConstract;
@@ -16,6 +19,7 @@ import com.xuanthongn.ui.fragment.home.AccountFragment;
 import com.xuanthongn.ui.fragment.home.BookmarkFragment;
 import com.xuanthongn.ui.fragment.home.HomeFragment;
 import com.xuanthongn.ui.presenter.MainPresenter;
+import com.xuanthongn.util.Constants;
 
 import java.util.List;
 
@@ -36,7 +40,6 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
         mPresenter.setView(this);
 
         initGUI();
-
         //Bottom Navigation
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -67,6 +70,7 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
 
 //        mRvHotProduct = findViewById(R.id.rv_hot_product);
     }
+
 
     @Override
     public void setHotProductsToView(List<Product> productList) {
