@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/novel_category_item"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="5dp"
+    android:gravity="center_horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <!-- TextView -->
+            <TextView
+                android:id="@+id/category_novel_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Truyện ngắn"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15dp"
+                android:background="@drawable/ic_boder_category"
+                />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+
