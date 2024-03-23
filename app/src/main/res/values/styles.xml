@@ -1,0 +1,15 @@
+<resources>
+
+    <style name="CustomButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/colorPrimaryHover</item>
+        <item name="android:textColor">@color/colorText</item>
+        <!-- Add more custom properties as needed -->
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+
+</resources>

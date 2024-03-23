@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -23,37 +23,61 @@
                 android:paddingTop="0dp"
                 android:orientation="horizontal">
 
+<!--            <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="6"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                        android:id="@+id/textView1"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Xin chào,"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/colorTextHello"-->
+<!--                        android:textSize="20sp" />-->
+
+<!--                <TextView-->
+<!--                        android:id="@+id/textView2"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Xuân Thông Nguyễn"-->
+<!--                        android:textColor="@color/colorText"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textSize="20sp" />-->
+<!--            </LinearLayout>-->
+
             <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:orientation="vertical">
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4">
 
-                <TextView
-                        android:id="@+id/textView1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Xin chào,"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorTextHello"
-                        android:textSize="20sp" />
+                <Button
+                    android:id="@+id/buttonLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Đăng nhập"
+                    android:gravity="center"
+                    android:background="@drawable/ic_boder_login"
+                    android:textColor="@color/colorTextHello"
+                    android:textAllCaps="false"
+                    android:textSize="16dp" />
 
-                <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Xuân Thông Nguyễn"
-                        android:textColor="@color/colorText"
-                        android:textStyle="bold"
-                        android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="6"
                     android:gravity="end">
-
+                <ImageView
+                    android:id="@+id/splash_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/prince_icon" />
                 <ImageView
                         android:id="@+id/search_icon"
                         android:layout_width="wrap_content"

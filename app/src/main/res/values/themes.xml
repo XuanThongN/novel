@@ -5,5 +5,20 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Novel" parent="Base.Theme.Novel" />
+    <style name="Theme.Novel" parent="Base.Theme.Novel" >
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorText</item>
+<!--        <item name="android:windowBackground">@color/colorBackground</item>-->
+<!--        <item name="android:statusBarColor">@color/colorPrimaryHover</item>-->
+<!--        <item name="android:windowLightStatusBar" >true</item>-->
+<!--        <item name="android:windowLightNavigationBar" >true</item>-->
+<!--        <item name="android:windowTranslucentStatus" >false</item>-->
+<!--        <item name="android:windowTranslucentNavigation" >false</item>-->
+<!--        <item name="android:windowDrawsSystemBarBackgrounds" >true</item>-->
+<!--        <item name="android:windowContentTransitions" >true</item>-->
+
+    </style>
+
 </resources>

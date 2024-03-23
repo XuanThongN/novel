@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
@@ -13,12 +14,14 @@ import com.xuanthongn.ui.constract.ILoginConstract;
 import com.xuanthongn.ui.presenter.LoginPresenter;
 import com.xuanthongn.util.Constants;
 
+import org.w3c.dom.Text;
+
 public class LoginActivity extends BaseActivity implements ILoginConstract.IView {
     private ILoginConstract.IPresenter mPresenter;
     Button btnLogin;
     EditText edtEmail;
     EditText edtPassword;
-
+    TextView textViewBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +34,10 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
     }
 
     private void initGUI() {
-        edtEmail = findViewById(R.id.edt_email);
-        edtPassword = findViewById(R.id.edt_password);
+        edtEmail = findViewById(R.id.editEmail);
+        edtPassword = findViewById(R.id.editPassword);
         btnLogin = findViewById(R.id.btn_login);
-
+        textViewBack = findViewById(R.id.textViewBack);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +45,12 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
                 String password = edtPassword.getText().toString().trim();
 
                 mPresenter.login(email, password);
+            }
+        });
+        textViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

@@ -3,7 +3,7 @@
     >
 
 
-    <solid android:color="#482d28"/>
+    <solid android:color="@color/colorPrimaryHover"/>
 
     <size
         android:width="160dp"
