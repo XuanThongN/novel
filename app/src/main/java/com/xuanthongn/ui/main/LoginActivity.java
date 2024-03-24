@@ -2,6 +2,8 @@ package com.xuanthongn.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
+import com.xuanthongn.data.model.UserDto;
 import com.xuanthongn.ui.constract.ILoginConstract;
 import com.xuanthongn.ui.presenter.LoginPresenter;
 import com.xuanthongn.util.Constants;
@@ -23,6 +26,7 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
     EditText edtEmail;
     EditText edtPassword;
     TextView textViewBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +58,32 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
             }
         });
     }
+
     @Override
-    public void loginSuccess() {
+    public void loginSuccess(UserDto user) {
+        // Save login information to shared preferences
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREF_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(Constants.KEY_LOGIN_STATUS, true);
+        editor.putString(Constants.KEY_EMAIL, user.getEmail().trim());
+        editor.apply();
+        // Navigate to main activity
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
 
     }
 
     @Override
     public void loginFailed(Constants.LOGIN_STATUS status) {
-
+        switch (status) {
+            case EMAIL_ERROR:
+                Toast.makeText(this, "Email not found", Toast.LENGTH_LONG).show();
+                break;
+            case PASSWORD_ERROR:
+                Toast.makeText(this, "Password incorrect", Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 
 }

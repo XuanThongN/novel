@@ -1,167 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
-    android:orientation="vertical"
-    tools:context="com.xuanthongn.ui.main.MainActivity">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background"
+        android:orientation="vertical"
+        tools:context="com.xuanthongn.ui.main.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="0dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="0dp">
 
-            <!--            <LinearLayout-->
-            <!--                    android:layout_width="0dp"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_weight="6"-->
-            <!--                    android:orientation="vertical">-->
-
-            <!--                <TextView-->
-            <!--                        android:id="@+id/textView1"-->
-            <!--                        android:layout_width="match_parent"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:text="Xin chào,"-->
-            <!--                        android:textStyle="bold"-->
-            <!--                        android:textColor="@color/colorTextHello"-->
-            <!--                        android:textSize="20sp" />-->
-
-            <!--                <TextView-->
-            <!--                        android:id="@+id/textView2"-->
-            <!--                        android:layout_width="match_parent"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:text="Xuân Thông Nguyễn"-->
-            <!--                        android:textColor="@color/colorText"-->
-            <!--                        android:textStyle="bold"-->
-            <!--                        android:textSize="20sp" />-->
-            <!--            </LinearLayout>-->
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4">
+                    android:id="@+id/layout_user_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Xin chào,"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorTextHello"
+                        android:textSize="20sp" />
+
+                <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorText"
+                        android:textStyle="bold"
+                        android:textSize="20sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:id="@+id/layout_login_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4">
 
                 <Button
-                    android:id="@+id/buttonLogin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:background="@drawable/ic_boder_login"
-                    android:gravity="center"
-                    android:text="Đăng nhập"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorTextHello"
-                    android:textSize="16dp" />
+                        android:id="@+id/buttonLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Đăng nhập"
+                        android:gravity="center"
+                        android:background="@drawable/ic_boder_login"
+                        android:textColor="@color/colorTextHello"
+                        android:textAllCaps="false"
+                        android:textSize="16dp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:gravity="end">
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:gravity="end">
 
                 <ImageView
-                    android:id="@+id/splash_logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:padding="10dp"
-                    android:src="@drawable/prince_icon" />
+                        android:id="@+id/splash_logo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
+                        android:src="@drawable/prince_icon" />
 
                 <ImageView
-                    android:id="@+id/search_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_search_32" />
+                        android:id="@+id/search_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_search_32" />
 
                 <ImageView
-                    android:id="@+id/notification_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_notifications_32" />
+                        android:id="@+id/notification_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_notifications_32" />
             </LinearLayout>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
             <!--            Slider-->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginVertical="10dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginVertical="10dp">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    app:cardCornerRadius="10dp">
-
-                    <org.imaginativeworld.whynotimagecarousel.ImageCarousel
-                        android:id="@+id/carousel"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        app:cardCornerRadius="10dp">
 
-                        app:autoPlay="false"
-                        app:autoPlayDelay="3000"
-                        app:autoWidthFixing="true"
+                    <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                            android:id="@+id/carousel"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
 
-                        app:bottomShadowAlpha="0.6"
-                        app:bottomShadowHeight="64dp"
-                        app:carouselBackground="#00000000"
+                            app:autoPlay="false"
+                            app:autoPlayDelay="3000"
+                            app:autoWidthFixing="true"
 
-                        app:carouselGravity="CENTER"
+                            app:bottomShadowAlpha="0.6"
+                            app:bottomShadowHeight="64dp"
+                            app:carouselBackground="#00000000"
 
-                        app:carouselPadding="0dp"
+                            app:carouselGravity="CENTER"
 
-                        app:carouselPaddingBottom="0dp"
-                        app:carouselPaddingEnd="0dp"
+                            app:carouselPadding="0dp"
 
-                        app:carouselPaddingStart="0dp"
+                            app:carouselPaddingBottom="0dp"
+                            app:carouselPaddingEnd="0dp"
 
-                        app:carouselPaddingTop="0dp"
+                            app:carouselPaddingStart="0dp"
 
-                        app:carouselType="BLOCK"
-                        app:imageScaleType="centerCrop"
-                        app:indicatorMargin="20dp"
-                        app:infiniteCarousel="true"
-                        app:scaleOnScroll="false"
+                            app:carouselPaddingTop="0dp"
 
-                        app:scalingFactor="0.15"
-                        app:showBottomShadow="true"
+                            app:carouselType="BLOCK"
+                            app:imageScaleType="centerCrop"
+                            app:indicatorMargin="20dp"
+                            app:infiniteCarousel="true"
+                            app:scaleOnScroll="false"
 
-                        app:showCaption="false"
-                        app:showIndicator="true"
-                        app:showNavigationButtons="false"
-                        app:showTopShadow="true"
-                        app:topShadowAlpha="0.6"
-                        app:topShadowHeight="32dp"
-                        app:touchToPause="true" />
+                            app:scalingFactor="0.15"
+                            app:showBottomShadow="true"
+
+                            app:showCaption="false"
+                            app:showIndicator="true"
+                            app:showNavigationButtons="false"
+                            app:showTopShadow="true"
+                            app:topShadowAlpha="0.6"
+                            app:topShadowHeight="32dp"
+                            app:touchToPause="true" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -169,71 +173,71 @@
 
             <!-- List of categories -->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:orientation="vertical">
 
                 <GridView
-                    android:id="@+id/category_grid"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:numColumns="4" />
+                        android:id="@+id/category_grid"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:numColumns="4" />
 
             </LinearLayout>
 
             <!-- Continue reading -->
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Đọc tiếp"
-                android:textColor="@color/colorText"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_continue_reading"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-            <!-- Novel recommendation -->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="BTV đề xuất"
+                    android:text="Đọc tiếp"
                     android:textColor="@color/colorText"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/novel_seeMore_Home_Tview"
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_continue_reading"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:padding="15dp"
-                    android:text="Xem thêm"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <!-- Novel recommendation -->
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:text="BTV đề xuất"
+                        android:textColor="@color/colorText"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/novel_seeMore_Home_Tview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:padding="15dp"
+                        android:text="Xem thêm"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
             </LinearLayout>
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_novel_recommend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    android:id="@+id/rv_novel_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

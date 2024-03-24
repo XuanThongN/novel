@@ -1,13 +1,8 @@
 package com.xuanthongn.ui.constract;
 
-import android.content.Context;
-
-import com.xuanthongn.data.entity.Product;
-
-import java.util.List;
-
-public interface IMainConstract {
+public interface IAccountConstract {
     interface IView {
+        void setAccountLayout(boolean isLogin);
 
 //        void setLoginInfo(String email);
 //
@@ -18,11 +13,8 @@ public interface IMainConstract {
     interface IPresenter {
         void setView(IView view);
 
-//        void getHotProducts();
-//
-//        void getLoginInfo();
-//
         boolean getStoredLoginStatus();
+        void logout();
 
     }
 }

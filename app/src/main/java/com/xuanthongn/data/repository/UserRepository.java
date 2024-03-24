@@ -37,7 +37,9 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public UserDto insert(UserDto input) {
-        userDao.insertAll(modelMapper.map(input, User.class));
+        User user = modelMapper.map(input, User.class);
+        user.setPassword(Commons.hashPassword(input.password));
+        userDao.insertAll(user);
         return input;
     }
 
@@ -53,13 +55,9 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public UserDto login(String username, String password) {
-        User user = userDao.findByEmail(username);
-        UserDto userDto = modelMapper.map(user, UserDto.class);
-        if (userDto != null && userDto.getPassword().equals(Commons.hashPassword(password))) {
-            return userDto;
-        }
-        return null;
+    public UserDto findByEmail(String email) {
+        User user = userDao.findByEmail(email);
+        return modelMapper.map(user, UserDto.class);
     }
 
 }
