@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.xuanthongn.R;
+import com.xuanthongn.base.BaseActivity;
 
-public class AccountActivity extends AppCompatActivity {
+public class AccountActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
