@@ -17,7 +17,7 @@ public class NovelPageSearchActivity extends  AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     NovelSearchAdapter myViewPagerAdapter;
-
+    LinearLayout btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +28,7 @@ public class NovelPageSearchActivity extends  AppCompatActivity {
         myViewPagerAdapter = new NovelSearchAdapter(this);
         viewPager2.setAdapter(myViewPagerAdapter);
 
+        btnBack =findViewById(R.id.btn_back_search);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -53,6 +54,18 @@ public class NovelPageSearchActivity extends  AppCompatActivity {
             }
         });
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                // This finishes the current activity and returns to the previous one
+                System.out.println("OK");
+                finish();
+
+
+
+
+            }
+        });
     }
 }
