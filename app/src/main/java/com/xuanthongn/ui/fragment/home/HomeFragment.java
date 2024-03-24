@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,7 @@ import com.xuanthongn.ui.adapter.NovelRecommendAdapter;
 import com.xuanthongn.ui.adapter.NovelSearchAdapter;
 import com.xuanthongn.ui.main.LoginActivity;
 import com.xuanthongn.ui.main.NovelPageSearchActivity;
+import com.xuanthongn.ui.main.RecommendActivity;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
@@ -64,6 +66,16 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 // Tạo Intent để chuyển sang LoginActivity
                 Intent intent = new Intent(getActivity(), NovelPageSearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView seeMoreNovelView = view.findViewById(R.id.novel_seeMore_Home_Tview);
+        seeMoreNovelView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo Intent để chuyển sang LoginActivity
+                Intent intent = new Intent(getActivity(), RecommendActivity.class);
                 startActivity(intent);
             }
         });
