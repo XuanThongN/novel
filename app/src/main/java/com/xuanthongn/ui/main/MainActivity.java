@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.GridView;
 
+import com.bumptech.glide.load.model.Model;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
@@ -23,6 +24,8 @@ import com.xuanthongn.ui.fragment.home.BookmarkFragment;
 import com.xuanthongn.ui.fragment.home.HomeFragment;
 import com.xuanthongn.ui.presenter.MainPresenter;
 import com.xuanthongn.util.Constants;
+
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
@@ -69,18 +72,6 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
-
-        // Room Database
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
-        UserRepository userRepository = new UserRepository(db);
-        UserDto user = new UserDto();
-        user.setId(1);
-        user.setEmail("John Doe");
-        user.setPassword("123456");
-        userRepository.insert(user);
-        List<UserDto> users = userRepository.findAll();
-        users.forEach(u -> System.out.println(u.getEmail()));
 
     }
 

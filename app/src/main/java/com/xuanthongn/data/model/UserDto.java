@@ -1,25 +1,25 @@
 package com.xuanthongn.data.model;
 
 public class UserDto {
-    public int id;
+    public int userId;
     public String email;
     public String password;
 
     public UserDto() {
     }
 
-    public UserDto(int id, String email, String password) {
-        this.id = id;
+    public UserDto(int userId, String email, String password) {
+        this.userId = userId;
         this.email = email;
         this.password = password;
     }
 
     public int getId() {
-        return id;
+        return userId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.userId = id;
     }
 
     public String getEmail() {
