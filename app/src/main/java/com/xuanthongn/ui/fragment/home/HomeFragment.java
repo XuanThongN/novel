@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -25,7 +26,9 @@ import com.xuanthongn.ui.adapter.NovelContinueReadingAdapter;
 import com.xuanthongn.ui.adapter.NovelRecommendAdapter;
 import com.xuanthongn.ui.constract.IHomeConstract;
 import com.xuanthongn.ui.main.LoginActivity;
+import com.xuanthongn.ui.main.NovelPageSearchActivity;
 import com.xuanthongn.ui.presenter.HomePresenter;
+import com.xuanthongn.ui.main.RecommendActivity;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
@@ -60,6 +63,28 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
                 startActivity(intent);
             }
         });
+
+
+        ImageView imageSearchView = view.findViewById(R.id.search_icon);
+        imageSearchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo Intent để chuyển sang LoginActivity
+                Intent intent = new Intent(getActivity(), NovelPageSearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView seeMoreNovelView = view.findViewById(R.id.novel_seeMore_Home_Tview);
+        seeMoreNovelView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo Intent để chuyển sang LoginActivity
+                Intent intent = new Intent(getActivity(), RecommendActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         return view;
     }
