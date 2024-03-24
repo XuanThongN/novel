@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.xuanthongn.R;
@@ -18,6 +19,7 @@ public class NovelPageSearchActivity extends  AppCompatActivity {
     ViewPager2 viewPager2;
     NovelSearchAdapter myViewPagerAdapter;
     LinearLayout btnBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,5 +69,8 @@ public class NovelPageSearchActivity extends  AppCompatActivity {
 
             }
         });
+
+
+
     }
 }
