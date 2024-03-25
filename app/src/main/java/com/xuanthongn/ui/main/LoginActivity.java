@@ -1,7 +1,5 @@
 package com.xuanthongn.ui.main;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,12 +11,10 @@ import android.widget.Toast;
 
 import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
-import com.xuanthongn.data.model.UserDto;
+import com.xuanthongn.data.model.user.UserDto;
 import com.xuanthongn.ui.constract.ILoginConstract;
 import com.xuanthongn.ui.presenter.LoginPresenter;
 import com.xuanthongn.util.Constants;
-
-import org.w3c.dom.Text;
 
 public class LoginActivity extends BaseActivity implements ILoginConstract.IView {
     private ILoginConstract.IPresenter mPresenter;
@@ -88,10 +84,10 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
     public void loginFailed(Constants.LOGIN_STATUS status) {
         switch (status) {
             case EMAIL_ERROR:
-                Toast.makeText(this, "Email not found", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Email không tồn tại trong hệ thống.", Toast.LENGTH_LONG).show();
                 break;
             case PASSWORD_ERROR:
-                Toast.makeText(this, "Password incorrect", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Mật khẩu chưa đúng", Toast.LENGTH_LONG).show();
                 break;
         }
     }

@@ -1,6 +1,7 @@
 package com.xuanthongn.ui.constract;
 
-import com.xuanthongn.data.model.UserDto;
+import com.xuanthongn.data.model.user.UserDto;
+import com.xuanthongn.data.model.user.UserRegisterDto;
 import com.xuanthongn.util.Constants;
 
 public interface IRegisterConstract {
@@ -10,6 +11,6 @@ public interface IRegisterConstract {
     }
     interface IPresenter{
         void setView(IView view);
-        void register(String email, String name, String password);
+        void register(UserRegisterDto input);
     }
 }

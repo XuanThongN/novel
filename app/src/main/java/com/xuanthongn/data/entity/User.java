@@ -2,6 +2,7 @@ package com.xuanthongn.data.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
@@ -16,12 +17,19 @@ public class User {
     @ColumnInfo(name = "password")
     public String password;
 
+    public String name;
+    public String image;
+
+    @Ignore
     public User() {
     }
 
-    public User(String email, String password) {
+    public User(int userId, String email, String password, String name, String image) {
+        this.userId = userId;
         this.email = email;
         this.password = password;
+        this.name = name;
+        this.image = image;
     }
 
     public int getUserId() {

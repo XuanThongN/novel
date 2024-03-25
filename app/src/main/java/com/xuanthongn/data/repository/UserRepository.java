@@ -3,7 +3,7 @@ package com.xuanthongn.data.repository;
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.dao.UserDao;
 import com.xuanthongn.data.entity.User;
-import com.xuanthongn.data.model.UserDto;
+import com.xuanthongn.data.model.user.UserDto;
 import com.xuanthongn.util.Commons;
 
 import org.modelmapper.ModelMapper;
@@ -38,7 +38,7 @@ public class UserRepository implements IUserRepository {
     @Override
     public UserDto insert(UserDto input) {
         User user = modelMapper.map(input, User.class);
-        user.setPassword(Commons.hashPassword(input.password));
+        user.setPassword(Commons.hashPassword(input.getPassword()));
         userDao.insertAll(user);
         return input;
     }

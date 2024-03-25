@@ -8,10 +8,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
-import com.xuanthongn.data.model.UserDto;
+import com.xuanthongn.data.model.user.UserDto;
+import com.xuanthongn.data.model.user.UserRegisterDto;
 import com.xuanthongn.ui.constract.IRegisterConstract;
 import com.xuanthongn.ui.presenter.RegisterPresenter;
 import com.xuanthongn.util.Constants;
@@ -47,7 +47,8 @@ public class RegisterActivity extends BaseActivity implements IRegisterConstract
                     String email = edtEmail.getText().toString().trim();
                     String name = edtName.getText().toString().trim();
                     String password = edtPassword.getText().toString().trim();
-                    mPresenter.register(email, name, password);
+                    UserRegisterDto userRegisterDto = new UserRegisterDto(name, email, password);
+                    mPresenter.register(userRegisterDto);
                 }
             }
         });

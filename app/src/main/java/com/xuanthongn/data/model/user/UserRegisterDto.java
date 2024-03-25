@@ -1,27 +1,17 @@
-package com.xuanthongn.data.model;
+package com.xuanthongn.data.model.user;
 
-public class UserDto {
-    public int userId;
-    public String name;
-    public String email;
-    public String password;
+public class UserRegisterDto {
+    private String name;
+    private String email;
+    private String password;
 
-    public UserDto() {
+    public UserRegisterDto() {
     }
 
-    public UserDto(int userId, String name, String email, String password) {
-        this.userId = userId;
+    public UserRegisterDto(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
-    }
-
-    public int getId() {
-        return userId;
-    }
-
-    public void setId(int id) {
-        this.userId = id;
     }
 
     public String getEmail() {

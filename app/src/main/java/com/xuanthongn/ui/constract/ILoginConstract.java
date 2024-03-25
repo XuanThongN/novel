@@ -1,6 +1,6 @@
 package com.xuanthongn.ui.constract;
 
-import com.xuanthongn.data.model.UserDto;
+import com.xuanthongn.data.model.user.UserDto;
 import com.xuanthongn.util.Constants;
 
 public interface ILoginConstract {
