@@ -11,12 +11,9 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     public int userId;
 
-    @ColumnInfo(name = "email")
     public String email;
 
-    @ColumnInfo(name = "password")
     public String password;
-
     public String name;
     public String image;
 
@@ -54,5 +51,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

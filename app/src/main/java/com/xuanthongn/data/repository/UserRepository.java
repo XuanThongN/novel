@@ -38,7 +38,7 @@ public class UserRepository implements IUserRepository {
     @Override
     public UserDto insert(UserDto input) {
         User user = modelMapper.map(input, User.class);
-        user.setPassword(Commons.hashPassword(input.getPassword()));
+        user.password = Commons.hashPassword(input.getPassword());
         userDao.insertAll(user);
         return input;
     }
@@ -57,6 +57,9 @@ public class UserRepository implements IUserRepository {
     @Override
     public UserDto findByEmail(String email) {
         User user = userDao.findByEmail(email);
+        if (user == null) {
+            return null;
+        }
         return modelMapper.map(user, UserDto.class);
     }
 

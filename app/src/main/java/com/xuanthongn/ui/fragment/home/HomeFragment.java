@@ -178,7 +178,7 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
     }
 
     @Override
-    public void setLoginInfo(String email) {
+    public void setLoginInfo(String name) {
         boolean isLogin = mPresenter.getStoredLoginStatus();
         LinearLayout layoutUserInfo = this.getView().findViewById(R.id.layout_user_info);
         LinearLayout layoutLogin = this.getView().findViewById(R.id.layout_login_button);
@@ -186,7 +186,7 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
         if (isLogin) {
             layoutUserInfo.setVisibility(View.VISIBLE);
             layoutLogin.setVisibility(View.GONE);
-            tvEmail.setText(email);
+            tvEmail.setText(name);
         } else {
             layoutLogin.setVisibility(View.VISIBLE);
             layoutUserInfo.setVisibility(View.GONE);

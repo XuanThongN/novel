@@ -72,6 +72,7 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(Constants.KEY_LOGIN_STATUS, true);
         editor.putString(Constants.KEY_EMAIL, user.getEmail().trim());
+        editor.putString(Constants.KEY_NAME, user.getName().trim());
         editor.apply();
         // Navigate to main activity
         Intent intent = new Intent(this, MainActivity.class);

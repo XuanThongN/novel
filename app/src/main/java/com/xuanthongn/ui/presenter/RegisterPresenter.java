@@ -30,10 +30,13 @@ public class RegisterPresenter implements IRegisterConstract.IPresenter {
 
     @Override
     public void register(UserRegisterDto input) {
-        if (Commons.isValidEmail(input.getEmail())) {
+        UserDto userDto = userRepository.findByEmail(input.getEmail());
+        if (Commons.isValidEmail(input.getEmail()) && userDto == null) {
             UserDto user = new UserDto(0, input.getName(), input.getEmail(), input.getPassword());
             userRepository.insert(user);
             mView.registerSuccess(user);
+        } else if (Commons.isValidEmail(input.getEmail())) {
+            mView.registerFailed(Constants.REGISTER_STATUS.EMAIL_EXIST);
         } else {
             mView.registerFailed(Constants.REGISTER_STATUS.INVALID_EMAIL);
         }
