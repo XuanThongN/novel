@@ -51,7 +51,6 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
         mPresenter = new MainPresenter(this);
         mPresenter.setView(this);
 
-
     }
 
     private void initGUI() {

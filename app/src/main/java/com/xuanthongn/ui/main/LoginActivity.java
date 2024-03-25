@@ -26,6 +26,7 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
     EditText edtEmail;
     EditText edtPassword;
     TextView textViewBack;
+    TextView btn_go_to_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
         edtPassword = findViewById(R.id.editPassword);
         btnLogin = findViewById(R.id.btn_login);
         textViewBack = findViewById(R.id.textViewBack);
+        btn_go_to_register = findViewById(R.id.tv_go_to_register);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +57,14 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        btn_go_to_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Go to register activity
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
