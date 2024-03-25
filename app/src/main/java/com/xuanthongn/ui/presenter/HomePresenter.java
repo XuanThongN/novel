@@ -44,8 +44,8 @@ public class HomePresenter implements IHomeConstract.IPresenter {
     @Override
     public void getLoginInfo() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREF_NAME, MODE_PRIVATE);
-        String email = sharedPreferences.getString(Constants.KEY_EMAIL, null);
-        mView.setLoginInfo(email);
+        String name = sharedPreferences.getString(Constants.KEY_NAME, null);
+        mView.setLoginInfo(name);
     }
 
     @Override

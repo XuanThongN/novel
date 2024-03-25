@@ -5,7 +5,8 @@ import android.content.Context;
 import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
-import com.xuanthongn.data.model.UserDto;
+import com.xuanthongn.data.model.user.UserDto;
+import com.xuanthongn.data.model.user.UserRegisterDto;
 import com.xuanthongn.data.repository.UserRepository;
 import com.xuanthongn.ui.constract.IRegisterConstract;
 import com.xuanthongn.util.Commons;
@@ -28,14 +29,14 @@ public class RegisterPresenter implements IRegisterConstract.IPresenter {
     }
 
     @Override
-    public void register(String email, String name, String password) {
-        if (Commons.isValidEmail(email)) {
-            UserDto user = new UserDto();
-            user.setEmail(email);
-            user.setName(name);
-            user.setPassword(password);
+    public void register(UserRegisterDto input) {
+        UserDto userDto = userRepository.findByEmail(input.getEmail());
+        if (Commons.isValidEmail(input.getEmail()) && userDto == null) {
+            UserDto user = new UserDto(0, input.getName(), input.getEmail(), input.getPassword());
             userRepository.insert(user);
             mView.registerSuccess(user);
+        } else if (Commons.isValidEmail(input.getEmail())) {
+            mView.registerFailed(Constants.REGISTER_STATUS.EMAIL_EXIST);
         } else {
             mView.registerFailed(Constants.REGISTER_STATUS.INVALID_EMAIL);
         }

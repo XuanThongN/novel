@@ -43,12 +43,12 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView1"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/ic_boder_login_account"
                     android:paddingVertical="10dp"
                     android:text="Đăng nhập"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_centerInParent="true" />
             </RelativeLayout>

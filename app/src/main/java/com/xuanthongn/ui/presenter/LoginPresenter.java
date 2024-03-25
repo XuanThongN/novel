@@ -5,9 +5,7 @@ import android.content.Context;
 import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
-import com.xuanthongn.data.dao.UserDao;
-import com.xuanthongn.data.entity.User;
-import com.xuanthongn.data.model.UserDto;
+import com.xuanthongn.data.model.user.UserDto;
 import com.xuanthongn.data.repository.UserRepository;
 import com.xuanthongn.ui.constract.ILoginConstract;
 import com.xuanthongn.util.Commons;
@@ -35,7 +33,7 @@ public class LoginPresenter implements ILoginConstract.IPresenter {
         if (user == null) {
             mView.loginFailed(Constants.LOGIN_STATUS.EMAIL_ERROR);
         } else {
-            if (user.password.equals(Commons.hashPassword(password))) {
+            if (user.getPassword().equals(Commons.hashPassword(password))) {
                 mView.loginSuccess(user);
             } else {
                 mView.loginFailed(Constants.LOGIN_STATUS.PASSWORD_ERROR);

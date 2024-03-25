@@ -7,7 +7,7 @@ import java.util.List;
 public interface IHomeConstract {
     interface IView {
 
-        void setLoginInfo(String email);
+        void setLoginInfo(String name);
 
         void setHotProductsToView(List<Product> productList);
 
