@@ -1,189 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorSubBackground"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <!-- Đặt layout_gravity="end" để đưa văn bản vào góc phải -->
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorSubBackground"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        <!-- Đặt layout_gravity="end" để đưa văn bản vào góc phải -->
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                    android:id="@+id/textViewBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="Quay lại"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:src="@drawable/icon" />
 
         <TextView
-            android:id="@+id/textViewBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="Quay lại"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-    </androidx.appcompat.widget.Toolbar>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="50dp"
+                android:text="@string/login_description"
+                android:textAlignment="center"
+                android:textColor="@color/colorText"
+                android:textSize="17dp" />
 
 
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:src="@drawable/icon" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="50dp"
-        android:text="@string/login_description"
-        android:textAlignment="center"
-        android:textColor="@color/colorText"
-        android:textSize="17dp" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/bg_input"
-        android:padding="5dp">
-
-        <com.google.android.material.textfield.TextInputLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Email..."
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:errorEnabled="false">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editEmail"
-                style="@style/styleTextInputEditText"
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:inputType="textEmailAddress"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColorHint="@color/colorText" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="60dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_input"
+                android:padding="5dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Email..."
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:errorEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editEmail"
+                        style="@style/styleTextInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:textColorHint="@color/colorText" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/bg_input"
-        android:padding="5dp">
-
-
-        <com.google.android.material.textfield.TextInputLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Password..."
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:errorEnabled="false"
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editPassword"
-                style="@style/styleTextInputEditText"
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:inputType="textPassword"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColorHint="@color/colorText" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="60dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_input"
+                android:padding="5dp">
 
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvForgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="18dp"
-        android:text="Quên mật khẩu?"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold" />
+            <com.google.android.material.textfield.TextInputLayout
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_button"
-        android:text="Đăng nhập"
-        android:textColor="@android:color/white" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Password..."
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:errorEnabled="false"
+                    app:passwordToggleEnabled="true">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_line_boder_or_login"
-            android:layout_margin="10dp" />
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editPassword"
+                        style="@style/styleTextInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:inputType="textPassword"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:textColorHint="@color/colorText" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
         <TextView
-            android:id="@+id/tvRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_marginTop="20dp"
-            android:text="hoặc"
-            android:textColor="@color/colorText" />
-        <ImageView
-            android:layout_width="140dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_line_boder_or_login"
-            android:layout_margin="10dp" />
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="18dp"
+                android:text="Quên mật khẩu?"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+
+        <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button"
+                android:text="Đăng nhập"
+                android:textColor="@android:color/white" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_line_boder_or_login"
+                    android:layout_margin="10dp" />
+
+            <TextView
+                    android:id="@+id/tvRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="hoặc"
+                    android:textColor="@color/colorText" />
+
+            <ImageView
+                    android:layout_width="140dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_line_boder_or_login"
+                    android:layout_margin="10dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+            <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/fb" />
+
+            <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/google" />
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/tv_go_to_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_text" />
+
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <ImageView
-            android:layout_width="55dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:src="@drawable/fb" />
-
-        <ImageView
-            android:layout_width="55dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:src="@drawable/google" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register_text" />
-
-</LinearLayout>
+</ScrollView>

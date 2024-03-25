@@ -32,6 +32,9 @@
             android:name=".ui.main.LoginActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.main.RegisterActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.main.ProfileActivity"
             android:exported="true" />
         <activity
