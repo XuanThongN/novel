@@ -3,6 +3,8 @@ package com.xuanthongn.ui.main;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -18,19 +20,19 @@ public class NovelDetailsActivity extends AppCompatActivity {
 
     NovelDetailsPagerAdapter myViewPagerAdapter;
     LinearLayout btnBack;
+    LinearLayout btnRead;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novel_details);
         tabLayout = findViewById(R.id.tab_layout);
-        viewPager2 =findViewById(R.id.view_pager);
-
-        btnBack =findViewById(R.id.btn_back);
-
+        viewPager2 = findViewById(R.id.view_pager);
+        btnBack = findViewById(R.id.btn_back);
+        btnRead = findViewById(R.id.btn_read_novel);
         myViewPagerAdapter = new NovelDetailsPagerAdapter(this);
         viewPager2.setAdapter(myViewPagerAdapter);
         String novelName = getIntent().getStringExtra("novel_name");
-
         // Hiển thị dữ liệu của truyện trên giao diện
 //        TextView novelNameTextView = findViewById(R.id.Item_Detail);
 //        novelNameTextView.setText(novelName);
@@ -61,16 +63,22 @@ public class NovelDetailsActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // This finishes the current activity and returns to the previous one
-                System.out.println("OK");
                 finish();
+            }
+        });
 
-
-
+        btnRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, NovelReadActivity.class);
+                // Pass data if needed
+                context.startActivity(intent);
 
             }
         });
 
+
     }
+
 }

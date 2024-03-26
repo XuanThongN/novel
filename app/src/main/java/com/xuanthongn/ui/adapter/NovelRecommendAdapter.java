@@ -20,6 +20,7 @@ import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.ui.main.NovelDetailsActivity;
+import com.xuanthongn.ui.main.NovelReadActivity;
 
 import java.util.List;
 
