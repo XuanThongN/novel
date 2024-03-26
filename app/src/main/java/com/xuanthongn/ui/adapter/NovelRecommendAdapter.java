@@ -22,6 +22,7 @@ import com.xuanthongn.R;
 import com.xuanthongn.data.model.Novel;
 import com.xuanthongn.data.model.NovelRecommend;
 import com.xuanthongn.ui.main.NovelDetailsActivity;
+import com.xuanthongn.ui.main.NovelReadActivity;
 
 import java.util.List;
 
