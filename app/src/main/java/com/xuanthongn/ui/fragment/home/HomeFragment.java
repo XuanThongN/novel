@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xuanthongn.R;
-import com.xuanthongn.data.dto.NovelDto;
 import com.xuanthongn.data.model.CategoryItem;
 import com.xuanthongn.data.model.Novel;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;

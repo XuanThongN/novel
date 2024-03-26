@@ -8,16 +8,9 @@ import android.content.SharedPreferences;
 import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
-import com.xuanthongn.data.dao.NovelDao;
-import com.xuanthongn.data.dao.ProductDao;
-import com.xuanthongn.data.dto.NovelDto;
-import com.xuanthongn.data.entity.Novel;
-import com.xuanthongn.data.entity.Product;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.data.repository.NovelRepository;
-import com.xuanthongn.data.repository.UserRepository;
 import com.xuanthongn.ui.constract.IHomeConstract;
-import com.xuanthongn.ui.constract.IMainConstract;
 import com.xuanthongn.util.Constants;
 
 import java.util.List;
@@ -58,7 +51,7 @@ public class HomePresenter implements IHomeConstract.IPresenter {
     @Override
     public void getNovelRecommend() {
         List<NovelRecommendDto> recommendations = novelRepository.getNovelsWithCategory().stream()
-                .map(x -> new NovelRecommendDto(x.getNovelId(), x.getName(), x.getImageUrl(), x.getCategory_id()))
+                .map(x -> new NovelRecommendDto(x.getId(), x.getName(), x.getImageUrl(), x.getCategoryName()))
                 .collect(Collectors.toList());
 
         mView.setNovelRecommendToView(recommendations);

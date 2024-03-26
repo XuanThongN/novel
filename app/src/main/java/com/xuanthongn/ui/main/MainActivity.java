@@ -10,11 +10,10 @@ import android.widget.GridView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
-import com.xuanthongn.data.dto.CategoryDto;
-import com.xuanthongn.data.model.Category;
-import com.xuanthongn.data.model.CategoryItem;
 import com.xuanthongn.data.AppDatabase;
-import com.xuanthongn.data.dto.NovelDto;
+import com.xuanthongn.data.model.category.CategoryDto;
+import com.xuanthongn.data.model.novel.NovelCreateDto;
+import com.xuanthongn.data.model.CategoryItem;
 import com.xuanthongn.data.model.user.UserDto;
 import com.xuanthongn.data.repository.CategoryRepository;
 import com.xuanthongn.data.repository.NovelRepository;
@@ -45,41 +44,6 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
         initGUI();
         mPresenter = new MainPresenter(this);
         mPresenter.setView(this);
-
-        // Trong phần thêm dữ liệu:
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-        AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
-        NovelRepository novelRepository = new NovelRepository(db);
-
-        List<NovelDto> novelList = new ArrayList<>();
-        novelList.add(new NovelDto("Truyện về thần thoại Hy Lạp", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "lạo 1"));
-
-        for (NovelDto novelDto : novelList) {
-            novelRepository.insert(novelDto);
-        }
-
-
-        //Insert new user to room database
-//        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-//                AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
-//        UserRepository userRepository = new UserRepository(db);
-//        UserDto user = new UserDto();
-//        user.setEmail("admin123");
-//        user.setPassword("admin");
-//        userRepository.insert(user);
-
-
-        //Insert new user to room database
-//        CategoryRepository categoryRepository = new CategoryRepository(db);
-//        List<CategoryDto> novelList = new ArrayList<>();
-//        novelList.add(new CategoryDto(1, "Thể loại 1"));
-//        novelList.add(new CategoryDto(2, "Thể loại 2"));
-//        novelList.add(new CategoryDto(3, "Thể loại 3"));
-//        novelList.add(new CategoryDto(4, "Thể loại 4"));
-//        for (CategoryDto novelDto : novelList) {
-//            categoryRepository.insert(novelDto);
-//        }
-
 
     }
 

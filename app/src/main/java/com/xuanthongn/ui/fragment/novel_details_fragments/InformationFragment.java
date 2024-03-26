@@ -2,27 +2,22 @@ package com.xuanthongn.ui.fragment.novel_details_fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xuanthongn.R;
-import com.xuanthongn.data.dto.CategoryDto;
-import com.xuanthongn.data.model.Category;
+import com.xuanthongn.data.model.category.CategoryDto;
 import com.xuanthongn.data.model.NovelComment;
 import com.xuanthongn.data.model.NovelYourLikes;
 import com.xuanthongn.ui.adapter.CategoryNovelItemAdapter;
 import com.xuanthongn.ui.adapter.NovelDetailsCommentAdapter;
 import com.xuanthongn.ui.adapter.NovelDetailsYourlikeAdapter;
-import com.xuanthongn.ui.constract.IHomeConstract;
 import com.xuanthongn.ui.constract.INovelDetailConstract;
-import com.xuanthongn.ui.presenter.HomePresenter;
 import com.xuanthongn.ui.presenter.NovelDetailPresenter;
 
 import java.util.ArrayList;

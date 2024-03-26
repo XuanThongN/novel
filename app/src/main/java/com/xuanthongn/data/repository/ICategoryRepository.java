@@ -1,9 +1,6 @@
 package com.xuanthongn.data.repository;
 
-import com.xuanthongn.data.dto.CategoryDto;
-import com.xuanthongn.data.dto.NovelDto;
-
-import java.util.List;
+import com.xuanthongn.data.model.category.CategoryDto;
 
 public interface ICategoryRepository extends IBaseRepository<CategoryDto> {
 }

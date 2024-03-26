@@ -1,9 +1,11 @@
 package com.xuanthongn.data.repository;
 
+import androidx.lifecycle.LiveData;
+
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.dao.NovelDao;
-import com.xuanthongn.data.dto.NovelDto;
-import com.xuanthongn.data.entity.Category;
+import com.xuanthongn.data.model.novel.NovelCreateDto;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.data.entity.Novel;
 import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 
@@ -25,43 +27,54 @@ public class NovelRepository implements INovelRepository {
     }
 
     @Override
-    public NovelDto findById(int id) {
+    public NovelRecommendDto findById(int id) {
         return null;
     }
 
     @Override
-    public List<NovelDto> findAll() {
+    public List<NovelRecommendDto> findAll() {
         List<Novel> novels = novelDao.getAll();
-        return novels.stream().map(x -> new NovelDto(x.novelId, x.name, x.imageUrl, null)).collect(Collectors.toList());
+        return novels.stream().map(x -> new NovelRecommendDto(x.novelId, x.name, x.imageUrl, null)).collect(Collectors.toList());
     }
 
     @Override
-    public List<NovelDto> getNovelsWithCategory() {
+    public List<NovelRecommendDto> getNovelsWithCategory() {
         List<NovelWithCategory> novels = novelDao.getNovelsWithCategory();
         return novels.stream()
-                .map(x -> new NovelDto(x.novel.novelId, x.novel.name, x.novel.imageUrl,null))
+                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name, x.novel.imageUrl,x.category.getName()))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public NovelDto insert(NovelDto input) {
+    public NovelRecommendDto insert(NovelRecommendDto input) {
         Novel novel = new Novel(input.getName(),input.getImageUrl(),0);
         novelDao.insertAll(novel);
         return input;
     }
 
 
+    public NovelCreateDto insertNovel(NovelCreateDto input) {
+        Novel novel = new Novel(input.getName(),input.getImageUrl(),input.getCategory_id());
+        novelDao.insertAll(novel);
+        return input;
+
+    }
+    public LiveData<List<NovelWithCategory>> getAllNovelsWithCategories() {
+        return novelDao.getAllNovelsWithCategories();
+    }
+
+
     @Override
-    public NovelDto update(NovelDto novelDto) {
+    public NovelRecommendDto update(NovelRecommendDto novelDto) {
         return null;
     }
 
     @Override
-    public void delete(NovelDto novelDto) {
+    public void delete(NovelRecommendDto novelDto) {
     }
 
     @Override
-    public NovelDto findByName(String name) {
+    public NovelRecommendDto findByName(String name) {
         return null;
     }
 }

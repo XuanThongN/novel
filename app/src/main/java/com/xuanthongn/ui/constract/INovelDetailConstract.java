@@ -1,7 +1,6 @@
 package com.xuanthongn.ui.constract;
 
-import com.xuanthongn.data.dto.CategoryDto;
-import com.xuanthongn.data.model.Category;
+import com.xuanthongn.data.model.category.CategoryDto;
 
 import java.util.List;
 

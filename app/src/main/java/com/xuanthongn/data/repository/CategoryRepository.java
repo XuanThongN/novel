@@ -2,14 +2,8 @@ package com.xuanthongn.data.repository;
 
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.dao.CategoryDao;
-import com.xuanthongn.data.dao.NovelDao;
-import com.xuanthongn.data.dto.CategoryDto;
-import com.xuanthongn.data.dto.NovelDto;
+import com.xuanthongn.data.model.category.CategoryDto;
 import com.xuanthongn.data.entity.Category;
-import com.xuanthongn.data.entity.Novel;
-import com.xuanthongn.data.entity.User;
-import com.xuanthongn.data.entity.relationship.NovelWithCategory;
-import com.xuanthongn.data.model.user.UserDto;
 
 import org.modelmapper.ModelMapper;
 

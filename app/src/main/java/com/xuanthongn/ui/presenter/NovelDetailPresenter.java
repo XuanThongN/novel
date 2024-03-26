@@ -6,8 +6,7 @@ import android.content.Context;
 import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
-import com.xuanthongn.data.dto.CategoryDto;
-import com.xuanthongn.data.model.Category;
+import com.xuanthongn.data.model.category.CategoryDto;
 import com.xuanthongn.data.repository.CategoryRepository;
 import com.xuanthongn.ui.constract.INovelDetailConstract;
 import com.xuanthongn.util.Constants;

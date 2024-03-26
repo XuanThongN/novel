@@ -1,4 +1,4 @@
-package com.xuanthongn.data.dto;
+package com.xuanthongn.data.model.category;
 
 public class CategoryDto {
     private int categoryId;

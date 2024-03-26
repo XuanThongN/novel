@@ -1,11 +1,9 @@
 package com.xuanthongn.ui.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,8 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import com.xuanthongn.R;
-import com.xuanthongn.data.dto.CategoryDto;
-import com.xuanthongn.data.model.Category;
+import com.xuanthongn.data.model.category.CategoryDto;
 import com.xuanthongn.ui.adapter.CategoryNovelItemAdapter.ViewHolder;
 
 public class CategoryNovelItemAdapter extends RecyclerView.Adapter<ViewHolder> {

@@ -1,35 +1,36 @@
-package com.xuanthongn.data.dto;
+package com.xuanthongn.data.model.novel;
 
-public class NovelDto {
+public class NovelCreateDto {
     public int novelId;
     public String name;
     public String author;
     public String description;
     public String imageUrl;
-    public String categoryName;
+    private int categoryId;
 
-    public NovelDto() {
+
+    public NovelCreateDto() {
     }
 
-    public NovelDto(String name, String imageUrl, String categoryName) {
+    public NovelCreateDto(String name, String imageUrl, int categoryId) {
         this.name = name;
         this.imageUrl = imageUrl;
-        this.categoryName = categoryName;
+        this.categoryId = categoryId;
     }
 
-    public NovelDto(String name, String author, String description, String imageUrl, String categoryName) {
+    public NovelCreateDto(String name, String author, String description, String imageUrl, int categoryId) {
         this.name = name;
         this.author = author;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.categoryName = categoryName;
+        this.categoryId = categoryId;
     }
 
-    public NovelDto(int novelId, String name,  String imageUrl, String categoryName) {
+    public NovelCreateDto(int novelId, String name, String imageUrl, int categoryId) {
         this.novelId = novelId;
         this.name = name;
         this.imageUrl = imageUrl;
-        this.categoryName = categoryName;
+        this.categoryId = categoryId;
     }
 
     public int getNovelId() {
@@ -62,10 +63,10 @@ public class NovelDto {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    public String getCategory_id() {
-        return categoryName;
+    public int getCategory_id() {
+        return categoryId;
     }
-    public void setCategory_id(String categoryName) {
-        this.categoryName = categoryName;
+    public void setCategory_id(int categoryId) {
+        this.categoryId = categoryId;
     }
 }

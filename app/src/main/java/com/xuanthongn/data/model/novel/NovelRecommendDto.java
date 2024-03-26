@@ -17,6 +17,15 @@ public class NovelRecommendDto {
         this.imageUrl = imageUrl;
         this.categoryName = categoryName;
     }
+    public NovelRecommendDto( String name, String imageUrl){
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
+    public NovelRecommendDto(String name, String imageUrl, String categoryName) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.categoryName = categoryName;
+    }
 
     public NovelRecommendDto(int id, String imageUrl, String name) {
         this.id = id;

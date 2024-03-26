@@ -18,7 +18,6 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
-import com.xuanthongn.data.dto.NovelDto;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.ui.main.NovelDetailsActivity;
 
@@ -46,7 +45,7 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
     public void onBindViewHolder(NovelRecommendViewHolder holder, int position) {
         NovelRecommendDto novel = novels.get(position);
         holder.nameView.setText(novel.getName());
-        holder.categoryNameView.setText(novel.getId());
+        holder.categoryNameView.setText(novel.getCategoryName());
 
         //Set background image for layout
 

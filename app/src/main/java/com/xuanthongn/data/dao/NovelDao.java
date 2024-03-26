@@ -1,5 +1,6 @@
 package com.xuanthongn.data.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -20,8 +21,14 @@ public interface NovelDao {
     @Query("SELECT * FROM novel WHERE novelId = :id LIMIT 1")
     Novel findById(int id);
 
-        @Insert
-        void insertAll(Novel... novels);
+    @Query("SELECT * FROM novel ORDER BY novelId DESC LIMIT 4")
+    List<Novel> getNewestNovel();
+
+    @Query("SELECT * FROM Novel")
+    LiveData<List<NovelWithCategory>> getAllNovelsWithCategories();
+
+    @Insert
+    void insertAll(Novel novels);
 
     @Delete
     void delete(Novel novel);
