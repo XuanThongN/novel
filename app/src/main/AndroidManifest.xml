@@ -16,23 +16,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Novel"
         tools:targetApi="31">
-
-        <activity android:name=".ui.main.MainActivity"
-            android:exported="true"
-            />
-
+        <activity
+            android:name=".ui.main.RecommendActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.main.AccountActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.main.NovelPageSearchActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.main.NovelDetailsActivity"
             android:exported="true" />
-
         <activity
             android:name=".ui.main.LoginActivity"
+
 
             android:exported="true"/>
         <activity
             android:name=".ui.main.NovelReadActivity"
 
             android:exported="true"/>
+
+
+        <activity
+            android:name=".ui.main.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.main.ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true" />
 
         <activity
             android:name=".ui.main.SplashActivity"

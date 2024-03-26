@@ -1,6 +1,10 @@
 package com.xuanthongn.ui.presenter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.view.View;
 
 import androidx.room.Room;
 
@@ -16,7 +20,10 @@ public class MainPresenter implements IMainConstract.IPresenter {
     private IMainConstract.IView mView;
     private AppDatabase db;
 
-    public MainPresenter(Context context){
+    private Context context;
+
+    public MainPresenter(Context context) {
+        this.context = context;
         db = Room.databaseBuilder(context,
                 AppDatabase.class, Constants.DB_NAME).build();
     }
@@ -26,11 +33,26 @@ public class MainPresenter implements IMainConstract.IPresenter {
         mView = view;
     }
 
+//    @Override
+//    public void getHotProducts() {
+//        ProductDao productDao = db.productDao();
+//        List<Product> productList = productDao.getHotProducts();
+//
+//        mView.setHotProductsToView(productList);
+//    }
+//
+//    @Override
+//    public void getLoginInfo() {
+//        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREF_NAME, MODE_PRIVATE);
+//        String email = sharedPreferences.getString(Constants.KEY_EMAIL, null);
+//        mView.setLoginInfo(email);
+//    }
+//
     @Override
-    public void getHotProducts() {
-        ProductDao productDao = db.productDao();
-        List<Product> productList = productDao.getHotProducts();
+    public boolean getStoredLoginStatus() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREF_NAME, MODE_PRIVATE);
+        return sharedPreferences.getBoolean(Constants.KEY_LOGIN_STATUS, false);
 
-        mView.setHotProductsToView(productList);
     }
+
 }

@@ -69,14 +69,16 @@ dependencies {
     implementation("com.beardedhen:androidbootstrap:2.3.1")
 
 
-
 //    Retrofit library to call api
     // adding below dependencies.
     implementation("com.squareup.retrofit2:retrofit:2.10.0")
     implementation("com.squareup.retrofit2:converter-gson:2.5.0")
 
     // optional - CircleImageView
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    //Mapping
+    implementation("org.modelmapper:modelmapper:2.4.4")
 
 
 }

@@ -8,18 +8,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xuanthongn.R;
+import com.xuanthongn.data.entity.Product;
 import com.xuanthongn.data.model.CategoryItem;
 import com.xuanthongn.data.model.Novel;
 import com.xuanthongn.data.model.NovelRecommend;
 import com.xuanthongn.ui.adapter.CategoryItemAdapter;
 import com.xuanthongn.ui.adapter.NovelContinueReadingAdapter;
 import com.xuanthongn.ui.adapter.NovelRecommendAdapter;
+import com.xuanthongn.ui.constract.IHomeConstract;
 import com.xuanthongn.ui.main.LoginActivity;
+import com.xuanthongn.ui.main.NovelPageSearchActivity;
+import com.xuanthongn.ui.presenter.HomePresenter;
+import com.xuanthongn.ui.main.RecommendActivity;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
@@ -31,7 +40,8 @@ import java.util.Map;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements IHomeConstract.IView {
+    private IHomeConstract.IPresenter mPresenter;
     private GridView categoryGrid;
     private List<CategoryItem> categories;
 
@@ -54,8 +64,42 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+        ImageView imageSearchView = view.findViewById(R.id.search_icon);
+        imageSearchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo Intent để chuyển sang LoginActivity
+                Intent intent = new Intent(getActivity(), NovelPageSearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView seeMoreNovelView = view.findViewById(R.id.novel_seeMore_Home_Tview);
+        seeMoreNovelView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo Intent để chuyển sang LoginActivity
+                Intent intent = new Intent(getActivity(), RecommendActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mPresenter = new HomePresenter(getContext());
+        mPresenter.setView(this);
+        mPresenter.getLoginInfo();
+
+    }
+
+
     private void initGUI(View view) {
         Context context = this.getContext();
         // Java
@@ -130,6 +174,28 @@ public class HomeFragment extends Fragment {
         novelList.add(new NovelRecommend(6, "Truyện 6", "Tác giả 6", "Mô tả 6", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 6"));
 
         rvNovelRecommend.setAdapter(new NovelRecommendAdapter(context, novelList));
+
+    }
+
+    @Override
+    public void setLoginInfo(String name) {
+        boolean isLogin = mPresenter.getStoredLoginStatus();
+        LinearLayout layoutUserInfo = this.getView().findViewById(R.id.layout_user_info);
+        LinearLayout layoutLogin = this.getView().findViewById(R.id.layout_login_button);
+        TextView tvEmail = this.getView().findViewById(R.id.tv_email);
+        if (isLogin) {
+            layoutUserInfo.setVisibility(View.VISIBLE);
+            layoutLogin.setVisibility(View.GONE);
+            tvEmail.setText(name);
+        } else {
+            layoutLogin.setVisibility(View.VISIBLE);
+            layoutUserInfo.setVisibility(View.GONE);
+        }
+
+    }
+
+    @Override
+    public void setHotProductsToView(List<Product> productList) {
 
     }
 }
