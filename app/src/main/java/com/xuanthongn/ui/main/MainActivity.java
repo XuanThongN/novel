@@ -47,18 +47,16 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
         mPresenter.setView(this);
 
         // Trong phần thêm dữ liệu:
-//        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-//        AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
-//        NovelRepository novelRepository = new NovelRepository(db);
-//
-//        List<NovelDto> novelList = new ArrayList<>();
-//        novelList.add(new NovelDto("Truyện về thần thoại Hy Lạp", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", 1));
-//        novelList.add(new NovelDto("Truyện về thần thoại Hy Lạp", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", 1));
-//        novelList.add(new NovelDto("Truyện về thần thoại Hy Lạp", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", 1));
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+        AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
+        NovelRepository novelRepository = new NovelRepository(db);
 
-//        for (NovelDto novelDto : novelList) {
-//            novelRepository.insert(novelDto);
-//        }
+        List<NovelDto> novelList = new ArrayList<>();
+        novelList.add(new NovelDto("Truyện về thần thoại Hy Lạp", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "lạo 1"));
+
+        for (NovelDto novelDto : novelList) {
+            novelRepository.insert(novelDto);
+        }
 
 
         //Insert new user to room database

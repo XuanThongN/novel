@@ -7,7 +7,6 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 
 import com.xuanthongn.data.entity.Novel;
-import com.xuanthongn.data.entity.relationship.CategoryWithNovels;
 import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 import com.xuanthongn.data.entity.relationship.NovelWithChapters;
 
@@ -21,8 +20,8 @@ public interface NovelDao {
     @Query("SELECT * FROM novel WHERE novelId = :id LIMIT 1")
     Novel findById(int id);
 
-    @Insert
-    void insertAll(Novel... novels);
+        @Insert
+        void insertAll(Novel... novels);
 
     @Delete
     void delete(Novel novel);
@@ -30,6 +29,10 @@ public interface NovelDao {
     @Transaction
     @Query("SELECT * FROM novel WHERE novelId = :novelId")
     NovelWithCategory getNovelWithCategory(int novelId);
+
+    @Transaction
+    @Query("SELECT * FROM novel")
+    List<NovelWithCategory> getNovelsWithCategory();
 
     @Transaction
     @Query("SELECT * FROM novel WHERE novelId = :novelId")
