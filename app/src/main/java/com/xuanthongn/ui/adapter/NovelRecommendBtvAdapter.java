@@ -1,7 +1,6 @@
 package com.xuanthongn.ui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +17,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
-import com.xuanthongn.data.model.NovelRecommend;
-import com.xuanthongn.ui.main.NovelDetailsActivity;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
 
 import java.util.List;
 
@@ -27,9 +25,9 @@ import java.util.List;
 public class NovelRecommendBtvAdapter extends RecyclerView.Adapter<NovelRecommendBtvAdapter.NovelRecommendViewHolder> {
 
     private final Context context;
-    private final List<NovelRecommend> novels;
+    private final List<NovelRecommendDto> novels;
 
-    public NovelRecommendBtvAdapter(Context context, List<NovelRecommend> novels) {
+    public NovelRecommendBtvAdapter(Context context, List<NovelRecommendDto> novels) {
         this.context = context;
         this.novels = novels;
     }
@@ -43,7 +41,7 @@ public class NovelRecommendBtvAdapter extends RecyclerView.Adapter<NovelRecommen
 
     @Override
     public void onBindViewHolder(NovelRecommendViewHolder holder, int position) {
-        NovelRecommend novel = novels.get(position);
+        NovelRecommendDto novel = novels.get(position);
         holder.nameView.setText(novel.getName());
 
         //Set background image for layout

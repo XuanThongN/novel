@@ -17,10 +17,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xuanthongn.R;
-import com.xuanthongn.data.entity.Product;
+import com.xuanthongn.data.dto.NovelDto;
 import com.xuanthongn.data.model.CategoryItem;
 import com.xuanthongn.data.model.Novel;
-import com.xuanthongn.data.model.NovelRecommend;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.ui.adapter.CategoryItemAdapter;
 import com.xuanthongn.ui.adapter.NovelContinueReadingAdapter;
 import com.xuanthongn.ui.adapter.NovelRecommendAdapter;
@@ -44,6 +44,8 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
     private IHomeConstract.IPresenter mPresenter;
     private GridView categoryGrid;
     private List<CategoryItem> categories;
+
+    RecyclerView rvNovelRecommend;
 
 
     @Override
@@ -96,12 +98,15 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
         mPresenter = new HomePresenter(getContext());
         mPresenter.setView(this);
         mPresenter.getLoginInfo();
+        mPresenter.getNovelRecommend();
 
     }
 
 
     private void initGUI(View view) {
         Context context = this.getContext();
+        rvNovelRecommend = view.findViewById(R.id.rv_novel_recommend);
+
         // Java
         ImageCarousel carousel = view.findViewById(R.id.carousel);
 
@@ -164,16 +169,16 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
 
 
         //View novel recommend
-        RecyclerView rvNovelRecommend = view.findViewById(R.id.rv_novel_recommend);
-        List<NovelRecommend> novelList = new ArrayList<>();
-        novelList.add(new NovelRecommend(1, "Truyện về than thoai hy lap", "Tác giả 1", "Mô tả 1", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 1"));
-        novelList.add(new NovelRecommend(2, "Truyện 2", "Tác giả 2", "Mô tả 2", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 2"));
-        novelList.add(new NovelRecommend(3, "Truyện 3", "Tác giả 3", "Mô tả 3", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 3"));
-        novelList.add(new NovelRecommend(4, "Truyện 4", "Tác giả 4", "Mô tả 4", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 4"));
-        novelList.add(new NovelRecommend(5, "Truyện 5", "Tác giả 5", "Mô tả 5", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 5"));
-        novelList.add(new NovelRecommend(6, "Truyện 6", "Tác giả 6", "Mô tả 6", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 6"));
-
-        rvNovelRecommend.setAdapter(new NovelRecommendAdapter(context, novelList));
+//        RecyclerView rvContinueRecommend = view.findViewById(R.id.rv_novel_recommend);
+//        List<NovelRecommendDto> novelList = new ArrayList<>();
+//        novelList.add(new NovelRecommendDto(1, "Truyện về than thoai hy lap", "Tác giả 1", "Mô tả 1", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 1"));
+//        novelList.add(new NovelRecommendDto(2, "Truyện 2", "Tác giả 2", "Mô tả 2", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 2"));
+//        novelList.add(new NovelRecommendDto(3, "Truyện 3", "Tác giả 3", "Mô tả 3", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 3"));
+//        novelList.add(new NovelRecommendDto(4, "Truyện 4", "Tác giả 4", "Mô tả 4", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 4"));
+//        novelList.add(new NovelRecommendDto(5, "Truyện 5", "Tác giả 5", "Mô tả 5", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 5"));
+//        novelList.add(new NovelRecommendDto(6, "Truyện 6", "Tác giả 6", "Mô tả 6", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 6"));
+//
+//        rvContinueRecommend.setAdapter(new NovelRecommendAdapter(context, novelList));
 
     }
 
@@ -194,8 +199,12 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
 
     }
 
+
     @Override
-    public void setHotProductsToView(List<Product> productList) {
+    public void setNovelRecommendToView(List<NovelRecommendDto> novelList) {
+        rvNovelRecommend.setAdapter(new NovelRecommendAdapter(this.getContext(), novelList));
 
     }
+
+
 }

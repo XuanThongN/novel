@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.xuanthongn.R;
 import com.xuanthongn.data.model.Category;
-import com.xuanthongn.data.model.NovelRecommend;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.ui.adapter.NovelSearchCategogyAdapter;
 import com.xuanthongn.ui.adapter.NovelSearchResultAdapter;
 
@@ -48,15 +48,15 @@ public class NovelAudioSearchFragment  extends Fragment {
 
         //        Truyền dữ liệu vào list truyện
         RecyclerView rv_novel_comic_result_category = view.findViewById(R.id.rv_novel_comic_result_category);
-        List<NovelRecommend> resultNovel = new ArrayList<>();
-        resultNovel.add(new NovelRecommend(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
-        resultNovel.add(new NovelRecommend(2, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
-        resultNovel.add(new NovelRecommend(3, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
-        resultNovel.add(new NovelRecommend(4, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
-        resultNovel.add(new NovelRecommend(5, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
-        resultNovel.add(new NovelRecommend(6, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));        resultNovel.add(new NovelRecommend(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
-        resultNovel.add(new NovelRecommend(7, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
-        resultNovel.add(new NovelRecommend(8, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
+        List<NovelRecommendDto> resultNovel = new ArrayList<>();
+        resultNovel.add(new NovelRecommendDto(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
+        resultNovel.add(new NovelRecommendDto(2, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
+        resultNovel.add(new NovelRecommendDto(3, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
+        resultNovel.add(new NovelRecommendDto(4, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
+        resultNovel.add(new NovelRecommendDto(5, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
+        resultNovel.add(new NovelRecommendDto(6, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));        resultNovel.add(new NovelRecommendDto(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
+        resultNovel.add(new NovelRecommendDto(7, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
+        resultNovel.add(new NovelRecommendDto(8, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080","Ngày đại hôn bị nữ chính giết"));
 
         rv_novel_comic_result_category.setLayoutManager(new GridLayoutManager(context, 3));
         rv_novel_comic_result_category.setAdapter(new NovelSearchResultAdapter(context, resultNovel));

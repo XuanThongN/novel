@@ -3,7 +3,9 @@ package com.xuanthongn.data.repository;
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.dao.NovelDao;
 import com.xuanthongn.data.dto.NovelDto;
+import com.xuanthongn.data.entity.Category;
 import com.xuanthongn.data.entity.Novel;
+import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 
 
 import org.modelmapper.ModelMapper;
@@ -29,14 +31,23 @@ public class NovelRepository implements INovelRepository {
 
     @Override
     public List<NovelDto> findAll() {
-        return null;
+        List<Novel> novels = novelDao.getAll();
+        return novels.stream().map(x -> new NovelDto(x.novelId, x.name, x.imageUrl, 0)).collect(Collectors.toList());
     }
 
     @Override
-    public NovelDto insert(NovelDto novelDto) {
-        Novel novel = modelMapper.map(novelDto, Novel.class);
+    public List<NovelDto> getNovelsWithCategory() {
+        List<NovelWithCategory> novels = novelDao.getNovelsWithCategory();
+        return novels.stream()
+                .map(x -> new NovelDto(x.novel.novelId, x.novel.name, x.novel.imageUrl,0))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public NovelDto insert(NovelDto input) {
+        Novel novel = new Novel(input.getName(),input.getImageUrl(),input.getCategory_id());
         novelDao.insertAll(novel);
-        return novelDto;
+        return input;
     }
 
 
