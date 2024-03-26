@@ -29,6 +29,10 @@
             android:name=".ui.main.LoginActivity"
 
             android:exported="true"/>
+        <activity
+            android:name=".ui.main.NovelReadActivity"
+
+            android:exported="true"/>
 
         <activity
             android:name=".ui.main.SplashActivity"
