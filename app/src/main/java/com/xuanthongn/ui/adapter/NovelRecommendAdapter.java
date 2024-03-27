@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,8 +18,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
-import com.xuanthongn.data.model.Novel;
-import com.xuanthongn.data.model.NovelRecommend;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.ui.main.NovelDetailsActivity;
 import com.xuanthongn.ui.main.NovelReadActivity;
 
@@ -30,9 +28,9 @@ import java.util.List;
 public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAdapter.NovelRecommendViewHolder> {
 
     private final Context context;
-    private final List<NovelRecommend> novels;
+    private final List<NovelRecommendDto> novels;
 
-    public NovelRecommendAdapter(Context context, List<NovelRecommend> novels) {
+    public NovelRecommendAdapter(Context context, List<NovelRecommendDto> novels) {
         this.context = context;
         this.novels = novels;
     }
@@ -46,7 +44,7 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
 
     @Override
     public void onBindViewHolder(NovelRecommendViewHolder holder, int position) {
-        NovelRecommend novel = novels.get(position);
+        NovelRecommendDto novel = novels.get(position);
         holder.nameView.setText(novel.getName());
         holder.categoryNameView.setText(novel.getCategoryName());
 
@@ -82,7 +80,11 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
 
     @Override
     public int getItemCount() {
-        return novels.size();
+        if (novels != null) {
+            return novels.size();
+        } else {
+            return 0;
+        }
     }
 
     public static class NovelRecommendViewHolder extends RecyclerView.ViewHolder {
