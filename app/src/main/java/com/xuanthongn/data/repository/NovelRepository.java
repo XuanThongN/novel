@@ -77,5 +77,12 @@ public class NovelRepository implements INovelRepository {
     public NovelRecommendDto findByName(String name) {
         return null;
     }
+
+    @Override
+    public List<NovelRecommendDto> getNovelNewestImageUrls() {
+        List<Novel> novels = novelDao.getNewestNovel();
+        return novels.stream().map(x -> new NovelRecommendDto( x.imageUrl)).collect(Collectors.toList());
+    }
+
 }
 

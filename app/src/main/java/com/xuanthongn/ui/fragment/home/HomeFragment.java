@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
     private List<CategoryItem> categories;
 
     RecyclerView rvNovelRecommend;
-
+    ImageCarousel carousel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -98,6 +98,7 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
         mPresenter.setView(this);
         mPresenter.getLoginInfo();
         mPresenter.getNovelRecommend();
+        mPresenter.getNovelNewest();
 
     }
 
@@ -107,34 +108,9 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
         rvNovelRecommend = view.findViewById(R.id.rv_novel_recommend);
 
         // Java
-        ImageCarousel carousel = view.findViewById(R.id.carousel);
+        carousel = view.findViewById(R.id.carousel);
 
-        // Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragments it will be viewLifecycleOwner/getViewLifecycleOwner().
-        carousel.registerLifecycle(getLifecycle());
-
-        List<CarouselItem> list = new ArrayList<>();
-
-        // Image URL with caption
-        list.add(new CarouselItem("https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Cre: Thong"));
-
-// Just image URL
-        list.add(new CarouselItem("https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"));
-
-// Image URL with header
-        Map<String, String> headers = new HashMap<>();
-        headers.put("header_key", "header_value");
-
-        list.add(new CarouselItem("https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", headers)
-        );
-
-// Just image drawable
-        list.add(new CarouselItem(R.drawable.test));
-
-
-        carousel.setData(list);
-
-
-//        Show list categories
+        // Show list categories
         categoryGrid = view.findViewById(R.id.category_grid);
 
         // Prepare category data
@@ -154,7 +130,7 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
         categoryGrid.setAdapter(adapter);
 
 
-//        View continue reading
+        // View continue reading
         RecyclerView rvContinueReading = view.findViewById(R.id.rv_continue_reading);
         List<Novel> novels = new ArrayList<>();
         novels.add(new Novel(1, "Truyện 1", "Tác giả 1", "Mô tả 1", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080"));
@@ -165,19 +141,6 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
         novels.add(new Novel(6, "Truyện 6", "Tác giả 6", "Mô tả 6", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"));
 
         rvContinueReading.setAdapter(new NovelContinueReadingAdapter(context, novels));
-
-
-        //View novel recommend
-//        RecyclerView rvContinueRecommend = view.findViewById(R.id.rv_novel_recommend);
-//        List<NovelRecommendDto> novelList = new ArrayList<>();
-//        novelList.add(new NovelRecommendDto(1, "Truyện về than thoai hy lap", "Tác giả 1", "Mô tả 1", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 1"));
-//        novelList.add(new NovelRecommendDto(2, "Truyện 2", "Tác giả 2", "Mô tả 2", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 2"));
-//        novelList.add(new NovelRecommendDto(3, "Truyện 3", "Tác giả 3", "Mô tả 3", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 3"));
-//        novelList.add(new NovelRecommendDto(4, "Truyện 4", "Tác giả 4", "Mô tả 4", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 4"));
-//        novelList.add(new NovelRecommendDto(5, "Truyện 5", "Tác giả 5", "Mô tả 5", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "Thể loại 5"));
-//        novelList.add(new NovelRecommendDto(6, "Truyện 6", "Tác giả 6", "Mô tả 6", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080", "Thể loại 6"));
-//
-//        rvContinueRecommend.setAdapter(new NovelRecommendAdapter(context, novelList));
 
     }
 
@@ -203,6 +166,20 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
     public void setNovelRecommendToView(List<NovelRecommendDto> novelList) {
         rvNovelRecommend.setAdapter(new NovelRecommendAdapter(this.getContext(), novelList));
 
+    }
+
+    @Override
+    public void setNovelNewestToView(List<NovelRecommendDto> novelNewest) {
+        carousel = this.getView().findViewById(R.id.carousel);
+        carousel.registerLifecycle(getLifecycle());
+        List<CarouselItem> carouselItems = new ArrayList<>();
+        // Duyệt qua danh sách các đối tượng NovelRecommendDto và tạo CarouselItem tương ứng
+        for (NovelRecommendDto novel : novelNewest) {
+            CarouselItem carouselItem = new CarouselItem(novel.getImageUrl());
+            carouselItems.add(carouselItem);
+        }
+        // Thiết lập dữ liệu vào ImageCarousel
+        carousel.setData(carouselItems);
     }
 
 

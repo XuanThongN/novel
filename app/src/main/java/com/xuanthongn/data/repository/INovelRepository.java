@@ -7,4 +7,5 @@ import java.util.List;
 public interface INovelRepository extends IBaseRepository<NovelRecommendDto> {
     List<NovelRecommendDto> getNovelsWithCategory();
     NovelRecommendDto findByName(String name);
+    List<NovelRecommendDto> getNovelNewestImageUrls();
 }

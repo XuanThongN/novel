@@ -13,6 +13,7 @@ import com.xuanthongn.data.repository.NovelRepository;
 import com.xuanthongn.ui.constract.IHomeConstract;
 import com.xuanthongn.util.Constants;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,6 +56,12 @@ public class HomePresenter implements IHomeConstract.IPresenter {
                 .collect(Collectors.toList());
 
         mView.setNovelRecommendToView(recommendations);
+    }
+
+    @Override
+    public void getNovelNewest() {
+        List<NovelRecommendDto> novelRecommendDtos = novelRepository.getNovelNewestImageUrls();
+        mView.setNovelNewestToView(novelRecommendDtos);
     }
 }
 

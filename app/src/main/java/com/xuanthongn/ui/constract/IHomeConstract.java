@@ -11,6 +11,9 @@ public interface IHomeConstract {
 
         void setNovelRecommendToView(List<NovelRecommendDto> novelList);
 
+        void setNovelNewestToView(List<NovelRecommendDto> novelNewest);
+
+
 
     }
 
@@ -22,6 +25,6 @@ public interface IHomeConstract {
         boolean getStoredLoginStatus();
 
         void getNovelRecommend();
-
+        void getNovelNewest();
     }
 }

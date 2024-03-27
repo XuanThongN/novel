@@ -27,6 +27,10 @@ public class NovelRecommendDto {
         this.categoryName = categoryName;
     }
 
+    public NovelRecommendDto(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public NovelRecommendDto(int id, String imageUrl, String name) {
         this.id = id;
         this.name = name;
