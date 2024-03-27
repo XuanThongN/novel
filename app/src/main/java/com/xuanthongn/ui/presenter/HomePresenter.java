@@ -8,37 +8,31 @@ import android.content.SharedPreferences;
 import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
-import com.xuanthongn.data.dao.ProductDao;
-import com.xuanthongn.data.entity.Product;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
+import com.xuanthongn.data.repository.NovelRepository;
 import com.xuanthongn.ui.constract.IHomeConstract;
-import com.xuanthongn.ui.constract.IMainConstract;
 import com.xuanthongn.util.Constants;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HomePresenter implements IHomeConstract.IPresenter {
     private IHomeConstract.IView mView;
     private AppDatabase db;
-
+    NovelRepository novelRepository;
     private Context context;
 
     public HomePresenter(Context context) {
-        this.context = context;
         db = Room.databaseBuilder(context,
-                AppDatabase.class, Constants.DB_NAME).build();
+                AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
+        this.context = context;
+        novelRepository = new NovelRepository(db);
     }
 
     @Override
     public void setView(IHomeConstract.IView view) {
         mView = view;
-    }
-
-    @Override
-    public void getHotProducts() {
-        ProductDao productDao = db.productDao();
-        List<Product> productList = productDao.getHotProducts();
-
-        mView.setHotProductsToView(productList);
     }
 
     @Override
@@ -55,4 +49,19 @@ public class HomePresenter implements IHomeConstract.IPresenter {
 
     }
 
+    @Override
+    public void getNovelRecommend() {
+        List<NovelRecommendDto> recommendations = novelRepository.getNovelsWithCategory().stream()
+                .map(x -> new NovelRecommendDto(x.getId(), x.getName(), x.getImageUrl(), x.getCategoryName()))
+                .collect(Collectors.toList());
+
+        mView.setNovelRecommendToView(recommendations);
+    }
+
+    @Override
+    public void getNovelNewest() {
+        List<NovelRecommendDto> novelRecommendDtos = novelRepository.getNovelNewestImageUrls();
+        mView.setNovelNewestToView(novelRecommendDtos);
+    }
 }
+
