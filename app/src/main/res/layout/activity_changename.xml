@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/rounded_background"
+    android:layout_gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đổi tên"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:paddingBottom="16dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tên mới"
+        android:textSize="20sp"
+        android:textColorHint="@color/colorTextHello"
+        android:background="@null"
+        android:padding="10dp"/>
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:background="@color/white" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0/16"
+        android:textColor="@color/white"
+        android:background="@null"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_gravity="end"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hủy"
+            android:textColor="@color/colorTextHello"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:padding="15dp"
+            android:background="@drawable/rounded_button1_background"
+
+
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đổi"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:background="@drawable/rounded_button_background"
+            android:textAllCaps="false"
+
+            />
+
+    </LinearLayout>
+</LinearLayout>
