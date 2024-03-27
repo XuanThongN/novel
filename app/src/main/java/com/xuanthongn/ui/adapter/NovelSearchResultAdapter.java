@@ -16,16 +16,15 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
-import com.xuanthongn.data.model.Category;
-import com.xuanthongn.data.model.NovelRecommend;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
 
 import java.util.List;
 
 public class NovelSearchResultAdapter extends RecyclerView.Adapter<NovelSearchResultAdapter.ViewNovelSearchResltHolder> {
     private Context context;
-    private List<NovelRecommend> categories;
+    private List<NovelRecommendDto> categories;
 
-    public NovelSearchResultAdapter(Context context, List<NovelRecommend> categories) {
+    public NovelSearchResultAdapter(Context context, List<NovelRecommendDto> categories) {
         this.context = context;
         this.categories = categories;
     }
@@ -38,7 +37,7 @@ public class NovelSearchResultAdapter extends RecyclerView.Adapter<NovelSearchRe
 
     @Override
     public void onBindViewHolder(NovelSearchResultAdapter.ViewNovelSearchResltHolder holder, int position) {
-        NovelRecommend novel = categories.get(position);
+        NovelRecommendDto novel = categories.get(position);
         holder.nameView.setText(novel.getName());
         holder.chapterView.setText( String.valueOf(novel.getId()+" Chương " ));
 

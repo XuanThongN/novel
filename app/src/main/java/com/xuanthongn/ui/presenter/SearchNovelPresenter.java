@@ -1,9 +1,6 @@
 package com.xuanthongn.ui.presenter;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -11,15 +8,11 @@ import android.util.Log;
 import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
-import com.xuanthongn.data.dao.ProductDao;
-import com.xuanthongn.data.dto.NovelDto;
-import com.xuanthongn.data.entity.Product;
+import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.repository.NovelRepository;
-import com.xuanthongn.ui.constract.IHomeConstract;
 import com.xuanthongn.ui.constract.ISearchConstract;
 import com.xuanthongn.util.Constants;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchNovelPresenter implements ISearchConstract.IPresenter {

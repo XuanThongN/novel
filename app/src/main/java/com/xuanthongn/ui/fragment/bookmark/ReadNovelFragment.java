@@ -8,18 +8,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 import com.xuanthongn.R;
 import com.xuanthongn.data.model.BookMark;
-import com.xuanthongn.data.model.NovelRecommend;
 import com.xuanthongn.ui.adapter.BookMarkAdapter;
-import com.xuanthongn.ui.adapter.BookMarkPagerAdapter;
-import com.xuanthongn.ui.adapter.NovelRecommendAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

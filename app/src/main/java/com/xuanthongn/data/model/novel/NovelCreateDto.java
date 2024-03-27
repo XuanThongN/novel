@@ -1,39 +1,38 @@
-package com.xuanthongn.data.entity;
+package com.xuanthongn.data.model.novel;
 
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.PrimaryKey;
-
-@Entity
-public class Novel {
-    @PrimaryKey(autoGenerate = true)
+public class NovelCreateDto {
     public int novelId;
     public String name;
     public String author;
     public String description;
     public String imageUrl;
+    private int categoryId;
 
-    //Foreign key many-1
-    public int category_id;
 
-    public Novel() {
+    public NovelCreateDto() {
     }
 
-    public Novel(String name, String imageUrl, int category_id) {
+    public NovelCreateDto(String name, String imageUrl, int categoryId) {
         this.name = name;
         this.imageUrl = imageUrl;
-        this.category_id = category_id;
+        this.categoryId = categoryId;
     }
 
-    public Novel(int novelId, String name, String author, String description, String imageUrl, int category_id) {
-
-        this.novelId = novelId;
+    public NovelCreateDto(String name, String author, String description, String imageUrl, int categoryId) {
         this.name = name;
         this.author = author;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.category_id = category_id;
+        this.categoryId = categoryId;
     }
+
+    public NovelCreateDto(int novelId, String name, String imageUrl, int categoryId) {
+        this.novelId = novelId;
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.categoryId = categoryId;
+    }
+
     public int getNovelId() {
         return novelId;
     }
@@ -65,9 +64,9 @@ public class Novel {
         this.imageUrl = imageUrl;
     }
     public int getCategory_id() {
-        return category_id;
+        return categoryId;
     }
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategory_id(int categoryId) {
+        this.categoryId = categoryId;
     }
 }

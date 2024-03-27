@@ -5,15 +5,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.xuanthongn.data.dto.NovelDto;
-import com.xuanthongn.ui.fragment.home.AccountFragment;
-import com.xuanthongn.ui.fragment.home.BookmarkFragment;
-import com.xuanthongn.ui.fragment.home.HomeFragment;
+import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.ui.fragment.novel_page_search.ComicSearchFragment;
 import com.xuanthongn.ui.fragment.novel_page_search.NovelAudioSearchFragment;
 import com.xuanthongn.ui.fragment.novel_page_search.NovelSearchFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

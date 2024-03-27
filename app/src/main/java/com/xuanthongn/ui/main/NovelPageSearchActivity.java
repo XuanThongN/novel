@@ -6,17 +6,13 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.xuanthongn.R;
-import com.xuanthongn.data.dto.NovelDto;
-import com.xuanthongn.ui.adapter.NovelDetailsPagerAdapter;
+import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.ui.adapter.NovelSearchAdapter;
 import com.xuanthongn.ui.constract.ISearchConstract;
 import com.xuanthongn.ui.presenter.SearchNovelPresenter;

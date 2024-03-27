@@ -1,10 +1,14 @@
 package com.xuanthongn.data.repository;
 
+import androidx.lifecycle.LiveData;
+
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.dao.NovelDao;
-import com.xuanthongn.data.dto.NovelDto;
+import com.xuanthongn.data.model.novel.NovelCreateDto;
+import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.entity.Novel;
 import com.xuanthongn.data.entity.relationship.NovelWithCategory;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
 
 
 import org.modelmapper.ModelMapper;
@@ -30,14 +34,40 @@ public class NovelRepository implements INovelRepository {
 
     @Override
     public List<NovelDto> findAll() {
-        return null;
+        List<Novel> novels = novelDao.getAll();
+        return novels.stream().map(x -> new NovelDto(x.novelId, x.name, x.imageUrl, null)).collect(Collectors.toList());
     }
 
     @Override
-    public NovelDto insert(NovelDto novelDto) {
-        Novel novel = modelMapper.map(novelDto, Novel.class);
+    public List<NovelRecommendDto> getNovelsWithCategory() {
+        List<NovelWithCategory> novels = novelDao.getNovelsWithCategory();
+        return novels.stream()
+                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name, x.novel.imageUrl,x.category.getName()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<NovelRecommendDto> getNovelNewestImageUrls() {
+        List<Novel> novels = novelDao.getNewestNovel();
+        return novels.stream().map(x -> new NovelRecommendDto(x.novelId, x.imageUrl,x.name)).collect(Collectors.toList());
+    }
+
+    @Override
+    public NovelDto insert(NovelDto input) {
+        Novel novel = new Novel(input.getName(),input.getImageUrl(),0);
         novelDao.insertAll(novel);
-        return novelDto;
+        return input;
+    }
+
+
+    public NovelCreateDto insertNovel(NovelCreateDto input) {
+        Novel novel = new Novel(input.getName(),input.getImageUrl(),input.getCategory_id());
+        novelDao.insertAll(novel);
+        return input;
+
+    }
+    public LiveData<List<NovelWithCategory>> getAllNovelsWithCategories() {
+        return novelDao.getAllNovelsWithCategories();
     }
 
 
@@ -56,6 +86,10 @@ public class NovelRepository implements INovelRepository {
         return list.stream().map( x ->
                 new NovelDto(x.novel.novelId,x.novel.name,x.novel.imageUrl,x.category.name)
                 ).collect(Collectors.toList());
-    }
+
+
+
+
+}
 }
 
