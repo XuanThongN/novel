@@ -4,6 +4,7 @@ import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.dao.NovelDao;
 import com.xuanthongn.data.dto.NovelDto;
 import com.xuanthongn.data.entity.Novel;
+import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 
 
 import org.modelmapper.ModelMapper;
@@ -50,8 +51,11 @@ public class NovelRepository implements INovelRepository {
     }
 
     @Override
-    public NovelDto findByName(String name) {
-        return null;
+    public List<NovelDto> findByName(String search) {
+        List<NovelWithCategory> list = novelDao.searchNovelWithCategory(search);
+        return list.stream().map( x ->
+                new NovelDto(x.novel.novelId,x.novel.name,x.novel.imageUrl,x.category.name)
+                ).collect(Collectors.toList());
     }
 }
 
