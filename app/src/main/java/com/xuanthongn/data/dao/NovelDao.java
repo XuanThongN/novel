@@ -32,7 +32,10 @@ public interface NovelDao {
 
     @Delete
     void delete(Novel novel);
-
+    @Transaction
+    @Query("SELECT * FROM novel WHERE name LIKE '%' || :search  || '%' " +
+            "OR description LIKE '%' || :search  || '%'")
+    List<NovelWithCategory> searchNovelWithCategory(String search);
     @Transaction
     @Query("SELECT * FROM novel WHERE novelId = :novelId")
     NovelWithCategory getNovelWithCategory(int novelId);

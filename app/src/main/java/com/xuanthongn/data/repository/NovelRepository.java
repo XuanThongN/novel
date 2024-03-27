@@ -5,9 +5,10 @@ import androidx.lifecycle.LiveData;
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.dao.NovelDao;
 import com.xuanthongn.data.model.novel.NovelCreateDto;
-import com.xuanthongn.data.model.novel.NovelRecommendDto;
+import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.entity.Novel;
 import com.xuanthongn.data.entity.relationship.NovelWithCategory;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
 
 
 import org.modelmapper.ModelMapper;
@@ -27,14 +28,14 @@ public class NovelRepository implements INovelRepository {
     }
 
     @Override
-    public NovelRecommendDto findById(int id) {
+    public NovelDto findById(int id) {
         return null;
     }
 
     @Override
-    public List<NovelRecommendDto> findAll() {
+    public List<NovelDto> findAll() {
         List<Novel> novels = novelDao.getAll();
-        return novels.stream().map(x -> new NovelRecommendDto(x.novelId, x.name, x.imageUrl, null)).collect(Collectors.toList());
+        return novels.stream().map(x -> new NovelDto(x.novelId, x.name, x.imageUrl, null)).collect(Collectors.toList());
     }
 
     @Override
@@ -46,7 +47,13 @@ public class NovelRepository implements INovelRepository {
     }
 
     @Override
-    public NovelRecommendDto insert(NovelRecommendDto input) {
+    public List<NovelRecommendDto> getNovelNewestImageUrls() {
+        List<Novel> novels = novelDao.getNewestNovel();
+        return novels.stream().map(x -> new NovelRecommendDto(x.novelId, x.imageUrl,x.name)).collect(Collectors.toList());
+    }
+
+    @Override
+    public NovelDto insert(NovelDto input) {
         Novel novel = new Novel(input.getName(),input.getImageUrl(),0);
         novelDao.insertAll(novel);
         return input;
@@ -65,24 +72,24 @@ public class NovelRepository implements INovelRepository {
 
 
     @Override
-    public NovelRecommendDto update(NovelRecommendDto novelDto) {
+    public NovelDto update(NovelDto novelDto) {
         return null;
     }
 
     @Override
-    public void delete(NovelRecommendDto novelDto) {
+    public void delete(NovelDto novelDto) {
     }
 
     @Override
-    public NovelRecommendDto findByName(String name) {
-        return null;
-    }
+    public List<NovelDto> findByName(String search) {
+        List<NovelWithCategory> list = novelDao.searchNovelWithCategory(search);
+        return list.stream().map( x ->
+                new NovelDto(x.novel.novelId,x.novel.name,x.novel.imageUrl,x.category.name)
+                ).collect(Collectors.toList());
 
-    @Override
-    public List<NovelRecommendDto> getNovelNewestImageUrls() {
-        List<Novel> novels = novelDao.getNewestNovel();
-        return novels.stream().map(x -> new NovelRecommendDto( x.imageUrl)).collect(Collectors.toList());
-    }
 
+
+
+}
 }
 
