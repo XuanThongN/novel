@@ -17,20 +17,16 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
-import com.xuanthongn.data.model.Category;
-import com.xuanthongn.data.model.NovelComment;
-import com.xuanthongn.data.model.NovelYourLikes;
+import com.xuanthongn.data.model.novel.NovelDto;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class NovelDetailsYourlikeAdapter extends RecyclerView.Adapter<NovelDetailsYourlikeAdapter.NovelDetailViewHolder> {
 
     private Context context;
-    private List<NovelYourLikes> novelscomments;
+    private List<NovelDto> novelscomments;
 
-    public NovelDetailsYourlikeAdapter(Context context, List<NovelYourLikes> novelscomments) {
+    public NovelDetailsYourlikeAdapter(Context context, List<NovelDto> novelscomments) {
         this.context = context;
         this.novelscomments = novelscomments;
     }
@@ -44,9 +40,9 @@ public class NovelDetailsYourlikeAdapter extends RecyclerView.Adapter<NovelDetai
 
     @Override
     public void onBindViewHolder(NovelDetailsYourlikeAdapter.NovelDetailViewHolder holder, int position) {
-        NovelYourLikes novelYourLikes = novelscomments.get(position);
+        NovelDto novelYourLikes = novelscomments.get(position);
         holder.nameView.setText(novelYourLikes.getName());
-        holder.contentView.setText(novelYourLikes.getContent());
+        holder.contentView.setText(novelYourLikes.getDescription());
         //Set background image for layout
 
         Glide.with(holder.image.getContext())
