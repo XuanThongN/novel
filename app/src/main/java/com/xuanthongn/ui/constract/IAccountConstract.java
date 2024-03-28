@@ -4,7 +4,7 @@ public interface IAccountConstract {
     interface IView {
         void setAccountLayout(boolean isLogin);
 
-//        void setLoginInfo(String email);
+        void setLoginInfo(String name,String email);
 //
 //        void setHotProductsToView(List<Product> productList);
 
@@ -14,6 +14,7 @@ public interface IAccountConstract {
         void setView(IView view);
 
         boolean getStoredLoginStatus();
+        void getLoginInfo();
         void logout();
 
     }

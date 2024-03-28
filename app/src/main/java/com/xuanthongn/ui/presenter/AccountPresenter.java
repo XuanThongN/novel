@@ -40,6 +40,14 @@ public class AccountPresenter implements IAccountConstract.IPresenter {
     }
 
     @Override
+    public void getLoginInfo() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREF_NAME, MODE_PRIVATE);
+        String name = sharedPreferences.getString(Constants.KEY_NAME, null);
+        String email = sharedPreferences.getString(Constants.KEY_EMAIL, null);
+        mView.setLoginInfo(name, email);
+    }
+
+    @Override
     public void logout() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
