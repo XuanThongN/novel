@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
+import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 import com.xuanthongn.data.model.category.CategoryDto;
 import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
@@ -35,6 +36,7 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
                 AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
         this.context = context;
         categoryRepository = new CategoryRepository(db);
+        novelRepository = new NovelRepository(db);
     }
 
     @Override
@@ -42,33 +44,12 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
         mView = view;
     }
 
-//    @Override
-//    public void getCategory() {
-//        List<CategoryDto> categoryList = categoryRepository.findAll();
-//
-//        if (mView != null) {
-//            mView.setCategory(categoryList);
-//        }
-//    }
-
     @Override
-    public void loadNovelDetails(int novelId) {
-        if (novelRepository != null) {
-            // Gọi phương thức findById của repository để lấy thông tin chi tiết của cuốn truyện dựa trên ID
-            NovelDto novel = novelRepository.findById(novelId);
-            if (novel != null) {
-                // Hiển thị thông tin chi tiết của cuốn truyện
-                mView.displayNovelDetails(novel);
-            } else {
-                // Hiển thị thông báo lỗi nếu không tìm thấy cuốn truyện
-                mView.displayError("Không tìm thấy thông tin của cuốn truyện");
-            }
-        } else {
-            // Xử lý trường hợp novelRepository là null
-            mView.displayError("Không thể truy cập vào dữ liệu của cuốn truyện");
-        }
+    public void getLatestNovelsByCategory(int categoryId) {
+        List<NovelDto> latestNovels = novelRepository.findLatestNovelsByCategory(categoryId);
+        mView.showLatestNovels(latestNovels);
     }
-
-
-
+    public int getCategoryIdByName(String categoryName) {
+        return mCategoryRepository.getCategoryIdByName(categoryName);
+    }
 }

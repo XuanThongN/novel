@@ -77,13 +77,14 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
                 // Tạo Intent và truyền thông tin của truyện
                 Intent intent = new Intent(context, NovelDetailsActivity.class);
                 // Truyền tất cả dữ liệu của cuốn truyện qua Intent
-                intent.putExtra("novel",(Serializable)
-                         new NovelDto(novel.getId(),
+                intent.putExtra("novel", (Serializable)
+                        new NovelDto(novel.getId(),
                                 novel.getName(),
                                 novel.getImageUrl(),
                                 novel.getAuthor(),
                                 novel.getDescription(),
-                                novel.getCategoryName())
+                                novel.getCategoryName(),
+                                novel.getCategoryId())
                 );
                 context.startActivity(intent);
             }

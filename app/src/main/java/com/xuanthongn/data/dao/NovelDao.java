@@ -24,7 +24,7 @@ public interface NovelDao {
     Novel findById(int id);
 
     @Query("SELECT name, imageUrl FROM novel WHERE name=:name LIMIT 1")
-    NovelNameAndImageUrl getByName(String name);
+    NovelNameAndImageUrl getByNameAndImageUrl(String name);
 
     @Transaction
     @Query("SELECT * FROM Novel WHERE novelId = :id")
@@ -32,6 +32,12 @@ public interface NovelDao {
 
     @Query("SELECT * FROM novel ORDER BY novelId DESC LIMIT 4")
     List<Novel> getNewestNovel();
+
+//    @Query("SELECT * FROM Novel WHERE novelId = :categoryId ORDER BY novelId DESC LIMIT 5")
+//    List<Novel> findLatestNovelsByCategory(int categoryId);
+    @Transaction
+    @Query("SELECT * FROM novel WHERE category_id = :categoryId")
+    List<NovelWithCategory> findLatestNovelsByCategory(int categoryId);
 
     @Query("SELECT * FROM Novel")
     LiveData<List<NovelWithCategory>> getAllNovelsWithCategories();
@@ -42,12 +48,12 @@ public interface NovelDao {
     @Delete
     void delete(Novel novel);
     @Transaction
-    @Query("SELECT * FROM novel WHERE name LIKE '%' || :search  || '%' " +
-            "OR description LIKE '%' || :search  || '%'")
+    @Query("SELECT * FROM novel WHERE name LIKE '%' || :search  || '%' " + "OR description LIKE '%' || :search  || '%'")
     List<NovelWithCategory> searchNovelWithCategory(String search);
+
     @Transaction
-    @Query("SELECT * FROM novel WHERE novelId = :novelId")
-    NovelWithCategory getNovelWithCategory(int novelId);
+    @Query("SELECT * FROM Novel")
+    public List<NovelWithCategory> getNovelWithCategory();
 
     @Transaction
     @Query("SELECT * FROM novel")

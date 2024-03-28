@@ -16,6 +16,7 @@ import com.xuanthongn.data.model.user.UserDto;
 
 import org.modelmapper.ModelMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,19 +60,19 @@ public class NovelRepository implements INovelRepository {
     public List<NovelRecommendDto> getNovelsWithCategory() {
         List<NovelWithCategory> novels = novelDao.getNovelsWithCategory();
         return novels.stream()
-                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name, x.novel.imageUrl,x.category.getName()))
+                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.imageUrl, x.novel.name, x.category.getName(),x.category.getCategoryId()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<NovelRecommendDto> getNovelNewestImageUrls() {
         List<Novel> novels = novelDao.getNewestNovel();
-        return novels.stream().map(x -> new NovelRecommendDto(x.novelId, x.imageUrl,x.name)).collect(Collectors.toList());
+        return novels.stream().map(x -> new NovelRecommendDto(x.novelId, x.imageUrl, x.name)).collect(Collectors.toList());
     }
 
     @Override
-    public NovelDto getByName(String name) {
-        NovelNameAndImageUrl novel = novelDao.getByName(name);
+    public NovelDto getByNameAndImageUrl(String name) {
+        NovelNameAndImageUrl novel = novelDao.getByNameAndImageUrl(name);
         if (novel == null) {
             return null;
         }
@@ -80,18 +81,19 @@ public class NovelRepository implements INovelRepository {
 
     @Override
     public NovelDto insert(NovelDto input) {
-        Novel novel = new Novel(input.getName(),input.getImageUrl(),0);
+        Novel novel = new Novel(input.getName(), input.getImageUrl(), 0);
         novelDao.insertAll(novel);
         return input;
     }
 
 
     public NovelCreateDto insertNovel(NovelCreateDto input) {
-        Novel novel = new Novel(input.getName(),input.getImageUrl(),input.getCategory_id());
+        Novel novel = new Novel(input.getName(), input.getImageUrl(), input.getCategory_id());
         novelDao.insertAll(novel);
         return input;
 
     }
+
     public LiveData<List<NovelWithCategory>> getAllNovelsWithCategories() {
         return novelDao.getAllNovelsWithCategories();
     }
@@ -109,13 +111,30 @@ public class NovelRepository implements INovelRepository {
     @Override
     public List<NovelDto> findByName(String search) {
         List<NovelWithCategory> list = novelDao.searchNovelWithCategory(search);
-        return list.stream().map( x ->
-                new NovelDto(x.novel.novelId,x.novel.name,x.novel.imageUrl,x.category.name)
-                ).collect(Collectors.toList());
+        return list.stream().map(x ->
+                new NovelDto(x.novel.novelId, x.novel.name, x.novel.imageUrl, x.category.name)
+        ).collect(Collectors.toList());
+    }
 
+    @Override
+    public List<NovelWithCategory> getNovelsWithCategoryAndDescription() {
+        return novelDao.getNovelWithCategory();
+    }
 
+    @Override
+    public List<NovelDto> findLatestNovelsByCategory(int categoryId) {
+        List<NovelWithCategory> novels = novelDao.findLatestNovelsByCategory(categoryId);
+        List<NovelDto> novelDtos = new ArrayList<>();
+        for (NovelWithCategory item : novels) {
+            NovelDto novelDto = new NovelDto();
+            novelDto.setName(item.novel.name);
+            novelDto.setImageUrl(item.novel.imageUrl);
+            novelDto.setDescription(item.novel.description);
+            novelDto.setCategory_id(item.category.categoryId);
+            novelDtos.add(novelDto);
+        }
+        return novelDtos;
+    }
 
-
-}
 }
 

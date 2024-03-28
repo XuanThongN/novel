@@ -20,6 +20,10 @@ public interface CategoryDao {
     @Query("SELECT * FROM category WHERE categoryId = :id LIMIT 1")
     Category findById(int id);
 
+    @Query("SELECT * FROM category WHERE name = :categoryName LIMIT 1")
+    Category getCategoryByName(String categoryName);
+
+
     @Insert
     void insertAll(Category... categories);
 

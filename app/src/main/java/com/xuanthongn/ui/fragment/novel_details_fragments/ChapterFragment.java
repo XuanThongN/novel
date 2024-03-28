@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.xuanthongn.R;
+import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 import com.xuanthongn.data.model.Category;
 import com.xuanthongn.data.model.Chapter;
 import com.xuanthongn.data.model.novel.NovelDto;
@@ -83,25 +84,13 @@ public class ChapterFragment extends Fragment implements INovelDetailConstract.I
         rvContinueChapterNew.setLayoutManager(new GridLayoutManager(context, 2));
         rvContinueChapterNew.setAdapter(new NovelDetailsChaperNewAdapter(context, chapterNew));
 
-
-
-
-    }
-    public static ChapterFragment newInstance(NovelRecommendDto novel) {
-        ChapterFragment fragment = new ChapterFragment();
-        Bundle args = new Bundle();
-        args.putSerializable("novel", novel);
-        fragment.setArguments(args);
-        return fragment;
-    }
-    @Override
-    public void displayNovelDetails(NovelDto novel) {
-
     }
 
     @Override
     public void displayError(String errorMessage) {
-
     }
 
+    @Override
+    public void showLatestNovels(List<NovelDto> novels) {
+    }
 }

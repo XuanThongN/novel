@@ -21,10 +21,14 @@ import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.xuanthongn.R;
+import com.xuanthongn.data.entity.relationship.NovelWithCategory;
+import com.xuanthongn.data.model.novel.NovelCreateDto;
 import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.ui.adapter.NovelDetailsPagerAdapter;
 import com.xuanthongn.ui.constract.INovelDetailConstract;
 import com.xuanthongn.ui.fragment.novel_details_fragments.InformationFragment;
+
+import java.util.List;
 
 public class NovelDetailsActivity extends AppCompatActivity implements INovelDetailConstract.IView {
     private INovelDetailConstract.IPresenter mPresenter;
@@ -35,6 +39,7 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
     LinearLayout btnBack;
     LinearLayout btnRead;
     NovelDto novel;
+    NovelCreateDto novelCreateDto;
     ImageView novelImage;
     TextView tNovelName;
     LinearLayout novelBackground;
@@ -60,11 +65,9 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
         btnBack = findViewById(R.id.btn_back);
         btnRead = findViewById(R.id.btn_read_novel);
         tNovelName = findViewById(R.id.novel_detail_name);
-//        novelImage = findViewById(R.id.novel_image);
         myViewPagerAdapter = new NovelDetailsPagerAdapter(this);
         viewPager2.setAdapter(myViewPagerAdapter);
         novelBackground = findViewById(R.id.novel_background);
-
 
 
         new TabLayoutMediator(tabLayout, viewPager2,
@@ -80,7 +83,6 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
                 }).attach();
         Intent intent = getIntent();
         NovelDto novel = (NovelDto) intent.getSerializableExtra("novel");
-
         // Send data to child fragments
         setNovel(novel);
 
@@ -137,9 +139,11 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
                         novelBackground.setBackgroundDrawable(resource);
                     }
                 }
+
                 @Override
                 public void onLoadCleared(@Nullable Drawable placeholder) {
-                    displayError("Xử lý khi việc tải hình ảnh đã bị hủy bỏ"); }
+                    displayError("Xử lý khi việc tải hình ảnh đã bị hủy bỏ");
+                }
             });
         }
 
@@ -149,19 +153,26 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
         return novel;
     }
 
+
+    public NovelCreateDto getNovelCreateDto() {
+        return novelCreateDto;
+    }
+
+    public void setNovelCreateDto(NovelCreateDto novelCreateDto) {
+        this.novelCreateDto = novelCreateDto;
+    }
+
     public void setNovel(NovelDto novel) {
         this.novel = novel;
     }
 
     @Override
-    public void displayNovelDetails(NovelDto novel) {
-
+    public void displayError(String errorMessage) {
     }
 
     @Override
-    public void displayError(String errorMessage) {
+    public void showLatestNovels(List<NovelDto> novels) {
 
     }
-
 
 }
