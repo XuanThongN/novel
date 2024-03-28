@@ -1,5 +1,6 @@
 package com.xuanthongn.ui.fragment.novel_details_fragments;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,18 +12,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.xuanthongn.R;
+import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 import com.xuanthongn.data.model.Category;
 import com.xuanthongn.data.model.Chapter;
+import com.xuanthongn.data.model.novel.NovelDto;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.ui.adapter.CategoryNovelItemAdapter;
 import com.xuanthongn.ui.adapter.NovelDetailsChaperListAdapter;
 import com.xuanthongn.ui.adapter.NovelDetailsChaperNewAdapter;
+import com.xuanthongn.ui.constract.INovelDetailConstract;
+import com.xuanthongn.ui.presenter.NovelDetailPresenter;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ChapterFragment extends Fragment {
+import io.reactivex.rxjava3.annotations.NonNull;
+
+public class ChapterFragment extends Fragment implements INovelDetailConstract.IView {
+    private INovelDetailConstract.IPresenter mPresenter;
     RecyclerView recyclerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,6 +44,21 @@ public class ChapterFragment extends Fragment {
         return view;
     }
 
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter = new NovelDetailPresenter(getContext());
+        mPresenter.setView(this);
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            NovelRecommendDto novel = (NovelRecommendDto) arguments.getSerializable("novel");
+            if (novel != null) {
+                // Sử dụng dữ liệu của cuốn truyện để hiển thị thông tin chi tiết
+                // Ví dụ: novel.getName(), novel.getAuthor(),...
+            }
+        }
+    }
     private void initGUI(View view) {
         Context context = this.getContext();
 
@@ -59,8 +84,13 @@ public class ChapterFragment extends Fragment {
         rvContinueChapterNew.setLayoutManager(new GridLayoutManager(context, 2));
         rvContinueChapterNew.setAdapter(new NovelDetailsChaperNewAdapter(context, chapterNew));
 
+    }
 
+    @Override
+    public void displayError(String errorMessage) {
+    }
 
-
+    @Override
+    public void showLatestNovels(List<NovelDto> novels) {
     }
 }

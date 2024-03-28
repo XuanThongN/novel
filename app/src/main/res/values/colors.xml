@@ -8,5 +8,7 @@
     <color name="colorBackground">#171717</color> //Màu nền chính (đen)
     <color name="colorSubBackground">#1E1E1E</color> //Màu nền các khu vực (đen xám)
     <color name="colorTagBackground">#3B3B3B</color> //Màu nền các thẻ (đen xám)
-    <color name="colorTextHello">#D6D6D6</color> //Màu nền text Hello (trắng xám)
+    <color name="colorTextHello">#D6D6D6</color>
+    <color name="text_shadow">#7F000000</color>
+    //Màu nền text Hello (trắng xám)
 </resources>
