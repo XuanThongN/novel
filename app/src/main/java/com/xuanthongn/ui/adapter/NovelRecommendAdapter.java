@@ -3,6 +3,7 @@ package com.xuanthongn.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -18,12 +21,15 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
+import com.xuanthongn.data.model.NovelRecommend;
+import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
+import com.xuanthongn.ui.fragment.novel_details_fragments.InformationFragment;
 import com.xuanthongn.ui.main.NovelDetailsActivity;
 import com.xuanthongn.ui.main.NovelReadActivity;
 
+import java.io.Serializable;
 import java.util.List;
-
 
 public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAdapter.NovelRecommendViewHolder> {
 
@@ -68,14 +74,23 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Open NovelDetailsActivity when item is clicked
+                // Tạo Intent và truyền thông tin của truyện
                 Intent intent = new Intent(context, NovelDetailsActivity.class);
-                // Pass data if needed
-                intent.putExtra("novel_id", novel.getId());
+                // Truyền tất cả dữ liệu của cuốn truyện qua Intent
+                intent.putExtra("novel", (Serializable)
+                        new NovelDto(novel.getId(),
+                                novel.getName(),
+                                novel.getImageUrl(),
+                                novel.getAuthor(),
+                                novel.getDescription(),
+                                novel.getCategoryName(),
+                                novel.getCategoryId())
+                );
                 context.startActivity(intent);
-
             }
         });
+
+
     }
 
     @Override
