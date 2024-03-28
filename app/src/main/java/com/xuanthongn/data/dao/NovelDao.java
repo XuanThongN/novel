@@ -8,6 +8,8 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 
 import com.xuanthongn.data.entity.Novel;
+import com.xuanthongn.data.entity.User;
+import com.xuanthongn.data.entity.relationship.NovelNameAndImageUrl;
 import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 import com.xuanthongn.data.entity.relationship.NovelWithChapters;
 
@@ -20,6 +22,13 @@ public interface NovelDao {
 
     @Query("SELECT * FROM novel WHERE novelId = :id LIMIT 1")
     Novel findById(int id);
+
+    @Query("SELECT name, imageUrl FROM novel WHERE name=:name LIMIT 1")
+    NovelNameAndImageUrl getByName(String name);
+
+    @Transaction
+    @Query("SELECT * FROM Novel WHERE novelId = :id")
+    public NovelWithCategory findNovelWithCategoryById(int id);
 
     @Query("SELECT * FROM novel ORDER BY novelId DESC LIMIT 4")
     List<Novel> getNewestNovel();

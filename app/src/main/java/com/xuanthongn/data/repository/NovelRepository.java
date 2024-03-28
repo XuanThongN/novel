@@ -4,11 +4,14 @@ import androidx.lifecycle.LiveData;
 
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.dao.NovelDao;
+import com.xuanthongn.data.entity.User;
+import com.xuanthongn.data.entity.relationship.NovelNameAndImageUrl;
 import com.xuanthongn.data.model.novel.NovelCreateDto;
 import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.entity.Novel;
 import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
+import com.xuanthongn.data.model.user.UserDto;
 
 
 import org.modelmapper.ModelMapper;
@@ -29,7 +32,21 @@ public class NovelRepository implements INovelRepository {
 
     @Override
     public NovelDto findById(int id) {
-        return null;
+        NovelWithCategory novelWithCategory = novelDao.findNovelWithCategoryById(id);
+        if (novelWithCategory != null && novelWithCategory.novel != null && novelWithCategory.category != null) {
+            // Tạo đối tượng NovelDto và set các thuộc tính từ dữ liệu của Novel và Category
+            NovelDto novelRecommendDto = new NovelDto();
+            novelRecommendDto.setId(novelWithCategory.novel.novelId);
+            novelRecommendDto.setName(novelWithCategory.novel.name);
+            novelRecommendDto.setAuthor(novelWithCategory.novel.author);
+            novelRecommendDto.setDescription(novelWithCategory.novel.description);
+            novelRecommendDto.setImageUrl(novelWithCategory.novel.imageUrl);
+            novelRecommendDto.setCategoryName(novelWithCategory.category.name);
+
+            return novelRecommendDto;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -50,6 +67,15 @@ public class NovelRepository implements INovelRepository {
     public List<NovelRecommendDto> getNovelNewestImageUrls() {
         List<Novel> novels = novelDao.getNewestNovel();
         return novels.stream().map(x -> new NovelRecommendDto(x.novelId, x.imageUrl,x.name)).collect(Collectors.toList());
+    }
+
+    @Override
+    public NovelDto getByName(String name) {
+        NovelNameAndImageUrl novel = novelDao.getByName(name);
+        if (novel == null) {
+            return null;
+        }
+        return modelMapper.map(novel, NovelDto.class);
     }
 
     @Override

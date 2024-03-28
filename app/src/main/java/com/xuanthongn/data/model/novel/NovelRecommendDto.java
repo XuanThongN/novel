@@ -1,6 +1,7 @@
 package com.xuanthongn.data.model.novel;
+import java.io.Serializable;
 
-public class NovelRecommendDto {
+public class NovelRecommendDto implements Serializable{
     private int id;
     private String name;
     private String author;
