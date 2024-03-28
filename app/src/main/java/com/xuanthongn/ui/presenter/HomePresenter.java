@@ -51,10 +51,7 @@ public class HomePresenter implements IHomeConstract.IPresenter {
 
     @Override
     public void getNovelRecommend() {
-        List<NovelRecommendDto> recommendations = novelRepository.getNovelsWithCategory().stream()
-                .map(x -> new NovelRecommendDto(x.getId(), x.getName(), x.getImageUrl(), x.getCategoryName()))
-                .collect(Collectors.toList());
-
+        List<NovelRecommendDto> recommendations = novelRepository.getNovelsWithCategory();
         mView.setNovelRecommendToView(recommendations);
     }
 

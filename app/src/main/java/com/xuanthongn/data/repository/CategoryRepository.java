@@ -15,12 +15,16 @@ public class CategoryRepository implements ICategoryRepository {
     private final CategoryDao categoryDao;
     private final ModelMapper modelMapper;
 
+
     public CategoryRepository(AppDatabase appDatabase) {
         this.appDatabase = appDatabase;
         categoryDao = appDatabase.categoryDao();
         modelMapper = new ModelMapper();
     }
-
+    public CategoryRepository(CategoryDao categoryDao) {
+        this.categoryDao = categoryDao;
+        modelMapper = new ModelMapper();
+    }
     @Override
     public CategoryDto findById(int id) {
         return null;
@@ -47,6 +51,13 @@ public class CategoryRepository implements ICategoryRepository {
     public void delete(CategoryDto categoryDto) {
 
     }
-
+    public int getCategoryIdByName(String categoryName) {
+        Category category = categoryDao.getCategoryByName(categoryName);
+        if (category != null) {
+            return category.getCategoryId();
+        } else {
+            return 0; // Trả về 0 nếu không tìm thấy category tương ứng
+        }
+    }
 }
 
