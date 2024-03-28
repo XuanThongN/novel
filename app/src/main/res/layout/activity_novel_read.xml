@@ -75,6 +75,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/novel_content_edit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:justificationMode="inter_word"

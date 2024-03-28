@@ -1,22 +1,37 @@
 package com.xuanthongn.ui.main;
 
 import android.annotation.SuppressLint;
+import android.app.Presentation;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.xuanthongn.R;
+import com.xuanthongn.data.model.chapter.ChapterDto;
+import com.xuanthongn.data.repository.ChapterRepository;
+import com.xuanthongn.ui.constract.IDetailChapterConstract;
+import com.xuanthongn.ui.presenter.ChapterDetailPresenter;
 
-public class NovelReadActivity extends AppCompatActivity {
+public class NovelReadActivity extends AppCompatActivity implements IDetailChapterConstract.IView {
+    IDetailChapterConstract.IPresenter mPresenter;
     LinearLayout btnBack;
+    TextView textContentChapter;
+    TextView textTitleChapter;
+
     private Handler handler = new Handler();
+
     private Runnable hideControlsRunnable = new Runnable() {
         @Override
         public void run() {
@@ -29,16 +44,26 @@ public class NovelReadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novel_read);
-        btnBack = findViewById(R.id.btn_readback);
-
         initGUI();
+        mPresenter = new ChapterDetailPresenter(this);
+        mPresenter.setView(this);
+        mPresenter.getDetailChapter(1);
 
+
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
 
     }
 
     @SuppressLint("ClickableViewAccessibility")
     public void initGUI() {
-
+        btnBack = findViewById(R.id.btn_readback);
+        textContentChapter = findViewById(R.id.novel_content_edit);
+        textTitleChapter = findViewById(R.id.novel_content);
         // Hide controls after 2 seconds
         handler.postDelayed(hideControlsRunnable, 2000);
 
@@ -76,4 +101,13 @@ public class NovelReadActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void showContent(ChapterDto chapterDto) {
+        // Hiển thị nội dung của chapter trong TextView textContentChapter
+        textTitleChapter.setText(chapterDto.getName());
+        textContentChapter.setText(chapterDto.getContent());
+
+    }
+
 }

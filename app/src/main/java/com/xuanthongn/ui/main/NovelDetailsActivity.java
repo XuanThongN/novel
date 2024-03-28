@@ -75,6 +75,9 @@ public class NovelDetailsActivity extends AppCompatActivity {
                 // Pass data if needed
                 context.startActivity(intent);
 
+
+
+
             }
         });
 

@@ -1,32 +1,18 @@
-package com.xuanthongn.data.entity;
+package com.xuanthongn.data.model.chapter;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.PrimaryKey;
+public class ChapterDto {
 
-@Entity(foreignKeys = @ForeignKey(entity = Novel.class,
-        parentColumns = "novelId",
-        childColumns = "novel_id",
-        onDelete = ForeignKey.CASCADE))
-public class Chapter {
-    @PrimaryKey(autoGenerate = true)
     public int chapterId;
-
-    @ColumnInfo(name = "name")
     public String name;
-
-    @ColumnInfo(name = "content")
     public String content;
 
-    @ColumnInfo(name = "novel_id")
+    //Foreign key many-1
     public int novel_id;
 
-    public Chapter() {
-
+    public ChapterDto() {
     }
 
-    public Chapter(int chapterId, String name, String content, int novel_id) {
+    public ChapterDto(int chapterId, String name, String content, int novel_id) {
         this.chapterId = chapterId;
         this.name = name;
         this.content = content;
