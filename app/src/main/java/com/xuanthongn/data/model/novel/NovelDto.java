@@ -38,6 +38,11 @@ public class NovelDto implements Serializable {
 
     public NovelDto() {
     }
+
+    public NovelDto(int id) {
+        this.id = id;
+    }
+
     public String getAuthor() {
         return author;
     }

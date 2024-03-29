@@ -23,6 +23,11 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="15dp">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:background="@drawable/ic_angle_left" />
         </LinearLayout>
 
         <LinearLayout
@@ -48,14 +53,12 @@
     <ScrollView
         android:id="@+id/novel_root_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="-1dp">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_continue_novel_reading_chapter_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:orientation="vertical"
             android:paddingHorizontal="15dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

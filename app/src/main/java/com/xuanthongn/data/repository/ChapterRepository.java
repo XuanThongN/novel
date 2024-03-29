@@ -57,15 +57,15 @@ public class ChapterRepository implements IChapterRepository {
 
 
     @Override
-    public ChapterDto getChapterByNovelID(int novel_id) {
-        Chapter chapter = chapterDao.getChapterByNovelID(novel_id);
-        if (chapter != null) {
-            return new ChapterDto(chapter.chapterId, chapter.name, chapter.content, chapter.novel_id);
-        } else {
-            // Trả về null nếu không tìm thấy chapter với novel_id tương ứng
-            return null;
+    public List<ChapterDto> getChapterByNovelID(int novel_id) {
+        List<Chapter> chapters = chapterDao.getChaptersByNovelID(novel_id);
+        List<ChapterDto> chapterDtos = new ArrayList<>();
+        for (Chapter chapter : chapters) {
+            chapterDtos.add(new ChapterDto(chapter.chapterId, chapter.name, chapter.content, chapter.novel_id));
         }
+        return chapterDtos;
     }
+
 
     @Override
     public List<ChapterDto> getAllChaptersByNovelId(int novel_id) {
