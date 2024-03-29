@@ -25,6 +25,13 @@ public class Novel {
         this.category_id = category_id;
     }
 
+    public Novel(String name, String description, String imageUrl, int category_id) {
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.category_id = category_id;
+    }
+
     public Novel(int novelId, String name, String author, String description, String imageUrl, int category_id) {
 
         this.novelId = novelId;

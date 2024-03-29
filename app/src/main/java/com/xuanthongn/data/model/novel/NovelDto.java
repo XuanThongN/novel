@@ -18,6 +18,14 @@ public class NovelDto implements Serializable {
         this.categoryName = categoryName;
     }
 
+    public NovelDto(int id, String name, String imageUrl, String description, String categoryName) {
+        this.id = id;
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.description = description;
+        this.categoryName = categoryName;
+    }
+
     public NovelDto(int id, String name, String imageUrl, String author, String description, String categoryName, int category_id) {
         this.id = id;
         this.name = name;
@@ -30,23 +38,18 @@ public class NovelDto implements Serializable {
 
     public NovelDto() {
     }
-
     public String getAuthor() {
         return author;
     }
-
     public void setAuthor(String author) {
         this.author = author;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
     public String getName() {return name;}
