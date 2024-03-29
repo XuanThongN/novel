@@ -3,6 +3,7 @@ package com.xuanthongn.ui.main;
 import android.annotation.SuppressLint;
 import android.app.Presentation;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -17,18 +18,35 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.xuanthongn.R;
 import com.xuanthongn.data.model.chapter.ChapterDto;
+import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.repository.ChapterRepository;
+import com.xuanthongn.ui.adapter.NovelDetailsChaperListAdapter;
+import com.xuanthongn.ui.adapter.NovelReadingChapterAdapter;
 import com.xuanthongn.ui.constract.IDetailChapterConstract;
 import com.xuanthongn.ui.presenter.ChapterDetailPresenter;
+
+import java.util.List;
 
 public class NovelReadActivity extends AppCompatActivity implements IDetailChapterConstract.IView {
     IDetailChapterConstract.IPresenter mPresenter;
     LinearLayout btnBack;
     TextView textContentChapter;
     TextView textTitleChapter;
+    RecyclerView recyclerView;
+    private int novelId;
+    public NovelDto getChapterDto() {
+        return chapterDto;
+    }
+
+    public void setChapterDto(NovelDto chapterDto) {
+        this.chapterDto = chapterDto;
+    }
+
+    NovelDto chapterDto;
 
     private Handler handler = new Handler();
 
@@ -44,12 +62,17 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novel_read);
+        recyclerView=findViewById(R.id.rv_continue_novel_reading_chapter_list);
         initGUI();
         mPresenter = new ChapterDetailPresenter(this);
         mPresenter.setView(this);
-        mPresenter.getDetailChapter(1);
-
-
+        Intent intent = getIntent();
+        NovelDto novel = (NovelDto) intent.getSerializableExtra("novel");
+        if (novel != null) {
+            novelId = novel.getId();
+            mPresenter.getDetailChapter(novelId);
+        } else {
+        }
     }
 
     @Nullable
@@ -61,6 +84,7 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
 
     @SuppressLint("ClickableViewAccessibility")
     public void initGUI() {
+
         btnBack = findViewById(R.id.btn_readback);
         textContentChapter = findViewById(R.id.novel_content_edit);
         textTitleChapter = findViewById(R.id.novel_content);
@@ -103,11 +127,8 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
     }
 
     @Override
-    public void showContent(ChapterDto chapterDto) {
-        // Hiển thị nội dung của chapter trong TextView textContentChapter
-        textTitleChapter.setText(chapterDto.getName());
-        textContentChapter.setText(chapterDto.getContent());
-
+    public void showContent(List<ChapterDto> chapters) {
+        recyclerView.setAdapter(new NovelReadingChapterAdapter(this, chapters));
     }
 
 }

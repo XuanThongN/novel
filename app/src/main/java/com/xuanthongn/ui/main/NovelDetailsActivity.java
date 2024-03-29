@@ -25,10 +25,12 @@ import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelCreateDto;
 import com.xuanthongn.data.model.novel.NovelDto;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.ui.adapter.NovelDetailsPagerAdapter;
 import com.xuanthongn.ui.constract.INovelDetailConstract;
 import com.xuanthongn.ui.fragment.novel_details_fragments.InformationFragment;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class NovelDetailsActivity extends AppCompatActivity implements INovelDetailConstract.IView {
@@ -45,7 +47,6 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
     TextView tNovelName;
     LinearLayout novelBackground;
     Drawable newBackground;
-
     // Declaring fragment manager from making data
     // transactions using the custom fragment
     final androidx.fragment.app
@@ -56,6 +57,9 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
             = mFragmentManager.beginTransaction();
     final InformationFragment mFragment
             = new InformationFragment();
+
+    public NovelDetailsActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +73,6 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
         myViewPagerAdapter = new NovelDetailsPagerAdapter(this);
         viewPager2.setAdapter(myViewPagerAdapter);
         novelBackground = findViewById(R.id.novel_background);
-
-
         new TabLayoutMediator(tabLayout, viewPager2,
                 (tab, position) -> {
                     switch (position) {
@@ -122,12 +124,10 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
             public void onClick(View v) {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, NovelReadActivity.class);
-                // Pass data if needed
+                // Truyền tất cả dữ liệu của cuốn truyện qua Intent
+                intent.putExtra("novel", (Serializable)
+                        new NovelDto(novel.getId()));
                 context.startActivity(intent);
-
-
-
-
             }
         });
 

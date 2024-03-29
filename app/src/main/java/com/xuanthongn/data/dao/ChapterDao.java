@@ -30,8 +30,8 @@ public interface ChapterDao {
     @Query("SELECT * FROM chapter WHERE chapterId = :chapterId")
     ChapterWithNovel getChapterWithNovel(int chapterId);
 
-    @Query("SELECT * FROM chapter WHERE novel_id = :id ORDER BY chapterId LIMIT 1")
-    Chapter getChapterByNovelID(int id);
+    @Query("SELECT * FROM chapter WHERE novel_id = :id ORDER BY chapterId")
+    List<Chapter> getChaptersByNovelID(int id);
 
     @Transaction
     @Query("SELECT * FROM Chapter WHERE novel_id = :novelId")

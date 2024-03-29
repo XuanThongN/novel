@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IDetailChapterConstract {
     interface IView {
-        void showContent(ChapterDto chapterDto);
+        void showContent(List<ChapterDto> chapterDto);
     }
 
     interface IPresenter {
