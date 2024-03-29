@@ -37,8 +37,9 @@ public class ChapterDetailPresenter implements IDetailChapterConstract.IPresente
 
     @Override
     public void getDetailChapter(int novel_id) {
-        ChapterDto chapterDto = chapterRepository.getChapterByNovelID(novel_id);
+        List<ChapterDto> chapterDto = chapterRepository.getChapterByNovelID(novel_id);
         mView.showContent(chapterDto);
     }
+
 }
 

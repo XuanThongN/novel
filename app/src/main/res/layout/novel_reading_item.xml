@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/category_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginTop="15dp"
+    android:layout_weight="1"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp">
+
+        <TextView
+            android:id="@+id/novel_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chương 1: Ba thúc, ta đã đọc Tam Quốc rồi.(1)"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/novel_content_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:justificationMode="inter_word"
+            android:text="Headline: Brush Brighter with Sunshine Power! Introducing the SolarBrush!
+Description:
+Ditch the batteries and embrace sustainable brushing with the SolarBrush, the world's first electric toothbrush powered by the sun!  This innovative brush uses built-in solar panels to recharge, so you can enjoy a powerful clean without ever needing to buy batteries again.
+Here's what makes SolarBrush shine:
+Eco-Friendly Power: Harness the power of the sun for a clean conscience and a sparkling smile.
+Electric Cleaning: Experience the superior plaque removal of an electric brush with invigorating vibrations.
+Built-in Timer: The SolarBrush features a 2-minute timerHarness the power of the sun for a clean conscience and a sparkling smile.
+Electric Cleaning: Experience the superior plaque removal of an electric brush with invigorating vibrations.
+"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+</LinearLayout>
+

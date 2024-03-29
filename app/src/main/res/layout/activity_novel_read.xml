@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/root_layout"
@@ -21,13 +23,6 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="15dp">
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:background="@drawable/ic_angle_left" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -56,52 +51,14 @@
         android:layout_height="match_parent"
         android:layout_marginTop="-1dp">
 
-
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_continue_novel_reading_chapter_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:gravity="center_horizontal"
+            android:layout_marginTop="15dp"
             android:orientation="vertical"
-            android:paddingHorizontal="12dp">
-
-            <TextView
-                android:id="@+id/novel_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Chương 1: Ba thúc, ta đã đọc Tam Quốc rồi.(1)"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/novel_content_edit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:justificationMode="inter_word"
-                android:text="Headline: Brush Brighter with Sunshine Power! Introducing the SolarBrush!
-Description:
-Ditch the batteries and embrace sustainable brushing with the SolarBrush, the world's first electric toothbrush powered by the sun!  This innovative brush uses built-in solar panels to recharge, so you can enjoy a powerful clean without ever needing to buy batteries again.
-Here's what makes SolarBrush shine:
-Eco-Friendly Power: Harness the power of the sun for a clean conscience and a sparkling smile.
-Electric Cleaning: Experience the superior plaque removal of an electric brush with invigorating vibrations.
-Built-in Timer: The SolarBrush features a 2-minute timerHarness the power of the sun for a clean conscience and a sparkling smile.
-Electric Cleaning: Experience the superior plaque removal of an electric brush with invigorating vibrations.
-Built-in Timer: The SolarBrush features a 2-minute timerHarness the power of the sun for a clean conscience and a sparkling smile.
-Electric Cleaning: Experience the superior plaque removal of an electric brush with invigorating vibrations.
-Built-in Timer: The SolarBrush features a 2-minute timer to ensure a dentist-recommended cleaning cycle.
-SolarBrush:  Because a brighter smile starts with a brighter future!"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <Button
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/ic_angle_left" />
-
-        </LinearLayout>
-
-
+            android:paddingHorizontal="15dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </ScrollView>
 
     <RelativeLayout
