@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
     TextView textViewDescription;
     TextView textViewCategory;
     LinearLayout commentLayout;
+    Button btShowmore;
 
     CategoryRepository categoryRepository;
     AppDatabase db;
@@ -51,6 +53,24 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
         textViewDescription = view.findViewById(R.id.textViewContent);
         textViewCategory = view.findViewById(R.id.category_novel);
         rvNovelRecommend = view.findViewById(R.id.rv_continue_yourlike_novel);
+        btShowmore=view.findViewById(R.id.btShowmore);
+        btShowmore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (btShowmore.getText().toString().equalsIgnoreCase("Xem thêm..."))
+                {
+                    textViewDescription.setMaxLines(Integer.MAX_VALUE);
+                    btShowmore.setText("Ẩn Bớt");
+                }
+                else
+                {
+                    textViewDescription.setMaxLines(3);
+                    btShowmore.setText("Xem thêm...");
+                }
+            }
+        });
+
         commentLayout = view.findViewById(R.id.commentLayout);
         initGUI(view);
         // Inflate the layout for this fragment
