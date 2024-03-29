@@ -47,12 +47,21 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
         initGUI();
         mPresenter = new MainPresenter(this);
         mPresenter.setView(this);
+
+
         // Trong phần thêm dữ liệu:
+<<<<<<< HEAD
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
         AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
         NovelRepository novelRepository = new NovelRepository(db);
         ChapterRepository chapterRepository = new ChapterRepository(db);
 
+=======
+//        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+//        AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
+//        NovelRepository novelRepository = new NovelRepository(db);
+//
+>>>>>>> master
 //        List<NovelCreateDto> novelList = new ArrayList<>();
 //        novelList.add(new NovelCreateDto(1,"Truyện về thần thoại Hy Lạp", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080",1 ));
 //        novelList.add(new NovelCreateDto(2,"Truyện về tình yêu", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", 2));

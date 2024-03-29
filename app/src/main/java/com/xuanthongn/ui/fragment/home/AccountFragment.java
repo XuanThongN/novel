@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,8 @@ public class AccountFragment extends Fragment implements IAccountConstract.IView
     IAccountConstract.IPresenter mPresenter;
     LinearLayout profile_detail;
     Button btnLogout;
+    private TextView usernameTextView;
+    private TextView emailTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +39,8 @@ public class AccountFragment extends Fragment implements IAccountConstract.IView
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         profile_detail = view.findViewById(R.id.profile_detail);
         btnLogout = view.findViewById(R.id.btn_logout);
+        usernameTextView = view.findViewById(R.id.name_account);
+        emailTextView = view.findViewById(R.id.email_account);
         profile_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +65,7 @@ public class AccountFragment extends Fragment implements IAccountConstract.IView
         super.onViewCreated(view, savedInstanceState);
         mPresenter = new AccountPresenter(getContext());
         mPresenter.setView(this);
+        mPresenter.getLoginInfo();
 
     }
 
@@ -83,4 +89,12 @@ public class AccountFragment extends Fragment implements IAccountConstract.IView
         // Commit the transaction
         fragmentTransaction.commit();
     }
+    public void setLoginInfo(String name, String email) {
+        // Kiểm tra xem TextView đã được khởi tạo chưa trước khi thiết lập giá trị
+        if (usernameTextView != null && emailTextView != null) {
+            usernameTextView.setText(name);
+            emailTextView.setText(email);
+        }
+    }
+
 }
