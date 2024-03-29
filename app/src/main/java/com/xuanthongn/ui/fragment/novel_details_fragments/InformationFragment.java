@@ -1,5 +1,6 @@
 package com.xuanthongn.ui.fragment.novel_details_fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -42,16 +43,18 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
     TextView textViewCategory;
     LinearLayout commentLayout;
     Button btShowmore;
-
+TextView novel_detail_count_chapter;
     CategoryRepository categoryRepository;
     AppDatabase db;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_information, container, false);
         textViewDescription = view.findViewById(R.id.textViewContent);
         textViewCategory = view.findViewById(R.id.category_novel);
+        novel_detail_count_chapter=view.findViewById(R.id.novel_detail_count_chapter);
         rvNovelRecommend = view.findViewById(R.id.rv_continue_yourlike_novel);
         btShowmore=view.findViewById(R.id.btShowmore);
         btShowmore.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +91,7 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
             textViewCategory.setText(novel.getCategoryName());
             textViewDescription.setText(novel.getDescription());
             mPresenter.getLatestNovelsByCategory(novel.getCategory_id());
+            mPresenter.getTotalChapterCount(novel.getId());
         }
 
         commentLayout.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +124,12 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
     @Override
     public void showChaptersNew(List<ChapterDto> chapters) {
 
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void showTotalChapterCount(int count) {
+        novel_detail_count_chapter.setText(String.valueOf(count));
     }
 
     private void initGUI(View view) {

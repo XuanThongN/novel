@@ -96,4 +96,9 @@ public class ChapterFragment extends Fragment implements INovelDetailConstract.I
 
     }
 
+    @Override
+    public void showTotalChapterCount(int count) {
+
+    }
+
 }

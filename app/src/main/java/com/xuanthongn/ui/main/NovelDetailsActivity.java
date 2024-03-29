@@ -189,4 +189,9 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
 
     }
 
+    @Override
+    public void showTotalChapterCount(int count) {
+
+    }
+
 }

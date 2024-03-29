@@ -8,5 +8,7 @@ public interface IChapterRepository extends IBaseRepository<ChapterDto>{
     List<ChapterDto>  getChapterByNovelID(int novel_id);
     List<ChapterDto> getAllChaptersByNovelId(int novel_id);
     List<ChapterDto> getAllChaptersByNovelNew(int novel_id);
+    int countChaptersByNovelId(int novelId);
+
 
 }
