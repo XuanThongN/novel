@@ -22,6 +22,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.xuanthongn.R;
 import com.xuanthongn.data.entity.relationship.NovelWithCategory;
+import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelCreateDto;
 import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.ui.adapter.NovelDetailsPagerAdapter;
@@ -175,6 +176,16 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
 
     @Override
     public void showLatestNovels(List<NovelDto> novels) {
+
+    }
+
+    @Override
+    public void showChapters(List<ChapterDto> chapters) {
+
+    }
+
+    @Override
+    public void showChaptersNew(List<ChapterDto> chapters) {
 
     }
 

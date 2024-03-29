@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.xuanthongn.R;
 import com.xuanthongn.data.model.Chapter;
+import com.xuanthongn.data.model.chapter.ChapterDto;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,9 +21,9 @@ import java.util.List;
 public class NovelDetailsChaperNewAdapter extends RecyclerView.Adapter<NovelDetailsChaperNewAdapter.NovelChapterNewViewHolder> {
 
     private Context context;
-    private List<Chapter> chapter;
+    private List<ChapterDto> chapter;
 
-    public NovelDetailsChaperNewAdapter(Context context, List<Chapter> chapter) {
+    public NovelDetailsChaperNewAdapter(Context context, List<ChapterDto> chapter) {
         this.context = context;
         this.chapter = chapter;
     }
@@ -35,8 +36,8 @@ public class NovelDetailsChaperNewAdapter extends RecyclerView.Adapter<NovelDeta
 
     @Override
     public void onBindViewHolder(NovelChapterNewViewHolder holder, int position) {
-        Chapter novel = chapter.get(position);
-        holder.chapterNameView.setText("Chương " + String.valueOf(novel.getId()) + ": " + novel.getName());
+        ChapterDto novel = chapter.get(position);
+        holder.chapterNameView.setText("Chương " + String.valueOf(novel.getChapterId()) + ": " + novel.getName());
 
     }
 
