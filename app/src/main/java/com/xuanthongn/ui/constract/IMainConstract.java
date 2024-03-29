@@ -1,11 +1,5 @@
 package com.xuanthongn.ui.constract;
 
-import android.content.Context;
-
-import com.xuanthongn.data.entity.Product;
-
-import java.util.List;
-
 public interface IMainConstract {
     interface IView {
 

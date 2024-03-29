@@ -36,6 +36,10 @@
                 android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:text="Hệ thống thánh lười"
+                android:lines="1"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:ellipsize="end"
                 android:textColor="@color/colorText"
                 android:textSize="15dp" />
 
@@ -45,6 +49,10 @@
                 android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:text="Thể loại: kinh dị, hài, xuyên..."
+                android:lines="2"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:ellipsize="end"
                 android:textColor="@color/colorTextHello"
                 android:textSize="13dp" />
         </LinearLayout>

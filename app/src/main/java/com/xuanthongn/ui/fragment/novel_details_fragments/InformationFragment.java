@@ -17,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.xuanthongn.R;
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.model.NovelComment;
+import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.repository.CategoryRepository;
 import com.xuanthongn.ui.adapter.NovelDetailsCommentAdapter;
@@ -88,6 +89,16 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
     @Override
     public void showLatestNovels(List<NovelDto> novels) {
         rvNovelRecommend.setAdapter(new NovelDetailsYourlikeAdapter(this.getContext(), novels));
+    }
+
+    @Override
+    public void showChapters(List<ChapterDto> chapters) {
+
+    }
+
+    @Override
+    public void showChaptersNew(List<ChapterDto> chapters) {
+
     }
 
     private void initGUI(View view) {

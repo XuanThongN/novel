@@ -33,6 +33,13 @@ public class NovelCreateDto {
         this.categoryId = categoryId;
     }
 
+    public NovelCreateDto( String name, String description, String imageUrl, int categoryId) {
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.categoryId = categoryId;
+    }
+
     public int getNovelId() {
         return novelId;
     }

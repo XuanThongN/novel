@@ -114,33 +114,33 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
         categoryGrid = view.findViewById(R.id.category_grid);
 
         // Prepare category data
-//        categories = new ArrayList<>();
-//        categories.add(new CategoryItem(R.drawable.rank_icon, "Bảng xếp hang"));
-//        categories.add(new CategoryItem(R.drawable.chat_icon, "Chat chit"));
-//        categories.add(new CategoryItem(R.drawable.gold_icon, "Phúc lợi"));
-//        categories.add(new CategoryItem(R.drawable.community_icon, "Cộng đồng"));
-//        categories.add(new CategoryItem(R.drawable.translate_icon, "Truyện dịch"));
-//        categories.add(new CategoryItem(R.drawable.ic_stars_32, "Truyện chọn lọc"));
-//        categories.add(new CategoryItem(R.drawable.feather_icon, "Truyện ngắn"));
-//        categories.add(new CategoryItem(R.drawable.teammate_icon, "Nhóm dịch"));
-//        // ... add more categories
-//
-//        // Create and set adapter for GridView
-//        CategoryItemAdapter adapter = new CategoryItemAdapter(context, categories);
-//        categoryGrid.setAdapter(adapter);
-//
-//
-//        // View continue reading
-//        RecyclerView rvContinueReading = view.findViewById(R.id.rv_continue_reading);
-//        List<Novel> novels = new ArrayList<>();
-//        novels.add(new Novel(1, "Truyện 1", "Tác giả 1", "Mô tả 1", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080"));
-//        novels.add(new Novel(2, "Truyện 2", "Tác giả 2", "Mô tả 2", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"));
-//        novels.add(new Novel(3, "Truyện 3", "Tác giả 3", "Mô tả 3", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080"));
-//        novels.add(new Novel(4, "Truyện 4", "Tác giả 4", "Mô tả 4", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"));
-//        novels.add(new Novel(5, "Truyện 5", "Tác giả 5", "Mô tả 5", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080"));
-//        novels.add(new Novel(6, "Truyện 6", "Tác giả 6", "Mô tả 6", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"));
-//
-//        rvContinueReading.setAdapter(new NovelContinueReadingAdapter(context, novels));
+        categories = new ArrayList<>();
+        categories.add(new CategoryItem(R.drawable.rank_icon, "Bảng xếp hang"));
+        categories.add(new CategoryItem(R.drawable.chat_icon, "Chat chit"));
+        categories.add(new CategoryItem(R.drawable.gold_icon, "Phúc lợi"));
+        categories.add(new CategoryItem(R.drawable.community_icon, "Cộng đồng"));
+        categories.add(new CategoryItem(R.drawable.translate_icon, "Truyện dịch"));
+        categories.add(new CategoryItem(R.drawable.ic_stars_32, "Truyện chọn lọc"));
+        categories.add(new CategoryItem(R.drawable.feather_icon, "Truyện ngắn"));
+        categories.add(new CategoryItem(R.drawable.teammate_icon, "Nhóm dịch"));
+        // ... add more categories
+
+        // Create and set adapter for GridView
+        CategoryItemAdapter adapter = new CategoryItemAdapter(context, categories);
+        categoryGrid.setAdapter(adapter);
+
+
+        // View continue reading
+        RecyclerView rvContinueReading = view.findViewById(R.id.rv_continue_reading);
+        List<Novel> novels = new ArrayList<>();
+        novels.add(new Novel(1, "Truyện 1", "Tác giả 1", "Mô tả 1", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080"));
+        novels.add(new Novel(2, "Truyện 2", "Tác giả 2", "Mô tả 2", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"));
+        novels.add(new Novel(3, "Truyện 3", "Tác giả 3", "Mô tả 3", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080"));
+        novels.add(new Novel(4, "Truyện 4", "Tác giả 4", "Mô tả 4", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"));
+        novels.add(new Novel(5, "Truyện 5", "Tác giả 5", "Mô tả 5", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080"));
+        novels.add(new Novel(6, "Truyện 6", "Tác giả 6", "Mô tả 6", "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"));
+
+        rvContinueReading.setAdapter(new NovelContinueReadingAdapter(context, novels));
 
     }
 

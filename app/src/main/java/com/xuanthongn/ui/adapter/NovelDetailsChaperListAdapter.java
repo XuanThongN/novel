@@ -1,6 +1,7 @@
 package com.xuanthongn.ui.adapter;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,8 +23,10 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
+import com.xuanthongn.data.dao.ChapterDao;
 import com.xuanthongn.data.model.Chapter;
 import com.xuanthongn.data.model.Novel;
+import com.xuanthongn.data.model.chapter.ChapterDto;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,9 +35,11 @@ import java.util.List;
 public class NovelDetailsChaperListAdapter extends RecyclerView.Adapter<NovelDetailsChaperListAdapter.NovelChapterListViewHolder> {
 
     private Context context;
-    private List<Chapter> chapter;
 
-    public NovelDetailsChaperListAdapter(Context context, List<Chapter> chapter) {
+    private List<ChapterDto> chapter;
+
+
+    public NovelDetailsChaperListAdapter(Context context, List<ChapterDto> chapter) {
         this.context = context;
         this.chapter = chapter;
     }
@@ -45,14 +50,11 @@ public class NovelDetailsChaperListAdapter extends RecyclerView.Adapter<NovelDet
         return new NovelChapterListViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(NovelChapterListViewHolder holder, int position) {
-        Chapter novel = chapter.get(position);
-        Date date = novel.getChapter();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = sdf.format(date);
-        holder.chapterNameView.setText("Chương " + String.valueOf(novel.getId()) + ": " + novel.getName());
-        holder.chapterDateView.setText(formattedDate);
+        ChapterDto novel = chapter.get(position);
+        holder.chapterNameView.setText("Chương " + (position + 1) + ":  " + novel.getName());
 
     }
 
@@ -69,7 +71,6 @@ public class NovelDetailsChaperListAdapter extends RecyclerView.Adapter<NovelDet
         public NovelChapterListViewHolder(View itemView) {
             super(itemView);
             chapterNameView = itemView.findViewById(R.id.novel_detail_chapters_list);
-            chapterDateView = itemView.findViewById(R.id.novel_detail_date_list);
         }
     }
 }

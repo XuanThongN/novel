@@ -50,6 +50,15 @@ public class NovelRecommendDto implements Serializable {
         this.categoryId = categoryId;
     }
 
+    public NovelRecommendDto(int id, String name, String description, String imageUrl, String categoryName, int categoryId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.categoryName = categoryName;
+        this.categoryId = categoryId;
+    }
+
     public NovelRecommendDto() {
     }
 

@@ -4,17 +4,12 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.view.View;
 
 import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
-import com.xuanthongn.data.dao.ProductDao;
-import com.xuanthongn.data.entity.Product;
 import com.xuanthongn.ui.constract.IMainConstract;
 import com.xuanthongn.util.Constants;
-
-import java.util.List;
 
 public class MainPresenter implements IMainConstract.IPresenter {
     private IMainConstract.IView mView;
