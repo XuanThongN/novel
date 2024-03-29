@@ -1,6 +1,7 @@
 package com.xuanthongn.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,15 +19,18 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
 import com.xuanthongn.data.model.novel.NovelDto;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
+import com.xuanthongn.ui.main.NovelDetailsActivity;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class NovelDetailsYourlikeAdapter extends RecyclerView.Adapter<NovelDetailsYourlikeAdapter.NovelDetailViewHolder> {
 
-    private Context context;
-    private List<NovelDto> novelscomments;
+    private final Context context;
+    private final List<NovelRecommendDto> novelscomments;
 
-    public NovelDetailsYourlikeAdapter(Context context, List<NovelDto> novelscomments) {
+    public NovelDetailsYourlikeAdapter(Context context, List<NovelRecommendDto> novelscomments) {
         this.context = context;
         this.novelscomments = novelscomments;
     }
@@ -40,7 +44,7 @@ public class NovelDetailsYourlikeAdapter extends RecyclerView.Adapter<NovelDetai
 
     @Override
     public void onBindViewHolder(NovelDetailsYourlikeAdapter.NovelDetailViewHolder holder, int position) {
-        NovelDto novelYourLikes = novelscomments.get(position);
+        NovelRecommendDto novelYourLikes = novelscomments.get(position);
         holder.nameView.setText(novelYourLikes.getName());
         holder.contentView.setText(novelYourLikes.getDescription());
         //Set background image for layout
@@ -60,6 +64,24 @@ public class NovelDetailsYourlikeAdapter extends RecyclerView.Adapter<NovelDetai
                     }
                 })
                 .preload();
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo Intent và truyền thông tin của truyện
+                Intent intent = new Intent(context, NovelDetailsActivity.class);
+                // Truyền tất cả dữ liệu của cuốn truyện qua Intent
+                intent.putExtra("novel", (Serializable)
+                            new NovelDto(novelYourLikes.getId(),
+                                novelYourLikes.getName(),
+                                novelYourLikes.getImageUrl(),
+                                novelYourLikes.getAuthor(),
+                                novelYourLikes.getDescription(),
+                                novelYourLikes.getCategoryName(),
+                                novelYourLikes.getCategoryId())
+                );
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.model.NovelComment;
 import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelDto;
+import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.data.repository.CategoryRepository;
 import com.xuanthongn.ui.adapter.NovelDetailsCommentAdapter;
 import com.xuanthongn.ui.adapter.NovelDetailsYourlikeAdapter;
@@ -87,7 +88,7 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
     }
 
     @Override
-    public void showLatestNovels(List<NovelDto> novels) {
+    public void showLatestNovels(List<NovelRecommendDto> novels) {
         rvNovelRecommend.setAdapter(new NovelDetailsYourlikeAdapter(this.getContext(), novels));
     }
 

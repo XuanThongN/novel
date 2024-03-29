@@ -48,7 +48,7 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
 
     @Override
     public void getLatestNovelsByCategory(int categoryId) {
-        List<NovelDto> latestNovels = mNovelRepository.findLatestNovelsByCategory(categoryId);
+        List<NovelRecommendDto> latestNovels = mNovelRepository.findLatestNovelsByCategory(categoryId);
         mView.showLatestNovels(latestNovels);
     }
 

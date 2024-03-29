@@ -79,7 +79,7 @@ public class ChapterFragment extends Fragment implements INovelDetailConstract.I
     }
 
     @Override
-    public void showLatestNovels(List<NovelDto> novels) {
+    public void showLatestNovels(List<NovelRecommendDto> novels) {
 
     }
 

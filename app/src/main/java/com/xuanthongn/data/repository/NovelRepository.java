@@ -122,18 +122,12 @@ public class NovelRepository implements INovelRepository {
     }
 
     @Override
-    public List<NovelDto> findLatestNovelsByCategory(int categoryId) {
+    public List<NovelRecommendDto> findLatestNovelsByCategory(int categoryId) {
+
         List<NovelWithCategory> novels = novelDao.findLatestNovelsByCategory(categoryId);
-        List<NovelDto> novelDtos = new ArrayList<>();
-        for (NovelWithCategory item : novels) {
-            NovelDto novelDto = new NovelDto();
-            novelDto.setName(item.novel.name);
-            novelDto.setImageUrl(item.novel.imageUrl);
-            novelDto.setDescription(item.novel.description);
-            novelDto.setCategory_id(item.category.categoryId);
-            novelDtos.add(novelDto);
-        }
-        return novelDtos;
+        return novels.stream()
+                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name,x.novel.description, x.novel.imageUrl, x.category.getName(),x.category.getCategoryId()))
+                .collect(Collectors.toList());
     }
 
 }

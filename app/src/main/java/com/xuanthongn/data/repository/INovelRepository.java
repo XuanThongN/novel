@@ -13,6 +13,6 @@ public interface INovelRepository extends IBaseRepository<NovelDto> {
     List<NovelRecommendDto> getNovelNewestImageUrls();
     NovelDto getByNameAndImageUrl(String name);
     List<NovelWithCategory> getNovelsWithCategoryAndDescription();
-    List<NovelDto> findLatestNovelsByCategory(int categoryId);
+    List<NovelRecommendDto> findLatestNovelsByCategory(int categoryId);
 
 }
