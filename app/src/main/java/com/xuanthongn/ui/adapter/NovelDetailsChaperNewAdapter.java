@@ -1,7 +1,8 @@
 package com.xuanthongn.ui.adapter;
 
-
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,17 +29,19 @@ public class NovelDetailsChaperNewAdapter extends RecyclerView.Adapter<NovelDeta
         this.chapter = chapter;
     }
 
+
     @Override
-    public NovelChapterNewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NovelDetailsChaperNewAdapter.NovelChapterNewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.novel_detail_chapter_new_item, parent, false);
-        return new NovelChapterNewViewHolder(view);
+        return new NovelDetailsChaperNewAdapter.NovelChapterNewViewHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(NovelChapterNewViewHolder holder, int position) {
-        ChapterDto novel = chapter.get(position);
-        holder.chapterNameView.setText("Chương " + String.valueOf(novel.getChapterId()) + ": " + novel.getName());
 
+    @Override
+    public void onBindViewHolder(NovelDetailsChaperNewAdapter.NovelChapterNewViewHolder holder, int position) {
+        ChapterDto novel = chapter.get(position);
+        // Gán giá trị vào TextView
+        holder.chapterNameView.setText("Chương " + (position + 1) + ":  " + novel.getName());
     }
 
     @Override
@@ -46,10 +49,9 @@ public class NovelDetailsChaperNewAdapter extends RecyclerView.Adapter<NovelDeta
         return chapter.size();
     }
 
-    public static class NovelChapterNewViewHolder extends RecyclerView.ViewHolder {
+    public class NovelChapterNewViewHolder extends RecyclerView.ViewHolder {
 
         TextView chapterNameView;
-        TextView chapterDateView;
 
         public NovelChapterNewViewHolder(View itemView) {
             super(itemView);

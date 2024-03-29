@@ -1,6 +1,8 @@
 package com.xuanthongn.data.model.chapter;
 
-public class ChapterDto {
+import java.io.Serializable;
+
+public class ChapterDto implements Serializable {
 
     public int chapterId;
     public String name;

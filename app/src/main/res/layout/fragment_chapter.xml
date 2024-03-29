@@ -43,15 +43,16 @@
                             android:layout_gravity="center"
                             android:src="@drawable/ic_boder_search" />
                         <!-- TextView -->
-                        <TextView
+                        <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:drawableLeft="@drawable/ic_search"
                             android:drawablePadding="10dp"
-                            android:text="Nhập số chương để tìm kiếm..."
+                            android:hint="Nhập số chương để tìm kiếm..."
+                            android:background="@null"
                             android:textColor="#F0A8A5A5"
-                            android:textSize="18dp" />
+                            android:textSize="18sp" />
                     </FrameLayout>
 
                 </LinearLayout>
