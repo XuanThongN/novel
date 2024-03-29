@@ -51,7 +51,18 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
 //        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
 //        AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
 //        NovelRepository novelRepository = new NovelRepository(db);
+//        //Insert new user to room database
+//        CategoryRepository categoryRepository = new CategoryRepository(db);
+//        List<CategoryDto> categorylList = new ArrayList<>();
+//        categorylList.add(new CategoryDto(1, "Thể loại 1"));
+//        categorylList.add(new CategoryDto(2, "Thể loại 2"));
+//        categorylList.add(new CategoryDto(3, "Thể loại 3"));
+//        for (CategoryDto novelDto : categorylList) {
+//            categoryRepository.insert(novelDto);
+//        }
 //
+//
+//        //
 //        List<NovelCreateDto> novelList = new ArrayList<>();
 //        novelList.add(new NovelCreateDto(1,"Truyện về thần thoại Hy Lạp", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080",1 ));
 //        novelList.add(new NovelCreateDto(2,"Truyện về tình yêu", "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", 2));
@@ -72,14 +83,6 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
 //        userRepository.insert(user);
 
 
-        //Insert new user to room database
-//        CategoryRepository categoryRepository = new CategoryRepository(db);
-//        List<CategoryDto> novelList = new ArrayList<>();
-//        novelList.add(new CategoryDto(1, "Thể loại 1"));
-//        novelList.add(new CategoryDto(2, "Thể loại 2"));
-//        for (CategoryDto novelDto : novelList) {
-//            categoryRepository.insert(novelDto);
-//        }
 
 
     }

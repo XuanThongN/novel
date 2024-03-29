@@ -1,6 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_background1">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Linear Layout đầu tiên -->
+        <LinearLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <!-- Hiển thị tên truyện -->
+            <TextView
+                android:id="@+id/storyNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tên truyện"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <!-- Nút close -->
+            <ImageView
+                android:id="@+id/closeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Close"
+                android:src="@drawable/ic_close" />
+
+        </LinearLayout>
+
+        <!-- Linear Layout thứ hai -->
+        <LinearLayout
+            android:id="@+id/userInfoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/headerLayout"
+            android:orientation="horizontal"
+            android:background="@drawable/custom_text_input_layout_selector"
+            android:padding="16dp">
+
+            <!-- Hiển thị avatar -->
+            <ImageView
+                android:id="@+id/userAvatarImageView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="Avatar"
+                android:src="@drawable/item_cover" />
+
+            <!-- Hiển thị tên người dùng -->
+            <TextView
+                android:id="@+id/usernameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Huu kiet"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <!-- Hiển thị nội dung comment -->
+        <TextView
+            android:id="@+id/commentContentTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userInfoLayout"
+            android:padding="10dp"
+            android:text="Khá hay"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            />
+
+        <!-- Hiển thị thời gian comment và số lượt thích -->
+        <TextView
+            android:id="@+id/commentTimeLikesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/commentContentTextView"
+            android:padding="10dp"
+            android:text="2 ngày trước • 10 lượt thích"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+
+            />
+
+    <!-- Hiển thị phản hồi -->
+        <LinearLayout
+            android:id="@+id/repliesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/commentTimeLikesTextView"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp">
+
+            <!-- Phản hồi 1 -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:src="@drawable/ic_line_boder_short" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phản hồi 1"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/commentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/commentEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập bình luận..."
+                    android:paddingStart="16dp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/sendButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="Send"
+                android:padding="6dp"
+                android:src="@drawable/ic_send" />
+
+
+        </RelativeLayout>
+
+
+</RelativeLayout>

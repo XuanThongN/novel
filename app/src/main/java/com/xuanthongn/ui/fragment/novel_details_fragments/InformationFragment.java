@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.xuanthongn.R;
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.model.NovelComment;
@@ -31,9 +33,11 @@ import io.reactivex.rxjava3.annotations.NonNull;
 
 public class InformationFragment extends Fragment implements INovelDetailConstract.IView {
     private INovelDetailConstract.IPresenter mPresenter;
+    private BottomSheetDialogFragment mCommentBottomSheetFragment;
     RecyclerView rvNovelRecommend;
     TextView textViewDescription;
     TextView textViewCategory;
+    LinearLayout commentLayout;
 
     CategoryRepository categoryRepository;
     AppDatabase db;
@@ -45,6 +49,7 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
         textViewDescription = view.findViewById(R.id.textViewContent);
         textViewCategory = view.findViewById(R.id.category_novel);
         rvNovelRecommend = view.findViewById(R.id.rv_continue_yourlike_novel);
+        commentLayout = view.findViewById(R.id.commentLayout);
         initGUI(view);
         // Inflate the layout for this fragment
         return view;
@@ -62,6 +67,16 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
             textViewDescription.setText(novel.getDescription());
             mPresenter.getLatestNovelsByCategory(novel.getCategory_id());
         }
+
+        commentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Khởi tạo BottomSheetDialogFragment mới
+                mCommentBottomSheetFragment = new CommentFragment();
+                // Hiển thị BottomSheetDialogFragment
+                mCommentBottomSheetFragment.show(getParentFragmentManager(), mCommentBottomSheetFragment.getTag());
+            }
+        });
     }
 
 
@@ -77,6 +92,7 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
 
     private void initGUI(View view) {
         Context context = this.getContext();
+
 //        Truyền dữ liệu vào  bình luận
         RecyclerView rvContinueComment = view.findViewById(R.id.rv_continue_comment_novel);
         List<NovelComment> novelComment = new ArrayList<>();
