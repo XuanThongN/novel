@@ -93,5 +93,10 @@ public class ChapterRepository implements IChapterRepository {
         return chapterDtos;
     }
 
+    @Override
+    public int countChaptersByNovelId(int novelId) {
+        return chapterDao.countChaptersByNovelId(novelId);
+    }
+
 
 }

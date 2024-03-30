@@ -48,7 +48,7 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
 
     @Override
     public void getLatestNovelsByCategory(int categoryId) {
-        List<NovelDto> latestNovels = mNovelRepository.findLatestNovelsByCategory(categoryId);
+        List<NovelRecommendDto> latestNovels = mNovelRepository.findLatestNovelsByCategory(categoryId);
         mView.showLatestNovels(latestNovels);
     }
 
@@ -65,6 +65,12 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
         List<ChapterDto> latestNovels = mChapterResponsitory.getAllChaptersByNovelNew(novelId);
 //        Đổ các dữ liệu ra view xử lý
         mView.showChaptersNew(latestNovels);
+    }
+
+    @Override
+    public void getTotalChapterCount(int novelId) {
+        int totalChapterCount = mChapterResponsitory.countChaptersByNovelId(novelId);
+        mView.showTotalChapterCount(totalChapterCount);
     }
 
 }

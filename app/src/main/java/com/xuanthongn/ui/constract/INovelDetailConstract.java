@@ -12,9 +12,10 @@ import java.util.List;
 public interface INovelDetailConstract {
     interface IView {
         void displayError(String errorMessage);
-        void showLatestNovels(List<NovelDto> novels);
+        void showLatestNovels(List<NovelRecommendDto> novels);
         void showChapters(List<ChapterDto> chapters);
         void showChaptersNew(List<ChapterDto> chapters);
+        void showTotalChapterCount(int count);
 
 
     }
@@ -25,6 +26,7 @@ public interface INovelDetailConstract {
         void getAllChaptersByNovelId(int novelId);
 
         void getAllChaptersByNovelNew(int novelId);
+        void getTotalChapterCount(int novelId);
 
     }
 }

@@ -175,7 +175,7 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
     }
 
     @Override
-    public void showLatestNovels(List<NovelDto> novels) {
+    public void showLatestNovels(List<NovelRecommendDto> novels) {
 
     }
 
@@ -186,6 +186,11 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
 
     @Override
     public void showChaptersNew(List<ChapterDto> chapters) {
+
+    }
+
+    @Override
+    public void showTotalChapterCount(int count) {
 
     }
 

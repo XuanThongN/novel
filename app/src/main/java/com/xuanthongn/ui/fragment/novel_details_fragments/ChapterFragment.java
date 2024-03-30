@@ -79,7 +79,7 @@ public class ChapterFragment extends Fragment implements INovelDetailConstract.I
     }
 
     @Override
-    public void showLatestNovels(List<NovelDto> novels) {
+    public void showLatestNovels(List<NovelRecommendDto> novels) {
 
     }
 
@@ -93,6 +93,11 @@ public class ChapterFragment extends Fragment implements INovelDetailConstract.I
         Context context = this.getContext();
         rvContinueChapterNew.setLayoutManager(new GridLayoutManager(context, 2));
         rvContinueChapterNew.setAdapter(new NovelDetailsChaperNewAdapter(this.getContext(), chapters));
+
+    }
+
+    @Override
+    public void showTotalChapterCount(int count) {
 
     }
 

@@ -41,6 +41,8 @@ public interface ChapterDao {
     @Query("SELECT * FROM Chapter WHERE novel_id = :novelId ORDER BY chapterId DESC LIMIT 4")
     public List<ChapterWithNovel> getNovelWithChaptersNew(int novelId);
 
+    @Query("SELECT COUNT(*) FROM Chapter WHERE novel_id = :novelId")
+    public int countChaptersByNovelId(int novelId);
 
 
 }
