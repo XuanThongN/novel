@@ -102,7 +102,11 @@ public class MainActivity extends BaseActivity implements IMainConstract.IView {
                     selectedFragment = new HomeFragment(); // Replace with HomeFragment.class for older versions
                     break;
                 case R.id.navigation_bookmark:
-                    selectedFragment = new BookmarkFragment(); // Replace with BookmarksFragment.class for older versions
+                    if (mPresenter.getStoredLoginStatus()) {
+                        selectedFragment = new BookmarkFragment();
+                    } else {
+                        selectedFragment = new AccountLogoutFragment(); // Replace with AccountFragment.class for older versions
+                    }
                     break;
                 case R.id.navigation_account:
                     if (mPresenter.getStoredLoginStatus()) {
