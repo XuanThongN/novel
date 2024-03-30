@@ -1,12 +1,15 @@
 package com.xuanthongn.data.model.novel;
 
-public class NovelRecommendDto {
+import java.io.Serializable;
+
+public class NovelRecommendDto implements Serializable {
     private int id;
     private String name;
     private String author;
     private String description;
     private String imageUrl;
     private String categoryName;
+    private int categoryId;
 
 
     public NovelRecommendDto(int id, String name, String author, String description, String imageUrl, String categoryName) {
@@ -17,10 +20,12 @@ public class NovelRecommendDto {
         this.imageUrl = imageUrl;
         this.categoryName = categoryName;
     }
-    public NovelRecommendDto( String name, String imageUrl){
+
+    public NovelRecommendDto(String name, String imageUrl) {
         this.name = name;
         this.imageUrl = imageUrl;
     }
+
     public NovelRecommendDto(String name, String imageUrl, String categoryName) {
         this.name = name;
         this.imageUrl = imageUrl;
@@ -36,11 +41,22 @@ public class NovelRecommendDto {
         this.name = name;
         this.imageUrl = imageUrl;
     }
-    public NovelRecommendDto(int id, String imageUrl, String name, String categoryName) {
+
+    public NovelRecommendDto(int id, String imageUrl, String name, String categoryName, int categoryId) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
         this.categoryName = categoryName;
+        this.categoryId = categoryId;
+    }
+
+    public NovelRecommendDto(int id, String name, String description, String imageUrl, String categoryName, int categoryId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.categoryName = categoryName;
+        this.categoryId = categoryId;
     }
 
     public NovelRecommendDto() {
@@ -92,5 +108,13 @@ public class NovelRecommendDto {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 }

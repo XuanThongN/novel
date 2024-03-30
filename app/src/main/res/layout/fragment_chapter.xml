@@ -43,15 +43,16 @@
                             android:layout_gravity="center"
                             android:src="@drawable/ic_boder_search" />
                         <!-- TextView -->
-                        <TextView
+                        <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:drawableLeft="@drawable/ic_search"
                             android:drawablePadding="10dp"
-                            android:text="Nhập số chương để tìm kiếm..."
+                            android:hint="Nhập số chương để tìm kiếm..."
+                            android:background="@null"
                             android:textColor="#F0A8A5A5"
-                            android:textSize="18dp" />
+                            android:textSize="18sp" />
                     </FrameLayout>
 
                 </LinearLayout>
@@ -69,7 +70,7 @@
                         android:gravity="center"
                         android:text="Mới nhất"
                         android:textColor="@color/white"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -122,7 +123,7 @@
                             android:layout_weight="7"
                             android:text="Danh Sách"
                             android:textColor="@color/white"
-                            android:textSize="18dp" />
+                            android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -131,7 +132,8 @@
                             android:drawableLeft="@drawable/ic_sort_left"
                             android:drawablePadding="5dp"
                             android:text="Mới nhất"
-                            android:textSize="16dp" />
+                            android:textColor="@color/colorTextHello"
+                            android:textSize="15sp" />
 
                     </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
@@ -140,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:orientation="vertical"
-                    android:paddingEnd="15dp"
+                    android:paddingHorizontal="15dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                 </LinearLayout>
 

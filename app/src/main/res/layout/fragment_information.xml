@@ -209,6 +209,7 @@
 
                         <!-- TextView 2 -->
                         <TextView
+                            android:id="@+id/novel_detail_count_chapter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -246,16 +247,23 @@
                         android:text="Thể loại"
                         android:textColor="@color/white"
                         android:textSize="18dp" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:paddingEnd="15dp"
-                        android:id="@+id/rv_continue_category_novel"
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                 </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/category_novel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/ic_boder_category"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15dp" />
+                </RelativeLayout>
             </LinearLayout>
 
             <ImageView
@@ -285,30 +293,41 @@
                         android:layout_marginTop="15dp"
                         android:text="Nội Dung"
                         android:textColor="@color/white"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="6"
                     android:layout_marginTop="5dp"
+                    android:layout_weight="6"
                     android:gravity="center_vertical">
 
                     <TextView
                         android:id="@+id/textViewContent"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:ellipsize="end"
+                        android:maxLines="3"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
                         android:text="Lúc này đã là đầu hạ, bên ngoài trời vừa mới hoàn toàn tối xuống, bóng đêm mờ ảo bao phủ khuôn mặt của thiếu nữ. Từ nay ... Xem thêm"
-                        android:textColor="@color/colorTextHello"
-                        android:textSize="17dp" />
-
-
+                        android:textColor="#F08C8989"
+                        android:layout_marginRight="10dp"
+                        android:lineSpacingMultiplier="1.2"
+                        android:textSize="17sp" />
                 </LinearLayout>
 
-
+                <Button
+                    android:id="@+id/btShowmore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:text="Xem thêm..."
+                    android:textAllCaps="false"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
 
             <ImageView
@@ -318,6 +337,7 @@
                 android:src="@drawable/ic_line_boder_short" />
 
             <LinearLayout
+                android:id="@+id/commentLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
@@ -327,8 +347,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginLeft="16dp"
+                    android:orientation="horizontal"
                     android:paddingTop="10dp"
                     android:paddingBottom="20dp"
                     android:weightSum="10">
@@ -370,8 +390,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="15dp"
                         android:orientation="horizontal"
-                        android:paddingEnd="10dp"
                         android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                 </LinearLayout>
@@ -409,14 +429,12 @@
                     android:orientation="horizontal"
                     android:paddingEnd="10dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
             </LinearLayout>
-
 
         </LinearLayout>
 
-
     </ScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddContact"
         android:layout_width="wrap_content"

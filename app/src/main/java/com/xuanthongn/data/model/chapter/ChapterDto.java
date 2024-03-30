@@ -1,18 +1,25 @@
-package com.xuanthongn.data.entity;
+package com.xuanthongn.data.model.chapter;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import java.io.Serializable;
 
-@Entity
-public class Chapter {
-    @PrimaryKey(autoGenerate = true)
+public class ChapterDto implements Serializable {
+
     public int chapterId;
     public String name;
     public String content;
 
     //Foreign key many-1
     public int novel_id;
+
+    public ChapterDto() {
+    }
+
+    public ChapterDto(int chapterId, String name, String content, int novel_id) {
+        this.chapterId = chapterId;
+        this.name = name;
+        this.content = content;
+        this.novel_id = novel_id;
+    }
 
     public int getChapterId() {
         return chapterId;
@@ -44,15 +51,5 @@ public class Chapter {
 
     public void setNovel_id(int novel_id) {
         this.novel_id = novel_id;
-    }
-
-    public Chapter(int chapterId, String name, String content, int novel_id) {
-        this.chapterId = chapterId;
-        this.name = name;
-        this.content = content;
-        this.novel_id = novel_id;
-    }
-
-    public Chapter() {
     }
 }

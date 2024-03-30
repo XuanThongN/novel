@@ -8,6 +8,7 @@ import androidx.room.Transaction;
 
 import com.xuanthongn.data.entity.Chapter;
 import com.xuanthongn.data.entity.relationship.ChapterWithNovel;
+import com.xuanthongn.data.entity.relationship.NovelWithChapters;
 
 import java.util.List;
 
@@ -28,5 +29,20 @@ public interface ChapterDao {
     @Transaction
     @Query("SELECT * FROM chapter WHERE chapterId = :chapterId")
     ChapterWithNovel getChapterWithNovel(int chapterId);
+
+    @Query("SELECT * FROM chapter WHERE novel_id = :id ORDER BY chapterId")
+    List<Chapter> getChaptersByNovelID(int id);
+
+    @Transaction
+    @Query("SELECT * FROM Chapter WHERE novel_id = :novelId")
+    public List<ChapterWithNovel> getNovelWithChapters(int novelId);
+
+    @Transaction
+    @Query("SELECT * FROM Chapter WHERE novel_id = :novelId ORDER BY chapterId DESC LIMIT 4")
+    public List<ChapterWithNovel> getNovelWithChaptersNew(int novelId);
+
+    @Query("SELECT COUNT(*) FROM Chapter WHERE novel_id = :novelId")
+    public int countChaptersByNovelId(int novelId);
+
 
 }

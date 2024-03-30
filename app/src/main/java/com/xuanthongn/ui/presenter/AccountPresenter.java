@@ -8,12 +8,8 @@ import android.content.SharedPreferences;
 import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
-import com.xuanthongn.data.dao.ProductDao;
-import com.xuanthongn.data.entity.Product;
 import com.xuanthongn.ui.constract.IAccountConstract;
 import com.xuanthongn.util.Constants;
-
-import java.util.List;
 
 public class AccountPresenter implements IAccountConstract.IPresenter {
     private IAccountConstract.IView mView;
@@ -37,6 +33,14 @@ public class AccountPresenter implements IAccountConstract.IPresenter {
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREF_NAME, MODE_PRIVATE);
         return sharedPreferences.getBoolean(Constants.KEY_LOGIN_STATUS, false);
 
+    }
+
+    @Override
+    public void getLoginInfo() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREF_NAME, MODE_PRIVATE);
+        String name = sharedPreferences.getString(Constants.KEY_NAME, null);
+        String email = sharedPreferences.getString(Constants.KEY_EMAIL, null);
+        mView.setLoginInfo(name, email);
     }
 
     @Override

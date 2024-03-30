@@ -5,11 +5,27 @@ import java.util.Date;
 public class Chapter {
     private int id;
     private String name;
+    private String content;
     private Date chapter;
 
     public Chapter(int id, String name, Date chapter) {
         this.id = id;
         this.name = name;
+        this.chapter = chapter;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Chapter(int id, String name, String content, Date chapter) {
+        this.id = id;
+        this.name = name;
+        this.content = content;
         this.chapter = chapter;
     }
 
