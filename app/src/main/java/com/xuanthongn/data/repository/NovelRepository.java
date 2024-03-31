@@ -53,14 +53,14 @@ public class NovelRepository implements INovelRepository {
     @Override
     public List<NovelDto> findAll() {
         List<Novel> novels = novelDao.getAll();
-        return novels.stream().map(x -> new NovelDto(x.novelId, x.name, x.imageUrl, x.description,null)).collect(Collectors.toList());
+        return novels.stream().map(x -> new NovelDto(x.novelId, x.name, x.imageUrl, x.description, null)).collect(Collectors.toList());
     }
 
     @Override
     public List<NovelRecommendDto> getNovelsWithCategory() {
         List<NovelWithCategory> novels = novelDao.getNovelsWithCategory();
         return novels.stream()
-                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name,x.novel.description, x.novel.imageUrl, x.category.getName(),x.category.getCategoryId()))
+                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name, x.novel.description, x.novel.imageUrl, x.category.getName(), x.category.getCategoryId()))
                 .collect(Collectors.toList());
     }
 
@@ -88,7 +88,7 @@ public class NovelRepository implements INovelRepository {
 
 
     public NovelCreateDto insertNovel(NovelCreateDto input) {
-        Novel novel = new Novel(input.getName(), input.getDescription(),input.getImageUrl(), input.getCategory_id());
+        Novel novel = new Novel(input.getName(), input.getDescription(), input.getImageUrl(), input.getCategory_id());
         novelDao.insertAll(novel);
         return input;
 
@@ -126,7 +126,7 @@ public class NovelRepository implements INovelRepository {
 
         List<NovelWithCategory> novels = novelDao.findLatestNovelsByCategory(categoryId);
         return novels.stream()
-                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name,x.novel.description, x.novel.imageUrl, x.category.getName(),x.category.getCategoryId()))
+                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name, x.novel.description, x.novel.imageUrl, x.category.getName(), x.category.getCategoryId()))
                 .collect(Collectors.toList());
     }
 

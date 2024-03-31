@@ -8,12 +8,14 @@ import android.content.SharedPreferences;
 import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
+import com.xuanthongn.data.api.callback.Callback;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
+import com.xuanthongn.data.model.response_model.novel.NovelsResponseModel;
 import com.xuanthongn.data.repository.NovelRepository;
 import com.xuanthongn.ui.constract.IHomeConstract;
 import com.xuanthongn.util.Constants;
+import com.xuanthongn.util.NovelTask;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,12 +24,15 @@ public class HomePresenter implements IHomeConstract.IPresenter {
     private AppDatabase db;
     NovelRepository novelRepository;
     private Context context;
+    private NovelTask novelTask;
 
     public HomePresenter(Context context) {
         db = Room.databaseBuilder(context,
                 AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
         this.context = context;
         novelRepository = new NovelRepository(db);
+        novelTask = new NovelTask();
+
     }
 
     @Override
@@ -51,8 +56,23 @@ public class HomePresenter implements IHomeConstract.IPresenter {
 
     @Override
     public void getNovelRecommend() {
-        List<NovelRecommendDto> recommendations = novelRepository.getNovelsWithCategory();
-        mView.setNovelRecommendToView(recommendations);
+        //V1. Gọi hàm getNovelsWithCategory() từ NovelRepository lấy data từ room database
+//        List<NovelRecommendDto> recommendations = novelRepository.getNovelsWithCategory();
+//        mView.setNovelRecommendToView(recommendations);
+
+        //V2. Gọi hàm getNovel() từ NovelTask lấy data từ api
+        novelTask.getNovels(new Callback<NovelsResponseModel>() {
+            @Override
+            public void returnResult(NovelsResponseModel novelResponseModels) {
+                List<NovelRecommendDto> recommendations = novelResponseModels.getResults().stream().map(novel -> new NovelRecommendDto(novel.getNovelId(), novel.getImage_url(), novel.getTitle(), null, novel.getCategory_id())).collect(Collectors.toList());
+                mView.setNovelRecommendToView(recommendations);
+            }
+
+            @Override
+            public void returnError(String message) {
+                mView.showError(message);
+            }
+        });
     }
 
     @Override
