@@ -26,6 +26,7 @@ import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelCreateDto;
 import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
+import com.xuanthongn.data.model.response_model.comment.CommentsResponseModel;
 import com.xuanthongn.ui.adapter.NovelDetailsPagerAdapter;
 import com.xuanthongn.ui.constract.INovelDetailConstract;
 import com.xuanthongn.ui.fragment.novel_details_fragments.InformationFragment;
@@ -191,6 +192,16 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
 
     @Override
     public void showTotalChapterCount(int count) {
+
+    }
+
+    @Override
+    public void showComments(List<CommentsResponseModel> result) {
+
+    }
+
+    @Override
+    public void addCommentToList(CommentsResponseModel result) {
 
     }
 

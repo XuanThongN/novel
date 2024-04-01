@@ -66,13 +66,20 @@ dependencies {
 
 
     implementation("com.github.bumptech.glide:glide:4.14.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.14.0")
+
     implementation("com.beardedhen:androidbootstrap:2.3.1")
 
 
 //    Retrofit library to call api
     // adding below dependencies.
     implementation("com.squareup.retrofit2:retrofit:2.10.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.5.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.10.0")
+    implementation("com.squareup.retrofit2:adapter-rxjava2:2.10.0")
+    // RxJava
+    implementation("io.reactivex.rxjava2:rxjava:2.2.19")
+    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
+
 
     // optional - CircleImageView
     implementation("de.hdodenhof:circleimageview:3.1.0")

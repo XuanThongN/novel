@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -180,6 +181,13 @@ public class HomeFragment extends Fragment implements IHomeConstract.IView {
         }
         // Thiết lập dữ liệu vào ImageCarousel
         carousel.setData(carouselItems);
+    }
+
+    @Override
+    public void showError(String message) {
+// Hiển thị lỗi không lấy được dữ liệu từ api
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        System.out.println("Error: " + message);
     }
 
 

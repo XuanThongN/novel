@@ -6,15 +6,19 @@ import android.content.Context;
 import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
+import com.xuanthongn.data.api.callback.Callback;
 import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 import com.xuanthongn.data.model.category.CategoryDto;
 import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
+import com.xuanthongn.data.model.response_model.comment.CommentRequestModel;
+import com.xuanthongn.data.model.response_model.comment.CommentsResponseModel;
 import com.xuanthongn.data.repository.CategoryRepository;
 import com.xuanthongn.data.repository.ChapterRepository;
 import com.xuanthongn.data.repository.NovelRepository;
 import com.xuanthongn.ui.constract.INovelDetailConstract;
+import com.xuanthongn.util.CommentTask;
 import com.xuanthongn.util.Constants;
 
 import java.util.Collections;
@@ -31,6 +35,7 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
 
 
     private Context context;
+    private CommentTask commentTask;
 
     public NovelDetailPresenter(Context context) {
         db = Room.databaseBuilder(context,
@@ -39,6 +44,7 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
         mCategoryRepository = new CategoryRepository(db);
         mNovelRepository = new NovelRepository(db);
         mChapterResponsitory = new ChapterRepository(db);
+        commentTask = new CommentTask();
     }
 
     @Override
@@ -71,6 +77,39 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
     public void getTotalChapterCount(int novelId) {
         int totalChapterCount = mChapterResponsitory.countChaptersByNovelId(novelId);
         mView.showTotalChapterCount(totalChapterCount);
+    }
+
+    @Override
+    public void getAllComments(int novelId) {
+        commentTask.getCommentsByNovelId(new Callback<List<CommentsResponseModel>>() {
+            @Override
+            public void returnResult(List<CommentsResponseModel> result) {
+                mView.showComments(result);
+            }
+
+            @Override
+            public void returnError(String message) {
+                mView.displayError(message);
+            }
+        }, novelId);
+    }
+
+    @Override
+    public void postComment(int novelId, String content, int userId) {
+        CommentRequestModel commentRequestModel = new CommentRequestModel(novelId, content, userId);
+        commentTask.postComment(new Callback<CommentsResponseModel>() {
+            @Override
+            public void returnResult(CommentsResponseModel result) {
+                mView.addCommentToList(result);
+            }
+
+            @Override
+            public void returnError(String message) {
+                mView.displayError(message);
+            }
+        }, commentRequestModel);
+
+
     }
 
 }

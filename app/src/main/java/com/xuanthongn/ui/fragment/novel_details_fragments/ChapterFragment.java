@@ -19,6 +19,7 @@ import com.xuanthongn.data.model.Chapter;
 import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
+import com.xuanthongn.data.model.response_model.comment.CommentsResponseModel;
 import com.xuanthongn.data.repository.ChapterRepository;
 import com.xuanthongn.ui.adapter.CategoryNovelItemAdapter;
 import com.xuanthongn.ui.adapter.NovelDetailsChaperListAdapter;
@@ -98,6 +99,16 @@ public class ChapterFragment extends Fragment implements INovelDetailConstract.I
 
     @Override
     public void showTotalChapterCount(int count) {
+
+    }
+
+    @Override
+    public void showComments(List<CommentsResponseModel> result) {
+
+    }
+
+    @Override
+    public void addCommentToList(CommentsResponseModel result) {
 
     }
 

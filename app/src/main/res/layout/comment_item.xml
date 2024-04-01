@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <!-- Linear Layout thứ hai -->
+    <LinearLayout
+            android:id="@+id/userInfoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/headerLayout"
+            android:orientation="horizontal"
+            android:background="@drawable/custom_text_input_layout_selector"
+            android:padding="16dp">
+
+        <!-- Hiển thị avatar -->
+        <ImageView
+                android:id="@+id/userAvatarImageView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="Avatar"
+                android:src="@drawable/item_cover" />
+
+        <!-- Hiển thị tên người dùng -->
+        <TextView
+                android:id="@+id/usernameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Huu kiet"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+    </LinearLayout>
+    <!-- Hiển thị nội dung comment -->
+    <TextView
+            android:id="@+id/commentContentTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userInfoLayout"
+            android:padding="10dp"
+            android:text="Khá hay"
+            android:textSize="14sp"
+            android:textColor="@color/white" />
+
+    <!-- Hiển thị thời gian comment và số lượt thích -->
+    <TextView
+            android:id="@+id/commentTimeLikesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/commentContentTextView"
+            android:padding="10dp"
+            android:text="2 ngày trước • 10 lượt thích"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+
+            />
+</LinearLayout>
+

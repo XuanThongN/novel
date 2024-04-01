@@ -14,7 +14,7 @@ public interface IHomeConstract {
         void setNovelNewestToView(List<NovelRecommendDto> novelNewest);
 
 
-
+        void showError(String message);
     }
 
     interface IPresenter {
