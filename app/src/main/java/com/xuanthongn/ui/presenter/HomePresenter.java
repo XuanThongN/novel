@@ -26,6 +26,7 @@ public class HomePresenter implements IHomeConstract.IPresenter {
     private Context context;
     private NovelTask novelTask;
 
+
     public HomePresenter(Context context) {
         db = Room.databaseBuilder(context,
                 AppDatabase.class, Constants.DB_NAME).allowMainThreadQueries().build();
@@ -64,7 +65,7 @@ public class HomePresenter implements IHomeConstract.IPresenter {
         novelTask.getNovels(new Callback<NovelsResponseModel>() {
             @Override
             public void returnResult(NovelsResponseModel novelResponseModels) {
-                List<NovelRecommendDto> recommendations = novelResponseModels.getResults().stream().map(novel -> new NovelRecommendDto(novel.getNovelId(), novel.getImage_url(), novel.getTitle(), null, novel.getCategory_id())).collect(Collectors.toList());
+                List<NovelRecommendDto> recommendations = novelResponseModels.getResults().stream().map(novel -> new NovelRecommendDto(novel.getNovelId(), novel.getImage_url(), novel.getTitle(), novel.getCategory().getName(), novel.getCategory().getId())).collect(Collectors.toList());
                 mView.setNovelRecommendToView(recommendations);
             }
 
@@ -77,8 +78,20 @@ public class HomePresenter implements IHomeConstract.IPresenter {
 
     @Override
     public void getNovelNewest() {
-        List<NovelRecommendDto> novelRecommendDtos = novelRepository.getNovelNewestImageUrls();
-        mView.setNovelNewestToView(novelRecommendDtos);
+        novelTask.getNovels(new Callback<NovelsResponseModel>() {
+            @Override
+            public void returnResult(NovelsResponseModel novelResponseModels) {
+                List<NovelRecommendDto> recommendations = novelResponseModels.getResults().stream().map(novel -> new NovelRecommendDto(novel.getNovelId(), novel.getImage_url(), novel.getTitle(), novel.getCategory().getName(), novel.getCategory().getId())).collect(Collectors.toList());
+                recommendations.stream().sorted(
+                        (n1, n2) -> n2.getId() - n1.getId()).collect(Collectors.toList()).subList(0, 4);
+                mView.setNovelNewestToView(recommendations);
+            }
+
+            @Override
+            public void returnError(String message) {
+                mView.showError(message);
+            }
+        });
     }
 }
 

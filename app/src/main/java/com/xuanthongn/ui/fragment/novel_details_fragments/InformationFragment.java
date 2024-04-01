@@ -18,10 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.xuanthongn.R;
 import com.xuanthongn.data.AppDatabase;
+import com.xuanthongn.data.model.Novel;
 import com.xuanthongn.data.model.NovelComment;
 import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
+import com.xuanthongn.data.model.response_model.comment.CommentsResponseModel;
 import com.xuanthongn.data.repository.CategoryRepository;
 import com.xuanthongn.ui.adapter.NovelDetailsCommentAdapter;
 import com.xuanthongn.ui.adapter.NovelDetailsYourlikeAdapter;
@@ -29,9 +31,14 @@ import com.xuanthongn.ui.constract.INovelDetailConstract;
 import com.xuanthongn.ui.main.NovelDetailsActivity;
 import com.xuanthongn.ui.presenter.NovelDetailPresenter;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 
@@ -43,39 +50,20 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
     TextView textViewCategory;
     LinearLayout commentLayout;
     Button btShowmore;
-TextView novel_detail_count_chapter;
+    RecyclerView rvContinueComment;
+    TextView novel_detail_count_chapter;
+    TextView comment_total;
     CategoryRepository categoryRepository;
     AppDatabase db;
+    List<NovelComment> novelComments = new ArrayList<>();
 
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_information, container, false);
-        textViewDescription = view.findViewById(R.id.textViewContent);
-        textViewCategory = view.findViewById(R.id.category_novel);
-        novel_detail_count_chapter=view.findViewById(R.id.novel_detail_count_chapter);
-        rvNovelRecommend = view.findViewById(R.id.rv_continue_yourlike_novel);
-        btShowmore=view.findViewById(R.id.btShowmore);
-        btShowmore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (btShowmore.getText().toString().equalsIgnoreCase("Xem thêm..."))
-                {
-                    textViewDescription.setMaxLines(Integer.MAX_VALUE);
-                    btShowmore.setText("Ẩn Bớt");
-                }
-                else
-                {
-                    textViewDescription.setMaxLines(3);
-                    btShowmore.setText("Xem thêm...");
-                }
-            }
-        });
-
-        commentLayout = view.findViewById(R.id.commentLayout);
         initGUI(view);
+
         // Inflate the layout for this fragment
         return view;
     }
@@ -92,13 +80,14 @@ TextView novel_detail_count_chapter;
             textViewDescription.setText(novel.getDescription());
             mPresenter.getLatestNovelsByCategory(novel.getCategory_id());
             mPresenter.getTotalChapterCount(novel.getId());
+            mPresenter.getAllComments(novel.getId());
         }
 
         commentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Khởi tạo BottomSheetDialogFragment mới
-                mCommentBottomSheetFragment = new CommentFragment();
+                mCommentBottomSheetFragment = new CommentFragment(novelComments);
                 // Hiển thị BottomSheetDialogFragment
                 mCommentBottomSheetFragment.show(getParentFragmentManager(), mCommentBottomSheetFragment.getTag());
             }
@@ -108,6 +97,7 @@ TextView novel_detail_count_chapter;
 
     @Override
     public void displayError(String errorMessage) {
+        System.err.println("Lỗi: " + errorMessage);
         Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
     }
 
@@ -132,18 +122,54 @@ TextView novel_detail_count_chapter;
         novel_detail_count_chapter.setText(String.valueOf(count));
     }
 
-    private void initGUI(View view) {
+    @Override
+    public void showComments(List<CommentsResponseModel> result) {
         Context context = this.getContext();
+//       Convert result to List<NovelComment>
+        for (CommentsResponseModel comment : result) {
+            novelComments.add(new NovelComment(comment.getId(), comment.getText(), comment.getAuthor().getEmail(), comment.getText(), 0, comment.getCreated_at(), 2, 4));
+        }
+        rvContinueComment.setAdapter(new NovelDetailsCommentAdapter(context, novelComments));
+        comment_total.setText(novelComments.size() + " Bình luận");
+
+    }
+
+    @Override
+    public void addCommentToList(CommentsResponseModel result) {
+
+    }
+
+    private void initGUI(View view) {
+        textViewDescription = view.findViewById(R.id.textViewContent);
+        textViewCategory = view.findViewById(R.id.category_novel);
+        novel_detail_count_chapter = view.findViewById(R.id.novel_detail_count_chapter);
+        rvNovelRecommend = view.findViewById(R.id.rv_continue_yourlike_novel);
+        btShowmore = view.findViewById(R.id.btShowmore);
+        comment_total = view.findViewById(R.id.comment_total);
+        btShowmore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (btShowmore.getText().toString().equalsIgnoreCase("Xem thêm...")) {
+                    textViewDescription.setMaxLines(Integer.MAX_VALUE);
+                    btShowmore.setText("Ẩn Bớt");
+                } else {
+                    textViewDescription.setMaxLines(3);
+                    btShowmore.setText("Xem thêm...");
+                }
+            }
+        });
+
+        commentLayout = view.findViewById(R.id.commentLayout);
+        rvContinueComment = view.findViewById(R.id.rv_continue_comment_novel);
 
 //        Truyền dữ liệu vào  bình luận
-        RecyclerView rvContinueComment = view.findViewById(R.id.rv_continue_comment_novel);
-        List<NovelComment> novelComment = new ArrayList<>();
-        novelComment.add(new NovelComment(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "OK HEHE", 145, new Date(102, 1, 12), 3, 4));
-        novelComment.add(new NovelComment(2, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "QUÁ TỆ", 145, new Date(102, 1, 12), 3, 4));
-        novelComment.add(new NovelComment(3, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "Không hay chi hết", 145, new Date(102, 1, 12), 3, 4));
-        novelComment.add(new NovelComment(4, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "Rất tệ so với suy nghĩ", 145, new Date(102, 1, 12), 3, 4));
+//        List<NovelComment> novelComment = new ArrayList<>();
+//        novelComment.add(new NovelComment(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "OK HEHE", 145, new Date(102, 1, 12), 3, 4));
+//        novelComment.add(new NovelComment(2, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "QUÁ TỆ", 145, new Date(102, 1, 12), 3, 4));
+//        novelComment.add(new NovelComment(3, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "Không hay chi hết", 145, new Date(102, 1, 12), 3, 4));
+//        novelComment.add(new NovelComment(4, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "Rất tệ so với suy nghĩ", 145, new Date(102, 1, 12), 3, 4));
 
-        rvContinueComment.setAdapter(new NovelDetailsCommentAdapter(context, novelComment));
 
     }
 

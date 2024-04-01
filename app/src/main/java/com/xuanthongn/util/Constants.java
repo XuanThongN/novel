@@ -1,7 +1,8 @@
 package com.xuanthongn.util;
 
 public class Constants {
-    public static final String BASEURL = "https://www.xuanthongn.games";
+//    public static final String BASEURL = "https://www.xuanthongn.games";
+    public static final String BASEURL = "https://novel-api-pr-8.onrender.com";
     public static final String TOKEN = "93100dcd68e0b418cffab85db7da57e013d4f2f2";
     public static String DB_NAME = "novel_db";
     public static String PREF_NAME = "LoginInfo";
