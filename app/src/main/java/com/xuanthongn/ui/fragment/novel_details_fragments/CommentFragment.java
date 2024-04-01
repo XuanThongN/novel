@@ -1,11 +1,14 @@
 package com.xuanthongn.ui.fragment.novel_details_fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +38,7 @@ public class CommentFragment extends BottomSheetDialogFragment implements INovel
 
     ImageView ivSendComment;
     EditText edtComment;
+    TextView storyNameTextView;
 
     public CommentFragment(List<NovelComment> comments) {
         // Required empty public constructor
@@ -51,11 +55,12 @@ public class CommentFragment extends BottomSheetDialogFragment implements INovel
         rvAllComment = view.findViewById(R.id.commentRecyclerView);
         ivSendComment = view.findViewById(R.id.sendButton);
         edtComment = view.findViewById(R.id.commentEditText);
+        storyNameTextView = view.findViewById(R.id.storyNameTextView);
         showComments();
         NovelDetailsActivity parentActivity = (NovelDetailsActivity) getActivity();
         NovelDto novel = parentActivity.getNovel();
         if (novel != null) {
-
+            storyNameTextView.setText(novel.getName().toUpperCase());
         }
         ivSendComment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +68,14 @@ public class CommentFragment extends BottomSheetDialogFragment implements INovel
                 String text = edtComment.getText().toString().trim();
                 if (text.length() <= 0) return;
                 mPresenter.postComment(novel.getId(), text, 1);
+            }
+        });
+
+        ImageView closeButton = view.findViewById(R.id.closeButton);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
             }
         });
         return view;
@@ -129,8 +142,13 @@ public class CommentFragment extends BottomSheetDialogFragment implements INovel
         edtComment.setText("");
         edtComment.clearFocus();
 
-//       adapter listen change
+        // Close the keyboard
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(edtComment.getWindowToken(), 0);
+
+// Notify the adapter and scroll to the bottom
         rvAllComment.getAdapter().notifyDataSetChanged();
+        rvAllComment.scrollToPosition(rvAllComment.getAdapter().getItemCount() - 1);
 
     }
 }

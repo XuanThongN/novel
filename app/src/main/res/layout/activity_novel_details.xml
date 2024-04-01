@@ -1,64 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Item_Detail"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    android:orientation="vertical"
-    android:weightSum="10"
-    tools:context=".ui.main.NovelDetailsActivity">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/Item_Detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:orientation="vertical"
+        android:weightSum="10"
+        tools:context=".ui.main.NovelDetailsActivity">
 
     <LinearLayout
-        android:id="@+id/novel_background"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.5"
-        android:background="@drawable/blur"
-        android:orientation="vertical">
+            android:id="@+id/novel_background"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:background="@drawable/blur"
+            android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ic_round"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="15dp">
-
-            <ImageButton
+                android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:background="@drawable/ic_angle_left" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/ic_round"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+            <ImageButton
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:background="@drawable/ic_angle_left" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
 
             <TextView
-                android:id="@+id/novel_detail_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:shadowColor="@color/text_shadow"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="10"
-                android:text="[Dịch] Vú Em: Mở Đầu Nữ Đế Mang Nữ Nhi Tơ Cửa Ép "
-                android:textColor="@android:color/white"
-                android:textSize="28sp"
-                android:lines="2"
-                android:ellipsize="end"
-                android:gravity="bottom"
-                android:textStyle="bold">
+                    android:id="@+id/novel_detail_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="@color/text_shadow"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="10"
+                    android:text="[Dịch] Yêu Em: Mở Đầu Nữ Đế Mang Nữ Nhi Tơ Cửa Ép "
+                    android:textColor="@android:color/white"
+                    android:textSize="28sp"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:gravity="bottom"
+                    android:textStyle="bold">
 
             </TextView>
 
@@ -68,105 +70,111 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6.5"
-        android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6.5"
+            android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorBackground"
-            app:tabIndicatorColor="@color/colorPrimary"
-            app:tabTextColor="@color/white">
-
-            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Thông Tin" />
+                android:backgroundTint="@color/colorBackground"
+                app:tabIndicatorColor="@color/colorPrimary"
+                app:tabTextColor="@color/white">
 
             <com.google.android.material.tabs.TabItem
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Chương" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Thông Tin" />
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chương" />
 
 
         </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/tab_layout"
-            android:background="@color/colorBackground" />
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/tab_layout"
+                android:background="@color/colorBackground" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_round_bottom"
-            android:gravity="center">
-
-            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_share_20" />
+                android:background="@drawable/ic_round_bottom"
+                android:padding="13dp"
+                android:gravity="center">
+
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_share_20"
+                    android:contentDescription="Share" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-
-            android:background="@drawable/ic_round_bottom"
-            android:gravity="center">
-
-            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_download" />
+                android:layout_marginLeft="10dp"
+                android:padding="10dp"
+                android:background="@drawable/ic_round_bottom"
+                android:gravity="center">
+
+            <ImageButton
+                    android:contentDescription="Download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_download" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/ic_round_bottom"
-
-            android:gravity="center">
-
-            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_heart_24" />
+                android:layout_marginLeft="10dp"
+                android:padding="10dp"
+                android:background="@drawable/ic_round_bottom"
+
+                android:gravity="center">
+
+            <ImageButton
+                    android:contentDescription="Love"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_heart_24" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/btn_read_novel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/ic_boder_read_novel"
-            android:gravity="center">
+                android:id="@+id/btn_read_novel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/ic_boder_read_novel"
+                android:gravity="center">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ĐỌC TRUYỆN"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ĐỌC TRUYỆN"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
 
         </LinearLayout>
 

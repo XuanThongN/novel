@@ -60,5 +60,10 @@
             android:textColor="@color/white"
 
             />
+
+    <ImageView
+            android:src="@drawable/ic_line_boder_long"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 </LinearLayout>
 

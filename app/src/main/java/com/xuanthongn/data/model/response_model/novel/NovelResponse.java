@@ -23,21 +23,24 @@ public class NovelResponse {
 
     @SerializedName("comments")
     private List<String> comments;
+
+    @SerializedName("description")
+    private String description;
     @SerializedName("image_url")
     private String image_url;
 
     public NovelResponse() {
     }
 
-    public NovelResponse(int novelId, String title, String author, String image_path, CategoryResponseModel category, List<ChapterResponseModel> chapters, String image_url) {
+    public NovelResponse(int novelId, String title, String author, String image_path, CategoryResponseModel category, List<ChapterResponseModel> chapters, String image_url, String description) {
         this.novelId = novelId;
         this.title = title;
         this.author = author;
         this.image_path = image_path;
         this.category = category;
         this.chapters = chapters;
-        this.comments = comments;
         this.image_url = image_url;
+        this.description = description;
     }
 
     public int getNovelId() {
@@ -105,4 +108,11 @@ public class NovelResponse {
         this.image_url = image_url;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

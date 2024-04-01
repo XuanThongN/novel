@@ -57,26 +57,6 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
 
         //Set background image for layout
         String imageUrl = novel.getImageUrl();
-        if (imageUrl == null) {
-            imageUrl = "https://i.imgur.com/dsQspKS.jpeg";
-        }
-
-//        Glide.with(holder.image.getContext())
-//                .load(imageUrl)
-//                .listener(new RequestListener<Drawable>() {
-//                    @Override
-//                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource) {
-//                        holder.image.setBackground(resource);
-//                        return true;
-//                    }
-//
-//                    @Override
-//                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-//                        return false;
-//                    }
-//                })
-//                .preload();
-
         CustomBindingAdapter.loadImage(holder.image, imageUrl);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
