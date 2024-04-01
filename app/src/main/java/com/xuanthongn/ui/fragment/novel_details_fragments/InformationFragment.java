@@ -3,9 +3,13 @@ package com.xuanthongn.ui.fragment.novel_details_fragments;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.xuanthongn.R;
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.model.Novel;
@@ -50,23 +55,34 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
     TextView textViewCategory;
     LinearLayout commentLayout;
     Button btShowmore;
-    RecyclerView rvContinueComment;
+    FloatingActionButton fabAddContact;
     TextView novel_detail_count_chapter;
+    RecyclerView rvContinueComment;
     TextView comment_total;
     CategoryRepository categoryRepository;
     AppDatabase db;
     List<NovelComment> novelComments = new ArrayList<>();
 
+    private Animation animation;
+
     @SuppressLint("MissingInflatedId")
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_information, container, false);
+        textViewDescription = view.findViewById(R.id.textViewContent);
+        textViewCategory = view.findViewById(R.id.category_novel);
+        novel_detail_count_chapter = view.findViewById(R.id.novel_detail_count_chapter);
+        rvNovelRecommend = view.findViewById(R.id.rv_continue_yourlike_novel);
+        fabAddContact = view.findViewById(R.id.fabAddContact);
+        btShowmore = view.findViewById(R.id.btShowmore);
+        commentLayout = view.findViewById(R.id.commentLayout);
         initGUI(view);
-
         // Inflate the layout for this fragment
         return view;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -159,6 +175,22 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
                 }
             }
         });
+        // Khởi tạo animation
+        animation = AnimationUtils.loadAnimation(getContext(), R.anim.scale_up_down);
+        animation.setInterpolator(new LinearInterpolator());
+        animation.setRepeatCount(Animation.INFINITE);
+
+        // Sử dụng Handler để khởi động animation sau một khoảng thời gian ngắn
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                fabAddContact.startAnimation(animation);
+                handler.postDelayed(this, 750); // Lặp lại sau mỗi 100ms
+            }
+        };
+        handler.postDelayed(runnable, 100); // Bắt đầu chuyển động sau 100ms
+
 
         commentLayout = view.findViewById(R.id.commentLayout);
         rvContinueComment = view.findViewById(R.id.rv_continue_comment_novel);

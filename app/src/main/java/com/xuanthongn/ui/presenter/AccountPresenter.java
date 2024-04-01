@@ -14,7 +14,6 @@ import com.xuanthongn.util.Constants;
 public class AccountPresenter implements IAccountConstract.IPresenter {
     private IAccountConstract.IView mView;
     private AppDatabase db;
-
     private Context context;
 
     public AccountPresenter(Context context) {

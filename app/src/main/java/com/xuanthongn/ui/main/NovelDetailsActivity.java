@@ -1,12 +1,9 @@
 package com.xuanthongn.ui.main;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,13 +12,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.xuanthongn.R;
-import com.xuanthongn.data.entity.relationship.NovelWithCategory;
 import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelCreateDto;
 import com.xuanthongn.data.model.novel.NovelDto;
@@ -33,6 +34,7 @@ import com.xuanthongn.ui.fragment.novel_details_fragments.InformationFragment;
 
 import java.io.Serializable;
 import java.util.List;
+
 
 public class NovelDetailsActivity extends AppCompatActivity implements INovelDetailConstract.IView {
     private INovelDetailConstract.IPresenter mPresenter;
@@ -133,23 +135,33 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
         });
 
         LinearLayout novelBackground = findViewById(R.id.novel_background);
+
         if (novel != null) {
             tNovelName.setText(novel.getName());
-            Glide.with(this).load(novel.getImageUrl()).into(new CustomTarget<Drawable>() {
-                @Override
-                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        novelBackground.setBackground(resource);
-                    } else {
-                        novelBackground.setBackgroundDrawable(resource);
-                    }
-                }
+            Glide.with(this)
+                    .load(novel.getImageUrl())
+                    .into(new CustomTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            // Tạo một bộ lọc ColorMatrix để điều chỉnh độ mờ của hình ảnh
+                            ColorMatrix colorMatrix = new ColorMatrix();
+                            colorMatrix.setScale(1, 1, 1, 0.6f); // Giảm độ trong suất của hình ảnh
 
-                @Override
-                public void onLoadCleared(@Nullable Drawable placeholder) {
-                    displayError("Xử lý khi việc tải hình ảnh đã bị hủy bỏ");
-                }
-            });
+                            // Áp dụng bộ lọc ColorMatrix vào hình ảnh
+                            resource.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                novelBackground.setBackground(resource);
+                            } else {
+                                novelBackground.setBackgroundDrawable(resource);
+                            }
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+                            displayError("Xử lý khi việc tải hình ảnh đã bị hủy bỏ");
+                        }
+                    });
         }
 
     }

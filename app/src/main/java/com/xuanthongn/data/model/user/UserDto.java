@@ -1,12 +1,20 @@
 package com.xuanthongn.data.model.user;
 
-public class UserDto {
+import java.io.Serializable;
+
+public class UserDto implements Serializable {
     private int userId;
     private String name;
     private String email;
     private String password;
 
     public UserDto() {
+    }
+
+    public UserDto(int userId, String name, String email) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
     }
 
     public UserDto(int userId, String name, String email, String password) {
