@@ -1,5 +1,6 @@
 package com.xuanthongn.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -18,8 +19,11 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.xuanthongn.R;
 import com.xuanthongn.data.model.NovelComment;
+import com.xuanthongn.util.CustomBindingAdapter;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
 
@@ -43,34 +47,37 @@ public class NovelDetailsCommentAdapter extends RecyclerView.Adapter<NovelDetail
     @Override
     public void onBindViewHolder(NovelDetailsCommentAdapter.NovelDetailViewHolder holder, int position) {
         NovelComment novelComment = novelscomments.get(position);
-        Date date = novelComment.getNovelDate();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = sdf.format(date);
+        LocalDateTime date = novelComment.getNovelDate();
         holder.emailView.setText(novelComment.getEmail());
         holder.contentView.setText(novelComment.getContent());
-        holder.chapterNumberView.setText("Chương: " + String.valueOf(novelComment.getNumber_of_chapters()));
-        holder.dayNumberView.setText(formattedDate);
+//        holder.chapterNumberView.setText("Chương: " + String.valueOf(novelComment.getNumber_of_chapters()));
+        //convert datetime to string
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String dt = formatter.format(Date.from(date.toInstant(ZoneOffset.UTC)));
+        holder.dayNumberView.setText(dt);
         holder.likeNumberView.setText(String.valueOf(novelComment.getNumber_of_likes()));
         holder.commentNumberView.setText(String.valueOf(novelComment.getNumber_of_comments()));
 
 
         //Set background image for layout
 
-        Glide.with(holder.image.getContext())
-                .load(novelComment.getImageUrl())
-                .listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource) {
-                        holder.image.setBackground(resource);
-                        return true;
-                    }
+//        Glide.with(holder.image.getContext())
+//                .load(novelComment.getImageUrl())
+//                .listener(new RequestListener<Drawable>() {
+//                    @Override
+//                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource) {
+//                        holder.image.setBackground(resource);
+//                        return true;
+//                    }
+//
+//                    @Override
+//                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+//                        return false;
+//                    }
+//                })
+//                .preload();
 
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        return false;
-                    }
-                })
-                .preload();
+        CustomBindingAdapter.loadImage(holder.image, novelComment.getImageUrl());
     }
 
     @Override
@@ -94,7 +101,7 @@ public class NovelDetailsCommentAdapter extends RecyclerView.Adapter<NovelDetail
             image = itemView.findViewById(R.id.novel_detail_icon);
             emailView = itemView.findViewById(R.id.novel_detail_email);
             contentView = itemView.findViewById(R.id.novel_detail_content);
-            chapterNumberView = itemView.findViewById(R.id.novel_detail_chapters);
+//            chapterNumberView = itemView.findViewById(R.id.novel_detail_chapters);
             dayNumberView = itemView.findViewById(R.id.novel_detail_days);
             likeNumberView = itemView.findViewById(R.id.novel_detail_like);
             commentNumberView = itemView.findViewById(R.id.novel_detail_comment);
