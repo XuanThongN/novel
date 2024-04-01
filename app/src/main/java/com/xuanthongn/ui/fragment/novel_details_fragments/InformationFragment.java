@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.xuanthongn.R;
 import com.xuanthongn.data.AppDatabase;
-import com.xuanthongn.data.model.Novel;
 import com.xuanthongn.data.model.NovelComment;
 import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelDto;
@@ -36,14 +36,11 @@ import com.xuanthongn.ui.constract.INovelDetailConstract;
 import com.xuanthongn.ui.main.NovelDetailsActivity;
 import com.xuanthongn.ui.presenter.NovelDetailPresenter;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
+import java.util.Locale;
+
+import android.util.Log;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 
@@ -55,7 +52,7 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
     TextView textViewCategory;
     LinearLayout commentLayout;
     Button btShowmore;
-    FloatingActionButton fabAddContact;
+    FloatingActionButton btnListen;
     TextView novel_detail_count_chapter;
     RecyclerView rvContinueComment;
     TextView comment_total;
@@ -64,22 +61,29 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
     List<NovelComment> novelComments = new ArrayList<>();
 
     private Animation animation;
+    private TextToSpeech tts;
 
     @SuppressLint("MissingInflatedId")
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_information, container, false);
-        textViewDescription = view.findViewById(R.id.textViewContent);
-        textViewCategory = view.findViewById(R.id.category_novel);
-        novel_detail_count_chapter = view.findViewById(R.id.novel_detail_count_chapter);
-        rvNovelRecommend = view.findViewById(R.id.rv_continue_yourlike_novel);
-        fabAddContact = view.findViewById(R.id.fabAddContact);
-        btShowmore = view.findViewById(R.id.btShowmore);
-        commentLayout = view.findViewById(R.id.commentLayout);
-        initGUI(view);
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_information, container, false);
+
+        // Initialize TextToSpeech
+        tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = tts.setLanguage(Locale.forLanguageTag("vi-VN"));
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "Language not supported");
+                    }
+                } else {
+                    Log.e("TTS", "Initialization failed");
+                }
+            }
+        });
+        initGUI(view);
         return view;
     }
 
@@ -110,6 +114,21 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
         });
     }
 
+    // Method to read the novel content
+    public void readNovelContent(String content) {
+        tts.speak(content, TextToSpeech.QUEUE_FLUSH, null, null);
+    }
+
+
+    // Don't forget to shut down TextToSpeech in onDestroy
+    @Override
+    public void onDestroy() {
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
+    }
 
     @Override
     public void displayError(String errorMessage) {
@@ -156,6 +175,8 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
     }
 
     private void initGUI(View view) {
+        btnListen = view.findViewById(R.id.fabAddContact);
+        commentLayout = view.findViewById(R.id.commentLayout);
         textViewDescription = view.findViewById(R.id.textViewContent);
         textViewCategory = view.findViewById(R.id.category_novel);
         novel_detail_count_chapter = view.findViewById(R.id.novel_detail_count_chapter);
@@ -185,7 +206,7 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                fabAddContact.startAnimation(animation);
+                btnListen.startAnimation(animation);
                 handler.postDelayed(this, 750); // Lặp lại sau mỗi 100ms
             }
         };
@@ -195,14 +216,16 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
         commentLayout = view.findViewById(R.id.commentLayout);
         rvContinueComment = view.findViewById(R.id.rv_continue_comment_novel);
 
-//        Truyền dữ liệu vào  bình luận
-//        List<NovelComment> novelComment = new ArrayList<>();
-//        novelComment.add(new NovelComment(1, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "OK HEHE", 145, new Date(102, 1, 12), 3, 4));
-//        novelComment.add(new NovelComment(2, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "QUÁ TỆ", 145, new Date(102, 1, 12), 3, 4));
-//        novelComment.add(new NovelComment(3, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "Không hay chi hết", 145, new Date(102, 1, 12), 3, 4));
-//        novelComment.add(new NovelComment(4, "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080", "dung1@gmail.com", "Rất tệ so với suy nghĩ", 145, new Date(102, 1, 12), 3, 4));
-
-
+        btnListen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NovelDetailsActivity parentActivity = (NovelDetailsActivity) getActivity();
+                NovelDto novel = parentActivity.getNovel();
+                if (novel != null) {
+                    readNovelContent(novel.getDescription());
+                }
+            }
+        });
     }
 
 
