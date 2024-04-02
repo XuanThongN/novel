@@ -21,7 +21,7 @@ import com.xuanthongn.util.Constants;
 public class RegisterActivity extends BaseActivity implements IRegisterConstract.IView {
 
     private IRegisterConstract.IPresenter mPresenter;
-    private EditText edtEmail, edtFirstName, edtLastName, edtPassword, edtRePassword;
+    private EditText edtEmail, edtFirstName, edtLastName, edtPassword, edtRePassword, edtUserName;
     private CheckBox checkBoxAccept;
     private Button btnRegister;
     private TextView tvBack;
@@ -41,6 +41,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterConstract
         edtLastName = findViewById(R.id.edtLastName);
         edtPassword = findViewById(R.id.edtPassword);
         edtRePassword = findViewById(R.id.edtRePassword);
+        edtUserName=  findViewById(R.id.edtUserName);
         checkBoxAccept = findViewById(R.id.checkBoxAccept);
         tvBack = findViewById(R.id.tvBack);
         btnRegister = findViewById(R.id.btnRegister);
@@ -50,11 +51,13 @@ public class RegisterActivity extends BaseActivity implements IRegisterConstract
             public void onClick(View v) {
                 if (validateForm()) {
                     String email = edtEmail.getText().toString().trim();
+                    String userName = edtUserName.getText().toString().trim();
                     String firtName = edtFirstName.getText().toString().trim();
                     String lastName = edtLastName.getText().toString().trim();
                     String password = edtPassword.getText().toString().trim();
                     UserRegisterRequestModel userRegisterDto = new UserRegisterRequestModel();
                     userRegisterDto.setEmail(email);
+                    userRegisterDto.setUsername(userName);
                     userRegisterDto.setFirst_name(firtName);
                     userRegisterDto.setLast_name(lastName);
                     userRegisterDto.setPassword(password);

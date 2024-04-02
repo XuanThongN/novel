@@ -36,10 +36,14 @@ public class RegisterPresenter implements IRegisterConstract.IPresenter {
     @Override
     public void register(UserRegisterRequestModel input) {
         UserRegisterResponseModel userRegisterResponseModel = new UserRegisterResponseModel();
+        userRegisterResponseModel.setUsername(input.getUsername());
+        userRegisterResponseModel.setEmail(input.getEmail());
+        userRegisterResponseModel.setFirst_name(input.getFirst_name());
+        userRegisterResponseModel.setLast_name(input.getLast_name());
         novelTask.getRegister(new Callback<UserRegisterResponseModel>() {
             @Override
             public void returnResult(UserRegisterResponseModel result) {
-                if (Commons.isValidEmail(input.getEmail()) && userRegisterResponseModel == null) {
+                if (input != null) {
                     mView.registerSuccess(userRegisterResponseModel);
                 } else if (Commons.isValidEmail(input.getEmail())) {
                     mView.registerFailed(Constants.REGISTER_STATUS.EMAIL_EXIST);
@@ -50,23 +54,9 @@ public class RegisterPresenter implements IRegisterConstract.IPresenter {
 
             @Override
             public void returnError(String message) {
+                mView.registerFailed(Constants.REGISTER_STATUS.INVALID_EMAIL);
 
             }
         }, input);
     }
-//    @Override
-//    public void register(UserRegisterDto input) {
-//        if (Commons.isValidEmail(input.getEmail())) {
-//            UserDto userDto = userRepository.findByEmail(input.getEmail());
-//            if (Commons.isValidEmail(input.getEmail()) && userDto == null) {
-//                UserDto user = new UserDto(0, input.getName(), input.getEmail(), input.getPassword());
-//                userRepository.insert(user);
-//                mView.registerSuccess(user);
-//            } else if (Commons.isValidEmail(input.getEmail())) {
-//                mView.registerFailed(Constants.REGISTER_STATUS.EMAIL_EXIST);
-//            } else {
-//                mView.registerFailed(Constants.REGISTER_STATUS.INVALID_EMAIL);
-//            }
-//        }
-
 }
