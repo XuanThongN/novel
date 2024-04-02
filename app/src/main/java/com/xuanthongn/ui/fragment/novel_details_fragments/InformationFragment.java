@@ -98,7 +98,7 @@ public class InformationFragment extends Fragment implements INovelDetailConstra
         if (novel != null) {
             textViewCategory.setText(novel.getCategoryName());
             textViewDescription.setText(novel.getDescription());
-            mPresenter.getLatestNovelsByCategory(novel.getCategory_id());
+            mPresenter.getLatestNovelsByCategory(novel.getId(),novel.getCategory_id());
             mPresenter.getTotalChapterCount(novel.getChapters_count());
             mPresenter.getAllComments(novel.getId());
         }

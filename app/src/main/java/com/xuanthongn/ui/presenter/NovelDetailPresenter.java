@@ -11,7 +11,9 @@ import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.data.model.response_model.comment.CommentRequestModel;
 import com.xuanthongn.data.model.response_model.comment.CommentsResponseModel;
+import com.xuanthongn.data.model.response_model.novel.NovelResponse;
 import com.xuanthongn.data.model.response_model.user.ChapterResponseModel;
+import com.xuanthongn.data.model.response_model.novel.NovelsResponseModel;
 import com.xuanthongn.data.repository.CategoryRepository;
 import com.xuanthongn.data.repository.ChapterRepository;
 import com.xuanthongn.data.repository.NovelRepository;
@@ -20,6 +22,7 @@ import com.xuanthongn.util.ChapterTask;
 import com.xuanthongn.util.CommentTask;
 import com.xuanthongn.util.Constants;
 import com.xuanthongn.util.NetworkUtils;
+import com.xuanthongn.util.NovelTask;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +39,7 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
     private Context context;
     private CommentTask commentTask;
     private ChapterTask chapterTask;
+    private NovelTask novelTask;
 
     public NovelDetailPresenter(Context context) {
         db = Room.databaseBuilder(context,
@@ -46,6 +50,7 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
         mChapterResponsitory = new ChapterRepository(db);
         commentTask = new CommentTask();
         chapterTask = new ChapterTask();
+        novelTask = new NovelTask();
     }
 
     @Override
@@ -54,9 +59,31 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
     }
 
     @Override
-    public void getLatestNovelsByCategory(int categoryId) {
-        List<NovelRecommendDto> latestNovels = mNovelRepository.findLatestNovelsByCategory(categoryId);
-        mView.showLatestNovels(latestNovels);
+    public void getLatestNovelsByCategory(int novelId, int categoryId) {
+        if (NetworkUtils.isNetworkAvailable(context)) {
+            novelTask.getRelativeNovelsByCategoryId(new Callback<List<NovelResponse>>() {
+                @Override
+                public void returnResult(List<NovelResponse> result) {
+                    if (result != null && result.size() > 0) {
+                        List<NovelRecommendDto> novels = result.stream().map(x -> {
+                            NovelRecommendDto newNovelDto = new NovelRecommendDto(x.getNovelId(), x.getTitle(), x.getAuthor(), x.getDescription(), x.getImage_url(), x.getCategory().getName());
+                            newNovelDto.setCategoryId(x.getCategory().getId());
+                            newNovelDto.setChapters_count(x.getChapters_count());
+                            return newNovelDto;
+                        }).collect(Collectors.toList());
+                        mView.showLatestNovels(novels);
+                    }
+                }
+
+                @Override
+                public void returnError(String message) {
+                    mView.displayError(message);
+                }
+            }, novelId, categoryId);
+        } else {
+            List<NovelRecommendDto> latestNovels = mNovelRepository.findLatestNovelsByCategory(categoryId);
+            mView.showLatestNovels(latestNovels);
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.xuanthongn.data.api.services;
 
 import com.xuanthongn.data.model.Novel;
+import com.xuanthongn.data.model.response_model.novel.NovelResponse;
 import com.xuanthongn.data.model.response_model.novel.NovelsResponseModel;
 
 import java.util.List;
@@ -16,6 +17,9 @@ import retrofit2.http.Query;
 public interface INovelApiService {
     @GET("/novels")
     Observable<NovelsResponseModel> getList(@Header("Authorization") String token, @Query("page") int page);
+
+    @GET("/novels/get_relative_novels_by_category_id")
+    Observable<List<NovelResponse>> getRelativeNovelsByCategoryId(@Header("Authorization") String token, @Query("novel_id") int novelId, @Query("category_id") int categoryId);
 
     @POST("/novels")
     Call<Novel> create(@Header("Authorization") String token, @Body Novel item);
