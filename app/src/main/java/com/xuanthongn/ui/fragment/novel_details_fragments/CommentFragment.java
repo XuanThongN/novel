@@ -103,7 +103,7 @@ public class CommentFragment extends BottomSheetDialogFragment implements INovel
 
     @Override
     public void displayError(String errorMessage) {
-        Toast.makeText(getContext(), "Bình luận chứa từ ngữ xúc phạm hoặc không hợp lệ", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
     }
 
     @Override

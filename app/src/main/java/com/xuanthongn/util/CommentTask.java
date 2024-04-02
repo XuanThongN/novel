@@ -1,6 +1,8 @@
 package com.xuanthongn.util;
 
 
+import android.util.Log;
+
 import com.xuanthongn.data.api.ICommentApiService;
 import com.xuanthongn.data.api.INovelApiService;
 import com.xuanthongn.data.api.callback.Callback;
@@ -8,12 +10,16 @@ import com.xuanthongn.data.model.response_model.comment.CommentRequestModel;
 import com.xuanthongn.data.model.response_model.comment.CommentsResponseModel;
 import com.xuanthongn.data.model.response_model.novel.NovelsResponseModel;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
 
 
 public class CommentTask {
@@ -66,7 +72,20 @@ public class CommentTask {
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.returnError(e.getMessage());
+                        String errorMessage = e.getMessage();
+                        try {
+                            if (e instanceof HttpException) {
+                                HttpException httpException = (HttpException) e;
+                                ResponseBody errorBody = httpException.response().errorBody();
+                                errorMessage = errorBody.string();
+                            } else {
+                                // Handle other errors (network, etc.)
+                                errorMessage = e.getMessage(); // Could provide a more user-friendly message here
+                            }
+                        } catch (IOException ex) {
+                            errorMessage = ex.getMessage();
+                        }
+                        callback.returnError(errorMessage);
                     }
 
                     @Override
