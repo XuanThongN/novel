@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
+import com.xuanthongn.data.model.response_model.user.UserLoginResponseModel;
 import com.xuanthongn.data.model.user.UserDto;
+import com.xuanthongn.data.model.user.UserLoginDto;
 import com.xuanthongn.ui.constract.ILoginConstract;
 import com.xuanthongn.ui.presenter.LoginPresenter;
 import com.xuanthongn.util.Constants;
@@ -44,9 +46,9 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = edtEmail.getText().toString().trim();
+                String username = edtEmail.getText().toString().trim();
                 String password = edtPassword.getText().toString().trim();
-                mPresenter.login(email, password);
+                mPresenter.login(username, password);
             }
         });
         textViewBack.setOnClickListener(new View.OnClickListener() {
@@ -66,13 +68,16 @@ public class LoginActivity extends BaseActivity implements ILoginConstract.IView
     }
 
     @Override
-    public void loginSuccess(UserDto user) {
+    public void loginSuccess(UserLoginResponseModel user) {
         // Save login information to shared preferences
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(Constants.KEY_LOGIN_STATUS, true);
-        editor.putString(Constants.KEY_EMAIL, user.getEmail().trim());
-        editor.putString(Constants.KEY_NAME, user.getName().trim());
+        editor.putString(Constants.KEY_NAME, user.getName());
+        editor.putString(Constants.KEY_USERNAME, user.getUsername());
+        editor.putString(Constants.KEY_EMAIL, user.getEmail());
+        editor.putString(Constants.KEY_TOKEN, user.getToken());
+        editor.putString(Constants.KEY_USER_ID, user.getId());
         editor.apply();
         // Navigate to main activity
         Intent intent = new Intent(this, MainActivity.class);

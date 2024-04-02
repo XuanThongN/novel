@@ -19,8 +19,8 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE userId=:id LIMIT 1")
     List<User> getById(int id);
 
-    @Query("SELECT * FROM user WHERE EMAIL=:email LIMIT 1")
-    User findByEmail(String email);
+    @Query("SELECT * FROM user WHERE name=:name LIMIT 1")
+    User findByEmail(String name);
 
     @Insert
     void insertAll(User... users);
