@@ -12,10 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.xuanthongn.R;
 import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.model.user.UserDto;
+import com.xuanthongn.ui.constract.IAccountConstract;
+import com.xuanthongn.ui.presenter.AccountPresenter;
 import com.xuanthongn.util.Constants;
 
-public class ProfileActivity extends AppCompatActivity {
-
+public class ProfileActivity extends AppCompatActivity implements IAccountConstract.IView{
+    IAccountConstract.IPresenter mPresenter;
     ImageButton btnBack;
     UserDto userDto;
     TextView profile_user_name;
@@ -40,5 +42,22 @@ public class ProfileActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> {
             finish();
         });
+        mPresenter = new AccountPresenter(this);
+        mPresenter.setView(this);
+        mPresenter.getLoginInfo();
+
+    }
+
+    @Override
+    public void setAccountLayout(boolean isLogin) {
+
+    }
+
+    @Override
+    public void setLoginInfo(String name, String email) {
+        if (profile_user_name != null && profile_email != null) {
+            profile_user_name.setText(name);
+            profile_email.setText(email);
+        }
     }
 }
