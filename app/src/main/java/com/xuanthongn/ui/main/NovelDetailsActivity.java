@@ -185,6 +185,7 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
 
     @Override
     public void displayError(String errorMessage) {
+
     }
 
     @Override

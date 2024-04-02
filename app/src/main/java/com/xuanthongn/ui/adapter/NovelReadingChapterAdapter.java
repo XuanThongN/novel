@@ -20,6 +20,7 @@ import com.xuanthongn.data.model.Chapter;
 import com.xuanthongn.data.model.Novel;
 import com.xuanthongn.data.model.chapter.ChapterDto;
 import com.xuanthongn.data.model.novel.NovelDto;
+import com.xuanthongn.ui.main.NovelReadActivity;
 
 import java.util.List;
 
@@ -27,11 +28,13 @@ import java.util.List;
 public class NovelReadingChapterAdapter extends RecyclerView.Adapter<NovelReadingChapterAdapter.NovelViewHolder> {
 
     private Context mContext;
+    private NovelReadActivity mActivity;
     private List<ChapterDto> mChapters;
 
     public NovelReadingChapterAdapter(Context context, List<ChapterDto> chapters) {
         this.mContext = context;
         this.mChapters = chapters;
+        this.mActivity = (NovelReadActivity) context;
     }
 
     @Override
@@ -42,9 +45,15 @@ public class NovelReadingChapterAdapter extends RecyclerView.Adapter<NovelReadin
 
     @Override
     public void onBindViewHolder(NovelViewHolder holder, int position) {
-        ChapterDto novel = mChapters.get(position);
-        holder.nameChapter.setText("Chương " + novel.getChapterId() + ":  " + novel.getName());
-        holder.contentChapter.setText(novel.getContent());
+        ChapterDto chapter = mChapters.get(position);
+        holder.nameChapter.setText(chapter.getName());
+        holder.contentChapter.setText(chapter.getContent());
+
+//        Click vào giữa màn hình để hiện control
+        holder.itemView.setOnClickListener(v -> {
+            mActivity.showControls();
+
+        });
     }
 
     @Override

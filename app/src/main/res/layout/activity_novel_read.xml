@@ -1,140 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/root_layout"
-    android:background="@color/white">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/root_layout"
+        android:clickable="true"
+        android:background="@color/white"
+        android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/top_control"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+            android:id="@+id/top_control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
 
         <LinearLayout
-            android:id="@+id/btn_readback"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ic_round"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="15dp">
-            <ImageButton
+                android:id="@+id/btn_readback"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:background="@drawable/ic_angle_left" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/ic_round"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+            <ImageButton
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:background="@drawable/ic_angle_left" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/ic_round"
-            android:padding="15dp">
-
-            <ImageButton
+                android:id="@+id/info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:background="@drawable/ic_info" />
+                android:layout_marginStart="250dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_round"
+                android:padding="15dp">
+
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:background="@drawable/ic_info" />
 
         </LinearLayout>
 
     </LinearLayout>
     <!-- Nội dung truyện -->
-    <ScrollView
-        android:id="@+id/novel_root_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_continue_novel_reading_chapter_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="15dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-    </ScrollView>
 
     <RelativeLayout
-        android:id="@+id/bottom_control"
-        android:layout_width="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/ic_boder_account_infomation"
-        android:foregroundGravity="center"
-        android:gravity="center">
+            android:id="@+id/bottom_control"
+            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/ic_boder_account_infomation"
+            android:foregroundGravity="center"
+            android:gravity="center">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="5dp"
-                    android:text="Hồng Kông: Xuyên Vào Trái Tim Của Rồng Phuong Nguyen xuan thong da edit"
-                    android:textColor="@color/white"
-                    android:lines="1"
-                    android:ellipsize="end"
-                    android:textSize="15dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="5dp"
+                        android:text="Hồng Kông: Xuyên Vào Trái Tim Của Rồng Phuong Nguyen xuan thong da edit"
+                        android:textColor="@color/white"
+                        android:lines="1"
+                        android:ellipsize="end"
+                        android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:orientation="horizontal">
 
                 <Button
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/ic_angle_left" />
+                        android:id="@+id/btn_previous"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/ic_angle_left" />
 
                 <Button
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/ic_comment" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="20dp"
+                        android:background="@drawable/ic_comment" />
 
                 <Button
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/ic_list" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="20dp"
+                        android:background="@drawable/ic_list" />
 
                 <Button
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/ic_settings_24" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="20dp"
+                        android:background="@drawable/ic_settings_24" />
 
                 <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/ic_next" />
+                        android:id="@+id/btn_next"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="20dp"
+                        android:background="@drawable/ic_next" />
 
 
             </LinearLayout>

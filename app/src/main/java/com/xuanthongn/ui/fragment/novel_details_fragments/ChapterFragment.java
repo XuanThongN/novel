@@ -1,5 +1,7 @@
 package com.xuanthongn.ui.fragment.novel_details_fragments;
 
+import static com.google.android.material.internal.ViewUtils.hideKeyboard;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -8,9 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +33,8 @@ import com.xuanthongn.ui.adapter.NovelDetailsChaperNewAdapter;
 import com.xuanthongn.ui.constract.INovelDetailConstract;
 import com.xuanthongn.ui.main.NovelDetailsActivity;
 import com.xuanthongn.ui.presenter.NovelDetailPresenter;
+import com.xuanthongn.util.Commons;
+import com.xuanthongn.util.Constants;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,6 +48,7 @@ public class ChapterFragment extends Fragment implements INovelDetailConstract.I
     RecyclerView rvChapterList;
     TextView tvSort;
     List<ChapterDto> chapters = new ArrayList<>();
+    EditText edtSearchChapter;
     private boolean isSortAsc = false;
 
     @Override
@@ -74,6 +86,29 @@ public class ChapterFragment extends Fragment implements INovelDetailConstract.I
         rvChapterNew = view.findViewById(R.id.rv_novel_chapter_new);
         rvChapterList = view.findViewById(R.id.rv_novel_chapter_list);
         tvSort = view.findViewById(R.id.tv_sort);
+        edtSearchChapter = view.findViewById(R.id.edt_search_chapter);
+
+//        Lắng nghe sự kiện nhập text vào ô tìm kiếm
+        edtSearchChapter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action needed here
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Filter your list of chapters based on the input text
+                List<ChapterDto> filteredChapters = filterChapters(s.toString());
+                // Update your RecyclerView
+                rvChapterList.setAdapter(new NovelDetailsChaperListAdapter(getContext(), filteredChapters));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void sortData() {
@@ -105,6 +140,26 @@ public class ChapterFragment extends Fragment implements INovelDetailConstract.I
             }
         });
 
+    }
+
+    private void searchChapter(String query) {
+        List<ChapterDto> filteredChapters = filterChapters(query);
+        rvChapterList.setAdapter(new NovelDetailsChaperListAdapter(this.getContext(), filteredChapters));
+    }
+
+    private List<ChapterDto> filterChapters(String query) {
+        List<ChapterDto> filteredChapters = new ArrayList<>();
+
+        for (ChapterDto chapter : chapters) {
+//            Chuẩn hóa tên chương và query trước khi so sánh
+            String chapterName = Commons.toNonAccentVietnamese(chapter.getName()).toLowerCase();
+            query = Commons.toNonAccentVietnamese(query.trim()).toLowerCase();
+            if (chapterName.contains(query)) {
+                filteredChapters.add(chapter);
+            }
+        }
+
+        return filteredChapters;
     }
 
     public List<ChapterDto> getChapters() {

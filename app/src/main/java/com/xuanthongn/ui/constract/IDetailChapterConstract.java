@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface IDetailChapterConstract {
     interface IView {
-        void showContent(List<ChapterDto> chapterDto);
+        void showContent(List<ChapterDto> chapterDtos);
+        void displayError(String message);
     }
 
     interface IPresenter {
         void setView(IView view);
         void getDetailChapter(int novel_id);
-
 
     }
 }

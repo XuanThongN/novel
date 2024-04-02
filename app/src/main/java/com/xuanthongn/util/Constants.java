@@ -12,6 +12,9 @@ public class Constants {
     public static String KEY_EMAIL = "EMAIL";
     public static String KEY_NAME = "NAME";
 
+//    Dùng để loại bỏ tiếng việt có dấu
+    public static String REGEX = "[^a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]";
+
     public enum LOGIN_STATUS {PASSWORD_ERROR, EMAIL_ERROR}
 
     public enum REGISTER_STATUS {INVALID_EMAIL, EMAIL_EXIST, NAME_INVALID, PASSWORD_INVALID}

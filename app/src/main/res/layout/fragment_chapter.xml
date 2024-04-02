@@ -44,6 +44,7 @@
                                 android:src="@drawable/ic_boder_search" />
                         <!-- TextView -->
                         <EditText
+                                android:id="@+id/edt_search_chapter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
@@ -53,7 +54,8 @@
                                 android:background="@null"
                                 android:lines="1"
                                 android:textColor="#F0A8A5A5"
-                                android:textSize="18sp" />
+                                android:textSize="18sp"
+                                android:inputType="text"/>
                     </FrameLayout>
 
                 </LinearLayout>

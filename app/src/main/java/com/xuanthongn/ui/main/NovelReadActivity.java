@@ -9,11 +9,13 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +40,8 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
     TextView textTitleChapter;
     RecyclerView recyclerView;
     private int novelId;
+    private int currentChapterIndex = 0;
+
     public NovelDto getChapterDto() {
         return chapterDto;
     }
@@ -47,14 +51,16 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
     }
 
     NovelDto chapterDto;
+    RelativeLayout rootLayout;
+    LinearLayout topControl;
+    RelativeLayout bottomControl;
+    private final Handler handler = new Handler();
 
-    private Handler handler = new Handler();
-
-    private Runnable hideControlsRunnable = new Runnable() {
+    private final Runnable hideControlsRunnable = new Runnable() {
         @Override
         public void run() {
-            findViewById(R.id.top_control).setVisibility(View.GONE);
-            findViewById(R.id.bottom_control).setVisibility(View.GONE);
+            topControl.setVisibility(View.INVISIBLE);
+            bottomControl.setVisibility(View.INVISIBLE);
         }
     };
 
@@ -62,7 +68,6 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novel_read);
-        recyclerView=findViewById(R.id.rv_continue_novel_reading_chapter_list);
         initGUI();
         mPresenter = new ChapterDetailPresenter(this);
         mPresenter.setView(this);
@@ -71,7 +76,6 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
         if (novel != null) {
             novelId = novel.getId();
             mPresenter.getDetailChapter(novelId);
-        } else {
         }
     }
 
@@ -82,46 +86,54 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
 
     }
 
+    //    @SuppressLint("ClickableViewAccessibility")
     @SuppressLint("ClickableViewAccessibility")
     public void initGUI() {
-
+        recyclerView = findViewById(R.id.rv_continue_novel_reading_chapter_list);
         btnBack = findViewById(R.id.btn_readback);
         textContentChapter = findViewById(R.id.novel_content_edit);
         textTitleChapter = findViewById(R.id.novel_content);
+        rootLayout = findViewById(R.id.root_layout);
+        topControl = findViewById(R.id.top_control);
+        bottomControl = findViewById(R.id.bottom_control);
         // Hide controls after 2 seconds
         handler.postDelayed(hideControlsRunnable, 2000);
 
-        // Show controls when clicked anywhere on the screen
-        ScrollView mainLayout = findViewById(R.id.novel_root_content); // Replace with your actual root layout ID
-        mainLayout.setOnTouchListener(new View.OnTouchListener() {
-            private float startY;
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        startY = event.getY();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        float endY = event.getY();
-                        if (Math.abs(endY - startY) < 10) { // Adjust the sensitivity as needed
-                            findViewById(R.id.top_control).setVisibility(View.VISIBLE);
-                            findViewById(R.id.bottom_control).setVisibility(View.VISIBLE);
-                            // You can optionally reset the hide timer here if needed
-                            handler.removeCallbacks(hideControlsRunnable);
-                            handler.postDelayed(hideControlsRunnable, 2000); //
-                        }
-                        break;
-                }
-                return false;
-            }
-        });
 
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        // Xu ly su kien cac nut dieu khien tren man hinh doc truyen
+        Button nextButton = findViewById(R.id.btn_next);
+        Button previousButton = findViewById(R.id.btn_previous);
+
+//        Xu ly su kien khi click vao nut next va previous
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentChapterIndex < recyclerView.getAdapter().getItemCount() - 1) {
+                    currentChapterIndex++;
+                    recyclerView.smoothScrollToPosition(currentChapterIndex);
+                } else {
+                    Toast.makeText(NovelReadActivity.this, "Bạn đang ở Chương cuối cùng.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentChapterIndex > 0) {
+                    currentChapterIndex--;
+                    recyclerView.smoothScrollToPosition(currentChapterIndex);
+                } else {
+                    Toast.makeText(NovelReadActivity.this, "Bạn đang mở chương đầu tiên.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -131,4 +143,15 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
         recyclerView.setAdapter(new NovelReadingChapterAdapter(this, chapters));
     }
 
+    @Override
+    public void displayError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+    public void showControls() {
+        topControl.setVisibility(View.VISIBLE);
+        bottomControl.setVisibility(View.VISIBLE);
+        // Re-schedule hiding controls after 2 seconds
+        handler.removeCallbacks(hideControlsRunnable);
+        handler.postDelayed(hideControlsRunnable, 2000);
+    }
 }
