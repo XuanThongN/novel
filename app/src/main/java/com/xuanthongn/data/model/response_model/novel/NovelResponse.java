@@ -18,8 +18,8 @@ public class NovelResponse {
     private String image_path;
     @SerializedName("category")
     private CategoryResponseModel category;
-    @SerializedName("chapters")
-    private List<ChapterResponseModel> chapters;
+    @SerializedName("chapters_count")
+    private int chapters_count;
 
     @SerializedName("comments")
     private List<String> comments;
@@ -32,13 +32,13 @@ public class NovelResponse {
     public NovelResponse() {
     }
 
-    public NovelResponse(int novelId, String title, String author, String image_path, CategoryResponseModel category, List<ChapterResponseModel> chapters, String image_url, String description) {
+    public NovelResponse(int novelId, String title, String author, String image_path, CategoryResponseModel category, int chapters_count, String image_url, String description) {
         this.novelId = novelId;
         this.title = title;
         this.author = author;
         this.image_path = image_path;
         this.category = category;
-        this.chapters = chapters;
+        this.chapters_count = chapters_count;
         this.image_url = image_url;
         this.description = description;
     }
@@ -91,14 +91,13 @@ public class NovelResponse {
         this.comments = comments;
     }
 
-    public List<ChapterResponseModel> getChapters() {
-        return chapters;
+    public int getChapters_count() {
+        return chapters_count;
     }
 
-    public void setChapters(List<ChapterResponseModel> chapters) {
-        this.chapters = chapters;
+    public void setChapters_count(int chapters_count) {
+        this.chapters_count = chapters_count;
     }
-
 
     public String getImage_url() {
         return image_url;

@@ -65,7 +65,7 @@ public class HomePresenter implements IHomeConstract.IPresenter {
         novelTask.getNovels(new Callback<NovelsResponseModel>() {
             @Override
             public void returnResult(NovelsResponseModel novelResponseModels) {
-                List<NovelRecommendDto> recommendations = novelResponseModels.getResults().stream().map(novel -> new NovelRecommendDto(novel.getNovelId(), novel.getTitle(), novel.getDescription(), novel.getImage_url(), novel.getCategory().getName(), novel.getCategory().getId())).collect(Collectors.toList());
+                List<NovelRecommendDto> recommendations = novelResponseModels.getResults().stream().map(novel -> new NovelRecommendDto(novel.getNovelId(), novel.getTitle(), novel.getDescription(), novel.getImage_url(), novel.getCategory().getName(), novel.getCategory().getId(), novel.getChapters_count())).collect(Collectors.toList());
                 mView.setNovelRecommendToView(recommendations);
             }
 

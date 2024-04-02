@@ -60,7 +60,7 @@ public class NovelRepository implements INovelRepository {
     public List<NovelRecommendDto> getNovelsWithCategory() {
         List<NovelWithCategory> novels = novelDao.getNovelsWithCategory();
         return novels.stream()
-                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name, x.novel.description, x.novel.imageUrl, x.category.getName(), x.category.getCategoryId()))
+                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name, x.novel.description, x.novel.imageUrl, x.category.getName(), x.category.getCategoryId(), 0))
                 .collect(Collectors.toList());
     }
 
@@ -126,7 +126,7 @@ public class NovelRepository implements INovelRepository {
 
         List<NovelWithCategory> novels = novelDao.findLatestNovelsByCategory(categoryId);
         return novels.stream()
-                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name, x.novel.description, x.novel.imageUrl, x.category.getName(), x.category.getCategoryId()))
+                .map(x -> new NovelRecommendDto(x.novel.novelId, x.novel.name, x.novel.description, x.novel.imageUrl, x.category.getName(), x.category.getCategoryId(),0))
                 .collect(Collectors.toList());
     }
 

@@ -7,6 +7,7 @@ public class NovelRecommendDto implements Serializable {
     private String name;
     private String author;
     private String description;
+    private int chapters_count;
     private String imageUrl;
     private String categoryName;
     private int categoryId;
@@ -50,13 +51,14 @@ public class NovelRecommendDto implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public NovelRecommendDto(int id, String name, String description, String imageUrl, String categoryName, int categoryId) {
+    public NovelRecommendDto(int id, String name, String description, String imageUrl, String categoryName, int categoryId, int chapters_count) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
         this.categoryName = categoryName;
         this.categoryId = categoryId;
+        this.chapters_count = chapters_count;
     }
 
     public NovelRecommendDto() {
@@ -116,5 +118,13 @@ public class NovelRecommendDto implements Serializable {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public int getChapters_count() {
+        return chapters_count;
+    }
+
+    public void setChapters_count(int chapters_count) {
+        this.chapters_count = chapters_count;
     }
 }

@@ -35,7 +35,7 @@ public interface INovelDetailConstract {
 
         void getAllChaptersByNovelNew(int novelId);
 
-        void getTotalChapterCount(int novelId);
+        void getTotalChapterCount(int chapterCount);
 
         void getAllComments(int novelId);
         void postComment(int novelId, String content, int userId);

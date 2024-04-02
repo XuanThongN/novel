@@ -71,7 +71,8 @@ public class NovelRecommendAdapter extends RecyclerView.Adapter<NovelRecommendAd
                                 novel.getAuthor(),
                                 novel.getDescription(),
                                 novel.getCategoryName(),
-                                novel.getCategoryId())
+                                novel.getCategoryId(),
+                                novel.getChapters_count())
                 );
                 context.startActivity(intent);
             }

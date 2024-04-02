@@ -77,7 +77,7 @@ public class NovelDetailsYourlikeAdapter extends RecyclerView.Adapter<NovelDetai
                                 novelYourLikes.getAuthor(),
                                 novelYourLikes.getDescription(),
                                 novelYourLikes.getCategoryName(),
-                                novelYourLikes.getCategoryId())
+                                novelYourLikes.getCategoryId(),novelYourLikes.getChapters_count())
                 );
                 context.startActivity(intent);
             }

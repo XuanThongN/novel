@@ -10,6 +10,7 @@ public class NovelDto implements Serializable {
     private String description;
     private String categoryName;
     private int category_id;
+    private int chapters_count;
 
     public NovelDto(int id, String name, String imageUrl, String categoryName) {
         this.id = id;
@@ -26,7 +27,7 @@ public class NovelDto implements Serializable {
         this.categoryName = categoryName;
     }
 
-    public NovelDto(int id, String name, String imageUrl, String author, String description, String categoryName, int category_id) {
+    public NovelDto(int id, String name, String imageUrl, String author, String description, String categoryName, int category_id, int chapters_count) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
@@ -34,6 +35,7 @@ public class NovelDto implements Serializable {
         this.description = description;
         this.categoryName = categoryName;
         this.category_id = category_id;
+        this.chapters_count = chapters_count;
     }
 
     public NovelDto() {
@@ -70,5 +72,13 @@ public class NovelDto implements Serializable {
 
     public void setCategory_id(int category_id) {
         this.category_id = category_id;
+    }
+
+    public int getChapters_count() {
+        return chapters_count;
+    }
+
+    public void setChapters_count(int chapters_count) {
+        this.chapters_count = chapters_count;
     }
 }

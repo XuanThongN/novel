@@ -74,9 +74,9 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
     }
 
     @Override
-    public void getTotalChapterCount(int novelId) {
-        int totalChapterCount = mChapterResponsitory.countChaptersByNovelId(novelId);
-        mView.showTotalChapterCount(totalChapterCount);
+    public void getTotalChapterCount(int chapterCount) {
+//        int totalChapterCount = mChapterResponsitory.countChaptersByNovelId(novelId);
+        mView.showTotalChapterCount(chapterCount);
     }
 
     @Override
