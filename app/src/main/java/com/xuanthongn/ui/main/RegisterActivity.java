@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import com.xuanthongn.R;
 import com.xuanthongn.base.BaseActivity;
-import com.xuanthongn.data.model.user.UserDto;
-import com.xuanthongn.data.model.user.UserRegisterDto;
+import com.xuanthongn.data.model.response_model.user.UserRegisterRequestModel;
+import com.xuanthongn.data.model.response_model.user.UserRegisterResponseModel;
 import com.xuanthongn.ui.constract.IRegisterConstract;
 import com.xuanthongn.ui.presenter.RegisterPresenter;
 import com.xuanthongn.util.Commons;
@@ -21,7 +21,7 @@ import com.xuanthongn.util.Constants;
 public class RegisterActivity extends BaseActivity implements IRegisterConstract.IView {
 
     private IRegisterConstract.IPresenter mPresenter;
-    private EditText edtEmail, edtName, edtPassword, edtRePassword;
+    private EditText edtEmail, edtFirstName, edtLastName, edtPassword, edtRePassword;
     private CheckBox checkBoxAccept;
     private Button btnRegister;
     private TextView tvBack;
@@ -37,7 +37,8 @@ public class RegisterActivity extends BaseActivity implements IRegisterConstract
 
     private void initGUI() {
         edtEmail = findViewById(R.id.edtEmail);
-        edtName = findViewById(R.id.edtName);
+        edtFirstName = findViewById(R.id.edtFirstName);
+        edtLastName = findViewById(R.id.edtLastName);
         edtPassword = findViewById(R.id.edtPassword);
         edtRePassword = findViewById(R.id.edtRePassword);
         checkBoxAccept = findViewById(R.id.checkBoxAccept);
@@ -49,9 +50,14 @@ public class RegisterActivity extends BaseActivity implements IRegisterConstract
             public void onClick(View v) {
                 if (validateForm()) {
                     String email = edtEmail.getText().toString().trim();
-                    String name = edtName.getText().toString().trim();
+                    String firtName = edtFirstName.getText().toString().trim();
+                    String lastName = edtLastName.getText().toString().trim();
                     String password = edtPassword.getText().toString().trim();
-                    UserRegisterDto userRegisterDto = new UserRegisterDto(name, email, password);
+                    UserRegisterRequestModel userRegisterDto = new UserRegisterRequestModel();
+                    userRegisterDto.setEmail(email);
+                    userRegisterDto.setFirst_name(firtName);
+                    userRegisterDto.setLast_name(lastName);
+                    userRegisterDto.setPassword(password);
                     mPresenter.register(userRegisterDto);
                 }
             }
@@ -99,7 +105,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterConstract
     }
 
     @Override
-    public void registerSuccess(UserDto user) {
+    public void registerSuccess(UserRegisterResponseModel user) {
         Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
