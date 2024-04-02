@@ -41,7 +41,7 @@ public class NovelDetailsChaperNewAdapter extends RecyclerView.Adapter<NovelDeta
     public void onBindViewHolder(NovelDetailsChaperNewAdapter.NovelChapterNewViewHolder holder, int position) {
         ChapterDto novel = chapter.get(position);
         // Gán giá trị vào TextView
-        holder.chapterNameView.setText("Chương " + (position + 1) + ":  " + novel.getName());
+        holder.chapterNameView.setText(novel.getName());
     }
 
     @Override
