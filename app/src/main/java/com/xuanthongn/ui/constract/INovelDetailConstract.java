@@ -25,7 +25,7 @@ public interface INovelDetailConstract {
     interface IPresenter {
         void setView(IView view);
 
-        void getLatestNovelsByCategory(int categoryId);
+        void getLatestNovelsByCategory(int novelId,int categoryId);
 
         void getAllChaptersByNovelId(int novelId);
 

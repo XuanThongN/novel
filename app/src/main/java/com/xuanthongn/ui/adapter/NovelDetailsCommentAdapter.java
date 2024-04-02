@@ -58,26 +58,8 @@ public class NovelDetailsCommentAdapter extends RecyclerView.Adapter<NovelDetail
         holder.likeNumberView.setText(String.valueOf(novelComment.getNumber_of_likes()));
         holder.commentNumberView.setText(String.valueOf(novelComment.getNumber_of_comments()));
 
-
-        //Set background image for layout
-
-//        Glide.with(holder.image.getContext())
-//                .load(novelComment.getImageUrl())
-//                .listener(new RequestListener<Drawable>() {
-//                    @Override
-//                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource) {
-//                        holder.image.setBackground(resource);
-//                        return true;
-//                    }
-//
-//                    @Override
-//                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-//                        return false;
-//                    }
-//                })
-//                .preload();
-
-        CustomBindingAdapter.loadImage(holder.image, novelComment.getImageUrl());
+// Hiện thị ảnh từ api
+//        CustomBindingAdapter.loadImage(holder.image, novelComment.getImageUrl());
     }
 
     @Override
