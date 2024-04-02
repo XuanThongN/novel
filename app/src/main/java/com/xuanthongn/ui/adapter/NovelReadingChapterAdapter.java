@@ -30,6 +30,7 @@ public class NovelReadingChapterAdapter extends RecyclerView.Adapter<NovelReadin
     private Context mContext;
     private NovelReadActivity mActivity;
     private List<ChapterDto> mChapters;
+    private int currentItemIndex = 0;
 
     public NovelReadingChapterAdapter(Context context, List<ChapterDto> chapters) {
         this.mContext = context;
@@ -45,20 +46,20 @@ public class NovelReadingChapterAdapter extends RecyclerView.Adapter<NovelReadin
 
     @Override
     public void onBindViewHolder(NovelViewHolder holder, int position) {
-        ChapterDto chapter = mChapters.get(position);
-        holder.nameChapter.setText(chapter.getName());
-        holder.contentChapter.setText(chapter.getContent());
-
-//        Click vào giữa màn hình để hiện control
+        ChapterDto chapter = mChapters.get(currentItemIndex);
+        holder.bind(chapter);
         holder.itemView.setOnClickListener(v -> {
             mActivity.showControls();
-
         });
     }
 
     @Override
     public int getItemCount() {
         return mChapters.size();
+    }
+
+    public void setCurrentItemIndex(int index) {
+        this.currentItemIndex = index;
     }
 
     public static class NovelViewHolder extends RecyclerView.ViewHolder {
@@ -70,6 +71,11 @@ public class NovelReadingChapterAdapter extends RecyclerView.Adapter<NovelReadin
             super(itemView);
             nameChapter = itemView.findViewById(R.id.novel_content);
             contentChapter = itemView.findViewById(R.id.novel_content_edit);
+        }
+
+        public void bind(ChapterDto chapter) {
+            nameChapter.setText(chapter.getName());
+            contentChapter.setText(chapter.getContent());
         }
     }
 }

@@ -65,7 +65,7 @@ public class ChapterDetailPresenter implements IDetailChapterConstract.IPresente
                     mView.displayError(message);
                 }
             }, novel_id);
-            mView.showContent(chapters);
+//            mView.showContent(chapters);
         } else {
 //            Nếu không có mạng thì lấy dữ liệu từ database
             chapters = chapterRepository.getChapterByNovelID(novel_id);

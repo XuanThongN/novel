@@ -129,7 +129,7 @@ public class NovelDetailsActivity extends AppCompatActivity implements INovelDet
                 Intent intent = new Intent(context, NovelReadActivity.class);
                 // Truyền tất cả dữ liệu của cuốn truyện qua Intent
                 intent.putExtra("novel", (Serializable)
-                        new NovelDto(novel.getId()));
+                        new NovelDto(novel.getId(), novel.getName(), "", ""));
                 context.startActivity(intent);
             }
         });

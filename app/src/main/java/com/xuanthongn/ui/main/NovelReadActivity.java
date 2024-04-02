@@ -20,6 +20,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xuanthongn.R;
@@ -38,6 +39,7 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
     LinearLayout btnBack;
     TextView textContentChapter;
     TextView textTitleChapter;
+    TextView textNovelTitle;
     RecyclerView recyclerView;
     private int novelId;
     private int currentChapterIndex = 0;
@@ -54,13 +56,15 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
     RelativeLayout rootLayout;
     LinearLayout topControl;
     RelativeLayout bottomControl;
+    Button nextButton;
+    Button previousButton;
     private final Handler handler = new Handler();
 
     private final Runnable hideControlsRunnable = new Runnable() {
         @Override
         public void run() {
-            topControl.setVisibility(View.INVISIBLE);
-            bottomControl.setVisibility(View.INVISIBLE);
+            topControl.setVisibility(View.GONE);
+            bottomControl.setVisibility(View.GONE);
         }
     };
 
@@ -76,6 +80,8 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
         if (novel != null) {
             novelId = novel.getId();
             mPresenter.getDetailChapter(novelId);
+            textNovelTitle.setText(novel.getName());
+
         }
     }
 
@@ -87,7 +93,6 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
     }
 
     //    @SuppressLint("ClickableViewAccessibility")
-    @SuppressLint("ClickableViewAccessibility")
     public void initGUI() {
         recyclerView = findViewById(R.id.rv_continue_novel_reading_chapter_list);
         btnBack = findViewById(R.id.btn_readback);
@@ -96,9 +101,9 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
         rootLayout = findViewById(R.id.root_layout);
         topControl = findViewById(R.id.top_control);
         bottomControl = findViewById(R.id.bottom_control);
+        textNovelTitle = findViewById(R.id.novel_title);
         // Hide controls after 2 seconds
         handler.postDelayed(hideControlsRunnable, 2000);
-
 
 
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -108,45 +113,65 @@ public class NovelReadActivity extends AppCompatActivity implements IDetailChapt
             }
         });
 
-        // Xu ly su kien cac nut dieu khien tren man hinh doc truyen
-        Button nextButton = findViewById(R.id.btn_next);
-        Button previousButton = findViewById(R.id.btn_previous);
+        nextButton = findViewById(R.id.btn_next);
+        previousButton = findViewById(R.id.btn_previous);
+
+    }
+
+    // Xu ly su kien cac nut dieu khien tren man hinh doc truyen
+    private void setListenerForButtonControl() {
 
 //        Xu ly su kien khi click vao nut next va previous
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentChapterIndex < recyclerView.getAdapter().getItemCount() - 1) {
-                    currentChapterIndex++;
-                    recyclerView.smoothScrollToPosition(currentChapterIndex);
-                } else {
-                    Toast.makeText(NovelReadActivity.this, "Bạn đang ở Chương cuối cùng.", Toast.LENGTH_SHORT).show();
-                }
+                nextChapter();
             }
         });
 
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentChapterIndex > 0) {
-                    currentChapterIndex--;
-                    recyclerView.smoothScrollToPosition(currentChapterIndex);
-                } else {
-                    Toast.makeText(NovelReadActivity.this, "Bạn đang mở chương đầu tiên.", Toast.LENGTH_SHORT).show();
-                }
+                previousChapter();
             }
         });
     }
 
+    // Method to navigate to the next chapter
+    private void nextChapter() {
+        if (currentChapterIndex < (recyclerView.getAdapter().getItemCount()) - 1) {
+            currentChapterIndex++;
+            ((NovelReadingChapterAdapter) recyclerView.getAdapter()).setCurrentItemIndex(currentChapterIndex);
+            recyclerView.getAdapter().notifyDataSetChanged();
+        } else {
+            Toast.makeText(NovelReadActivity.this, "Bạn đang ở Chương cuối cùng.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Method to navigate to the previous chapter
+    private void previousChapter() {
+        if (currentChapterIndex > 0) {
+            currentChapterIndex--;
+            ((NovelReadingChapterAdapter) recyclerView.getAdapter()).setCurrentItemIndex(currentChapterIndex);
+            recyclerView.getAdapter().notifyDataSetChanged();
+        } else {
+            Toast.makeText(NovelReadActivity.this, "Bạn đang mở chương đầu tiên.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public void showContent(List<ChapterDto> chapters) {
-        recyclerView.setAdapter(new NovelReadingChapterAdapter(this, chapters));
+        NovelReadingChapterAdapter adapter = new NovelReadingChapterAdapter(this, chapters);
+//        new PagerSnapHelper().attachToRecyclerView(recyclerView);
+        recyclerView.setAdapter(adapter);
+        setListenerForButtonControl();
     }
 
     @Override
     public void displayError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
     public void showControls() {
         topControl.setVisibility(View.VISIBLE);
         bottomControl.setVisibility(View.VISIBLE);
