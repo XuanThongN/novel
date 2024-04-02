@@ -7,23 +7,22 @@ import androidx.room.Room;
 
 import com.xuanthongn.data.AppDatabase;
 import com.xuanthongn.data.api.callback.Callback;
-import com.xuanthongn.data.entity.relationship.NovelWithCategory;
-import com.xuanthongn.data.model.category.CategoryDto;
 import com.xuanthongn.data.model.chapter.ChapterDto;
-import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.data.model.novel.NovelRecommendDto;
 import com.xuanthongn.data.model.response_model.comment.CommentRequestModel;
 import com.xuanthongn.data.model.response_model.comment.CommentsResponseModel;
+import com.xuanthongn.data.model.response_model.user.ChapterResponseModel;
 import com.xuanthongn.data.repository.CategoryRepository;
 import com.xuanthongn.data.repository.ChapterRepository;
 import com.xuanthongn.data.repository.NovelRepository;
 import com.xuanthongn.ui.constract.INovelDetailConstract;
+import com.xuanthongn.util.ChapterTask;
 import com.xuanthongn.util.CommentTask;
 import com.xuanthongn.util.Constants;
+import com.xuanthongn.util.NetworkUtils;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
     private INovelDetailConstract.IView mView;
@@ -36,6 +35,7 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
 
     private Context context;
     private CommentTask commentTask;
+    private ChapterTask chapterTask;
 
     public NovelDetailPresenter(Context context) {
         db = Room.databaseBuilder(context,
@@ -45,6 +45,7 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
         mNovelRepository = new NovelRepository(db);
         mChapterResponsitory = new ChapterRepository(db);
         commentTask = new CommentTask();
+        chapterTask = new ChapterTask();
     }
 
     @Override
@@ -60,17 +61,55 @@ public class NovelDetailPresenter implements INovelDetailConstract.IPresenter {
 
     @Override
     public void getAllChaptersByNovelId(int novelId) {
-        List<ChapterDto> latestNovels = mChapterResponsitory.getAllChaptersByNovelId(novelId);
-//        Đổ các dữ liệu ra view xử lý
-        mView.showChapters(latestNovels);
+//        Kiem tra ket noi mang
+        if (NetworkUtils.isNetworkAvailable(context)) {
+            chapterTask.getByNovel(new Callback<List<ChapterResponseModel>>() {
+                @Override
+                public void returnResult(List<ChapterResponseModel> result) {
+//                    Chuyển đổi dữ liệu từ ChapterResponseModel sang ChapterDto
+                    if (result != null && result.size() > 0) {
+                        List<ChapterDto> chapters = result.stream().map(x -> new ChapterDto(x.getChapterId(), x.getTitle(), x.getContent(), x.getNovelId())).collect(Collectors.toList());
+                        mView.showChapters(chapters);
+                    }
+                }
+
+                @Override
+                public void returnError(String message) {
+                    mView.displayError(message);
+                }
+            }, novelId);
+        } else {
+            List<ChapterDto> latestNovels = mChapterResponsitory.getAllChaptersByNovelId(novelId);
+            mView.showChapters(latestNovels);
+        }
 
     }
 
     @Override
-    public void getAllChaptersByNovelNew(int novelId) {
-        List<ChapterDto> latestNovels = mChapterResponsitory.getAllChaptersByNovelNew(novelId);
-//        Đổ các dữ liệu ra view xử lý
-        mView.showChaptersNew(latestNovels);
+    public void getNewestChaptersByNovelId(int novelId) {
+        //        Kiem tra ket noi mang
+        if (NetworkUtils.isNetworkAvailable(context)) {
+            chapterTask.getNewestByNovel(new Callback<List<ChapterResponseModel>>() {
+                @Override
+                public void returnResult(List<ChapterResponseModel> result) {
+//                    Chuyển đổi dữ liệu từ ChapterResponseModel sang ChapterDto
+                    if (result != null && result.size() > 0) {
+                        List<ChapterDto> chapters = result.stream().map(x -> new ChapterDto(x.getChapterId(), x.getTitle(), x.getContent(), x.getNovelId())).collect(Collectors.toList());
+                        mView.showChaptersNew(chapters);
+                    }
+                }
+
+                @Override
+                public void returnError(String message) {
+                    mView.displayError(message);
+
+                }
+            }, novelId);
+        } else {
+            List<ChapterDto> latestNovels = mChapterResponsitory.getNewestChaptersByNovelId(novelId);
+//        Đổ cács dữ liệu ra view xử lý
+            mView.showChaptersNew(latestNovels);
+        }
     }
 
     @Override

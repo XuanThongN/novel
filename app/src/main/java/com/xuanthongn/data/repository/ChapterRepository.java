@@ -81,7 +81,7 @@ public class ChapterRepository implements IChapterRepository {
     }
 
     @Override
-    public List<ChapterDto> getAllChaptersByNovelNew(int novel_id) {
+    public List<ChapterDto> getNewestChaptersByNovelId(int novel_id) {
         List<ChapterWithNovel> chaptersWithNovel = chapterDao.getNovelWithChaptersNew(novel_id);
         List<ChapterDto> chapterDtos = new ArrayList<>();
         for (ChapterWithNovel item : chaptersWithNovel) {

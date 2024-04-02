@@ -54,7 +54,7 @@ public class NovelDetailsChaperListAdapter extends RecyclerView.Adapter<NovelDet
     @Override
     public void onBindViewHolder(NovelChapterListViewHolder holder, int position) {
         ChapterDto novel = chapter.get(position);
-        holder.chapterNameView.setText("Chương " + (position + 1) + ":  " + novel.getName());
+        holder.chapterNameView.setText(novel.getName());
 
     }
 
