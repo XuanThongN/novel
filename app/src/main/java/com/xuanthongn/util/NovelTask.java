@@ -1,7 +1,7 @@
 package com.xuanthongn.util;
 
 
-import com.xuanthongn.data.api.INovelApiService;
+import com.xuanthongn.data.api.services.INovelApiService;
 import com.xuanthongn.data.api.callback.Callback;
 import com.xuanthongn.data.model.response_model.novel.NovelsResponseModel;
 

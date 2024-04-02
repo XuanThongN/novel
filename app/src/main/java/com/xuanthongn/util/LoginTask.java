@@ -1,14 +1,9 @@
 package com.xuanthongn.util;
 
-import com.xuanthongn.data.api.ICommentApiService;
-import com.xuanthongn.data.api.IUserService;
+import com.xuanthongn.data.api.services.IUserService;
 import com.xuanthongn.data.api.callback.Callback;
-import com.xuanthongn.data.model.response_model.comment.CommentsResponseModel;
 import com.xuanthongn.data.model.response_model.user.UserLoginResponseModel;
-import com.xuanthongn.data.model.user.UserDto;
 import com.xuanthongn.data.model.user.UserLoginDto;
-
-import java.util.List;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

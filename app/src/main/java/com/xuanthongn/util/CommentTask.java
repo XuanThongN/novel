@@ -1,18 +1,13 @@
 package com.xuanthongn.util;
 
 
-import android.util.Log;
-
-import com.xuanthongn.data.api.ICommentApiService;
-import com.xuanthongn.data.api.INovelApiService;
+import com.xuanthongn.data.api.services.ICommentApiService;
 import com.xuanthongn.data.api.callback.Callback;
 import com.xuanthongn.data.model.response_model.comment.CommentRequestModel;
 import com.xuanthongn.data.model.response_model.comment.CommentsResponseModel;
-import com.xuanthongn.data.model.response_model.novel.NovelsResponseModel;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

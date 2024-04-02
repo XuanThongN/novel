@@ -1,4 +1,4 @@
-package com.xuanthongn.data.api;
+package com.xuanthongn.data.api.services;
 
 import com.xuanthongn.data.model.Novel;
 import com.xuanthongn.data.model.response_model.novel.NovelsResponseModel;
