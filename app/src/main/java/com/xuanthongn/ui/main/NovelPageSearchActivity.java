@@ -6,9 +6,13 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.xuanthongn.R;
@@ -16,10 +20,11 @@ import com.xuanthongn.data.model.novel.NovelDto;
 import com.xuanthongn.ui.adapter.NovelSearchAdapter;
 import com.xuanthongn.ui.constract.ISearchConstract;
 import com.xuanthongn.ui.presenter.SearchNovelPresenter;
+import com.xuanthongn.util.Commons;
 
 import java.util.List;
 
-public class NovelPageSearchActivity extends  AppCompatActivity implements ISearchConstract.IView {
+public class NovelPageSearchActivity extends AppCompatActivity implements ISearchConstract.IView {
 
     ISearchConstract.IPresenter mPresenter;
     TabLayout tabLayout;
@@ -36,10 +41,10 @@ public class NovelPageSearchActivity extends  AppCompatActivity implements ISear
         mPresenter.setView(this);
 
         tabLayout = findViewById(R.id.tab_layout_search_page_novel);
-        viewPager2 =findViewById(R.id.view_pager_search_page_novel);
+        viewPager2 = findViewById(R.id.view_pager_search_page_novel);
 
 
-        btnBack =findViewById(R.id.btn_back_search);
+        btnBack = findViewById(R.id.btn_back_search);
         edtSearch = findViewById(R.id.edt_search);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -75,22 +80,19 @@ public class NovelPageSearchActivity extends  AppCompatActivity implements ISear
             }
         });
 
-        edtSearch.addTextChangedListener(new TextWatcher() {
 
+        edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    // Get search query from EditText
+                    String query = edtSearch.getText().toString().trim();
+                    query = Commons.toNonAccentVietnamese(query).toLowerCase();
+                    mPresenter.searchNovel(query);
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                mPresenter.searchNovel(s.toString());
-
-
+                    return true;
+                }
+                return false;
             }
         });
     }
@@ -99,5 +101,10 @@ public class NovelPageSearchActivity extends  AppCompatActivity implements ISear
     public void showResults(List<NovelDto> novels) {
         myViewPagerAdapter = new NovelSearchAdapter(this, novels);
         viewPager2.setAdapter(myViewPagerAdapter);
+    }
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

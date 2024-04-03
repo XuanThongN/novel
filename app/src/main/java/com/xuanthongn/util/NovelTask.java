@@ -52,7 +52,7 @@ public class NovelTask {
 
     public void getRelativeNovelsByCategoryId(final Callback<List<NovelResponse>> callback, final int novelId, final int categoryId) {
         RetrofitClient.getInstance().create(INovelApiService.class)
-                .getRelativeNovelsByCategoryId(token,novelId,categoryId )
+                .getRelativeNovelsByCategoryId(token, novelId, categoryId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<List<NovelResponse>>() {
@@ -79,9 +79,35 @@ public class NovelTask {
     }
 
 
+    public void searchNovels(final Callback<NovelsResponseModel> callback, String search) {
+        RetrofitClient.getInstance().create(INovelApiService.class)
+                .search(token, search)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<NovelsResponseModel>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
+                    }
 
-    public void getRegister(final Callback<UserRegisterResponseModel> callback,  UserRegisterRequestModel userRegisterRequestModel) {
+                    @Override
+                    public void onNext(NovelsResponseModel novelResponseModels) {
+                        callback.returnResult(novelResponseModels);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.returnError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    public void getRegister(final Callback<UserRegisterResponseModel> callback, UserRegisterRequestModel userRegisterRequestModel) {
         RetrofitClient.getInstance().create(IUserService.class)
                 .register(userRegisterRequestModel)
                 .observeOn(AndroidSchedulers.mainThread())

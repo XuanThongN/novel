@@ -7,6 +7,8 @@ import java.util.List;
 public interface ISearchConstract {
     interface IView {
         void showResults(List<NovelDto> novels);
+
+        void showError(String message);
     }
 
     interface IPresenter {

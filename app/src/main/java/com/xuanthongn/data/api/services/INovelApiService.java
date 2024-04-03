@@ -21,6 +21,9 @@ public interface INovelApiService {
     @GET("/novels/get_relative_novels_by_category_id")
     Observable<List<NovelResponse>> getRelativeNovelsByCategoryId(@Header("Authorization") String token, @Query("novel_id") int novelId, @Query("category_id") int categoryId);
 
+    @GET("/novels")
+    Observable<NovelsResponseModel> search(@Header("Authorization") String token, @Query("search") String query);
+
     @POST("/novels")
     Call<Novel> create(@Header("Authorization") String token, @Body Novel item);
 
