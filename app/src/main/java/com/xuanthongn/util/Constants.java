@@ -1,7 +1,7 @@
 package com.xuanthongn.util;
 
 public class Constants {
-    public static final String BASEURL = "https://www.xuanthongn.games";
+    public static final String BASEURL = "https://www.api.xuanthongn.games";
     public static final String TOKEN = "93100dcd68e0b418cffab85db7da57e013d4f2f2";
     public static final String KEY_USERNAME = "USERNAME";
     public static final String KEY_TOKEN = "TOKEN";
